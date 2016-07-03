@@ -1,4 +1,4 @@
-function confirmVt(id){
+function confirm(id){
     $("#modal").fadeTo(200, 1).css('display', 'block');
     $("#cover").fadeTo(200, 0.5).css('display', 'block');
     

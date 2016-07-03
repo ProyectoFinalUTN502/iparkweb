@@ -25,10 +25,10 @@
                 </li>
                 <li class="divider"></li>
                 <li>
-                    <a href="logout">
-                        <i class="fa fa-sign-out"></i> 
-                        &nbsp;&nbsp;Cerrar Sesion
-                    </a>
+                    <?php 
+                        $text = "<i class='fa fa-sign-out'></i>&nbsp;&nbsp;Cerrar Sesion";
+                        echo Gui::href("admin/logout", $text); 
+                    ?>
                 </li>
             </ul>
         </li>

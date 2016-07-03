@@ -10,7 +10,7 @@ $config = array();
 /**
  * Base URL of the app
  */
-$config["base_url"] = "iParkTest";
+$config["base_url"] = "iParkWeb";
 /**
  * Application Domain. No Slashes at the end
  */
@@ -115,22 +115,6 @@ define("ERROR_102", "<b>Error - 102:</b> Invalid method ");
 define("ERROR_103", "<b>Error - 103:</b> Invalid class ");
 
 define("ERROR_200", "Invalid Key reference");
-
-//define("ERROR_101", "<b>Error - 101:</b> System could not load ");
-//define("ERROR_102", "<b>Error - 102:</b> System could not perform autoloading process");
-//define("ERROR_103", "<b>Error - 103:</b> System could not load library ");
-//define("ERROR_104", "<b>Error - 104:</b> System could not load aplication config");
-//define("ERROR_105", "<b>Error - 105:</b> System could not find loader file");
-//define("ERROR_106", "<b>Error - 106:</b> Invalid method call ");
-//define("ERROR_107", "<b>Error - 107:</b> System could not load controller ");
-//define("ERROR_108", "<b>Error - 108:</b> System could not load view ");
-//define("ERROR_109", "<b>Error - 109:</b> System could not load user library ");
-//define("ERROR_110", "<b>Error - 110:</b> System could not find system autoloader file");
-//define("ERROR_111", "<b>Error - 111:</b> System could not find aplication autoloader file");
-//define("ERROR_112", "<b>Error - 112:</b> System could not load model ");
-//define("ERROR_113", "<b>Error - 113:</b> System could not load db driver ");
-//
-//define("ERROR_201" , "<b>Error - 201:</b> Unable to connect with db");
 
 /**
  * Bootstrap launch

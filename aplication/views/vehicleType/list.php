@@ -99,8 +99,8 @@ require_once APPPATH . DS . "html" . DS . "backend" . DS . "sideMenu.php";
             foreach ($vTypes as $vt) {
                 echo "<tr>"
                 . "<td>" . $vt->getName() . "</td>"
-                . "<td><a href='upd/" . $vt->getId() . "'>Editar<a></td>"
-                . "<td><a href='javascript:;' onclick='confirmVt(" . $vt->getId() . ")'>Eliminar</a></td>"
+                . "<td>" . Gui::href("vehicleType/upd/" . $vt->getId(), "Editar") . "</td>"
+                . "<td>" . Gui::href("", "Eliminar", array("onclick" =>"confirm(" . $vt->getId() . ")")) . "</td>"
                 . "</tr>";
             }
             ?>

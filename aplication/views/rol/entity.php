@@ -96,8 +96,10 @@ $rol;
                         </div>
                     </td>
                 </tr>
+                <tr>
+                    <td><div id="errorDiv" class="col-md-6"></div></td>
+                </tr>
             </table>
-            
             <hr>
             <input type="submit" name="submit" class="btn btn-primary" value="Guardar">
             <?php echo Gui::href("Role/all", "Volver", array("class" => "btn btn-default")); ?>

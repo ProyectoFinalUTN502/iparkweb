@@ -19,8 +19,10 @@ class RoleController extends StefanController {
     public function validate(Rol $rol) {
 
         $result = true;
+        
         $result = Validator::isNull($rol->getName()) ? false : $result;
         $result = !Validator::lettersOnly($rol->getName()) ? false : $result;
+        
         $result = empty($rol->getPermissions()) ? false : $result;
         return $result;
     }
@@ -37,7 +39,7 @@ class RoleController extends StefanController {
                 $rol->addPermission($permission);
             }
         } catch (Exception $ex) {
-
+            $rol->cleanPermissions();
         }
     }
 
@@ -90,38 +92,29 @@ class RoleController extends StefanController {
     }
 
     public function edit($id) {
-
-        /**
-         *  CONTROLAR QUE PASA SI NO ENCUENTRA UNA ENTIDAD
-         *  HACER VALIDACIONES JS
-         *  HACER BAJA LOGICA DE ROL
-         * 
-         * 
-         * OTRAS TAREAS:
-         * 
-         * LEVANTAR REPOSITORIO CON PROYECTO
-         */
-        
-        
+    
+        $em = Ioc::getService("orm");
         $id = $this->filter($id);
         $name = $this->getInput(INPUT_POST, "name");
         $groupsChecked = $this->getInput(
                 INPUT_POST, "groups", FILTER_DEFAULT, FILTER_REQUIRE_ARRAY
         );
 
-        $em = Ioc::getService("orm");
+        /* @var $rol Rol */
+        $rol = $em->find("Rol", $id);
+        if($rol == null){
+            $this->redirect("admin/error");
+        }
         $groups = $em->getRepository("Group")->findAll();
 
         $newRol = new Rol();
+        $newRol->setId($id);
         $newRol->setName($name);
         $this->updatePermissions($newRol, $groupsChecked);
 
         if ($this->validate($newRol)) {
             try {
-                /* @var $rol Rol */
-                $rol = $em->find("Rol", $id);
                 $rol->setName($name);
-
                 foreach ($rol->getPermissions() as $p) {
                     $mp = $em->merge($p);
                     $em->remove($mp);
@@ -143,8 +136,8 @@ class RoleController extends StefanController {
         } else {
             $arg = array();
             $arg["error"] = true;
-            $arg["errorMsg"] = "Controle la Informacion Ingresada";
-            $arg["rol"] = null;
+            $arg["errorMsg"] = "La Informacion Ingresada no es valida";
+            $arg["rol"] = $newRol;
             $arg["groups"] = $groups;
             $this->loadView(self::$rootFolder . DS . "entity", $arg);
         }
@@ -157,14 +150,15 @@ class RoleController extends StefanController {
 
         try {
             $em = Ioc::getService("orm");
-            /* @var $vt VehicleType */
-            $vt = $em->find("VehicleType", $id);
-            $vt->setIsActive(false);
-            $em->merge($vt);
-            $em->flush();
-        } catch (Exception $ex) {
             
-        }
+            /* @var $rol Rol */
+            $rol = $em->find("Rol", $id);
+            if($rol != null){
+                $rol->setIsActive(false);
+                $em->merge($rol);
+                $em->flush();
+            }
+        } catch (Exception $ex) {}
     }
 
     public function all($currentPage = 1, $search = "") {
@@ -243,11 +237,10 @@ class RoleController extends StefanController {
     }
 
     public function upd($id) {
-
-        $id = $this->filter($id);
-        $em = Ioc::getService("orm");
-
+        
         try {
+            $id = $this->filter($id);
+            $em = Ioc::getService("orm");
             /* @var $rol Rol */
             $rol = $em->find("Rol", $id);
             $groups = $em->getRepository("Group")->findAll();

@@ -13,6 +13,11 @@ class AdminController extends StefanController {
             echo $ex->getMessage();
         }
     }
+    
+    public function logout() {
+        Session::close();
+        $this->redirect(self::$name . "/login");
+    }
 
     public function main(){
         try{
@@ -32,6 +37,11 @@ class AdminController extends StefanController {
         } catch (Exception $ex) {
             echo $ex->getMessage();
         }
+    }
+    
+    public function error(){
+        Session::close();
+        $this->loadView("error");
     }
     
     public function authenticate(){
@@ -74,11 +84,4 @@ class AdminController extends StefanController {
             exit();
         } 
     }
-    
-    
-    public function logout() {
-        Session::close();
-        $this->redirect(self::$name . "/login");
-    }
-
 }

@@ -100,7 +100,7 @@ require_once APPPATH . DS . "html" . DS . "backend" . DS . "sideMenu.php";
                 echo "<tr>"
                 . "<td>" . $rol->getName() . "</td>"
                 . "<td>" . Gui::href("role/upd/" . $rol->getId(), "Editar") . "</td>"
-                . "<td>" . Gui::href("javascript:;", "Eliminar", array("onclick" =>"confirmRol(" . $rol->getId() . ")")) . "</td>"
+                . "<td>" . Gui::href("", "Eliminar", array("onclick" =>"confirm(" . $rol->getId() . ")")) . "</td>"
                 . "</tr>";
             }
             ?>

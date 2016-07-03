@@ -21,13 +21,18 @@ class Gui {
 
     public static function href($ref, $text, $arg = array()) {
 
-        $domain = Ioc::getService("domain");
-        $href = "/" . $domain . "/" . $ref;
+        if($ref == ""){
+            $href = "javascript:;";
+        } else {
+            $domain = Ioc::getService("domain");
+            $href = "/" . $domain . "/" . $ref;
+        }
         $tags = "";
         foreach ($arg as $k => $v) {
             $tags .= $k . " = '" . $v . "' ";
         }
 
+        
         $html = "<a href='" . $href . "' " . $tags . ">" . $text . "</a>";
         return $html;
     }

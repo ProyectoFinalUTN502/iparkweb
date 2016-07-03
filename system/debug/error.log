@@ -318,3 +318,19 @@ Stack trace:
 [03-Jul-2016 01:13:24 Europe/Berlin] PHP Catchable fatal error:  Argument 2 passed to Permission::__construct() must be an instance of Group, boolean given, called in C:\xampp\htdocs\iParkTest\aplication\controllers\RoleController.php on line 95 and defined in C:\xampp\htdocs\iParkTest\aplication\entities\Permission.php on line 25
 [03-Jul-2016 01:13:48 Europe/Berlin] PHP Catchable fatal error:  Argument 2 passed to Permission::__construct() must be an instance of Group, boolean given, called in C:\xampp\htdocs\iParkTest\aplication\controllers\RoleController.php on line 95 and defined in C:\xampp\htdocs\iParkTest\aplication\entities\Permission.php on line 25
 [03-Jul-2016 01:25:13 Europe/Berlin] PHP Fatal error:  Call to a member function setName() on a non-object in C:\xampp\htdocs\iParkTest\aplication\controllers\RoleController.php on line 111
+[03-Jul-2016 23:13:22 Europe/Berlin] PHP Notice:  Undefined offset: 0 in C:\xampp\htdocs\iparkweb\system\loader\viewLoader.php on line 42
+[03-Jul-2016 23:31:54 Europe/Berlin] PHP Notice:  Undefined variable: arg in C:\xampp\htdocs\iparkweb\aplication\controllers\RoleController.php on line 260
+[03-Jul-2016 23:31:54 Europe/Berlin] PHP Notice:  Undefined variable: rol in C:\xampp\htdocs\iparkweb\aplication\views\rol\entity.php on line 13
+[03-Jul-2016 23:31:54 Europe/Berlin] PHP Notice:  Undefined variable: rol in C:\xampp\htdocs\iparkweb\aplication\views\rol\entity.php on line 27
+[03-Jul-2016 23:31:54 Europe/Berlin] PHP Notice:  Undefined variable: error in C:\xampp\htdocs\iparkweb\aplication\views\rol\entity.php on line 33
+[03-Jul-2016 23:31:54 Europe/Berlin] PHP Notice:  Undefined variable: rol in C:\xampp\htdocs\iparkweb\aplication\views\rol\entity.php on line 47
+[03-Jul-2016 23:31:54 Europe/Berlin] PHP Notice:  Undefined variable: rol in C:\xampp\htdocs\iparkweb\aplication\views\rol\entity.php on line 66
+[03-Jul-2016 23:31:54 Europe/Berlin] PHP Notice:  Undefined variable: groups in C:\xampp\htdocs\iparkweb\aplication\views\rol\entity.php on line 68
+[03-Jul-2016 23:31:54 Europe/Berlin] PHP Warning:  Invalid argument supplied for foreach() in C:\xampp\htdocs\iparkweb\aplication\views\rol\entity.php on line 68
+[03-Jul-2016 23:32:29 Europe/Berlin] PHP Notice:  unserialize(): Error at offset 0 of 32 bytes in C:\xampp\htdocs\iparkweb\system\controller\StefanController.php on line 55
+[03-Jul-2016 23:33:04 Europe/Berlin] PHP Notice:  unserialize(): Error at offset 0 of 32 bytes in C:\xampp\htdocs\iparkweb\system\controller\StefanController.php on line 55
+[03-Jul-2016 23:34:35 Europe/Berlin] PHP Notice:  unserialize(): Error at offset 0 of 32 bytes in C:\xampp\htdocs\iparkweb\system\controller\StefanController.php on line 55
+[03-Jul-2016 23:34:37 Europe/Berlin] PHP Notice:  unserialize(): Error at offset 0 of 32 bytes in C:\xampp\htdocs\iparkweb\system\controller\StefanController.php on line 55
+[03-Jul-2016 23:43:38 Europe/Berlin] PHP Notice:  unserialize(): Error at offset 0 of 32 bytes in C:\xampp\htdocs\iparkweb\system\controller\StefanController.php on line 55
+[03-Jul-2016 23:52:39 Europe/Berlin] PHP Notice:  unserialize(): Error at offset 0 of 32 bytes in C:\xampp\htdocs\iparkweb\system\controller\StefanController.php on line 55
+[04-Jul-2016 00:34:51 Europe/Berlin] PHP Fatal error:  Call to a member function setName() on a non-object in C:\xampp\htdocs\iparkweb\aplication\controllers\RoleController.php on line 118
