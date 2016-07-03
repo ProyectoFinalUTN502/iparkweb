@@ -1,0 +1,68 @@
+@font-face {
+  font-family: Roboto-Medium;
+  src: url('../fonts/Roboto-Medium.ttf');
+}
+@font-face {
+  font-family: BebasNeue;
+  src: url('../fonts/BebasNeue.otf');
+}
+body {
+  margin: 0px;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: default;
+}
+/*
+HEADER
+*/
+#header {
+  background-color: #063d7e;
+  height: 67px;
+  width: 100%;
+  overflow: visible;
+  border-bottom: 1px solid #f7a13b;
+}
+#header #header-content {
+  margin: 0 auto;
+  width: calc(100% - 200px);
+  height: 68px;
+}
+#header #header-content #logo {
+  float: left;
+  padding-top: 10px;
+  width: 95px;
+  height: 68px;
+}
+/*
+CAJA DE CONTENT
+*/
+#content {
+  margin: 100px;
+  width: calc(100% - 200px);
+  font-family: Roboto-Medium;
+  word-wrap: break-word;
+}
+#content > .tab {
+  padding-left: 100px;
+}
+#content #signature {
+  text-align: right;
+}
+#footer {
+  background-color: #063d7e;
+  width: 100%;
+  border-top: 1px solid #f7a13b;
+}
+#footer #footer-content {
+  margin: 0 auto;
+  width: calc(100% - 200px);
+  font-family: BebasNeue;
+  color: #f7a13b;
+  font-size: 1.5em;
+  text-align: right;
+  padding-top: 2px;
+}

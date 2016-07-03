@@ -1,0 +1,64 @@
+<?php
+require_once APPPATH . DS . "html" . DS . "backend" . DS . "header.php";
+require_once APPPATH . DS . "html" . DS . "backend" . DS . "topBar.php";
+require_once APPPATH . DS . "html" . DS . "backend" . DS . "sideMenu.php";
+/* @var $vt VechicleType */
+$vt;
+?>
+<div id="content">		
+
+    <div id="content-header">
+        <h1>
+            <?php 
+                if($vt != null){
+                    echo "Edicion de Tipo de Vehiculo";
+                } else {
+                    echo "Nuevo Tipo de Vehiculo";
+                }
+            
+            ?>
+            
+        </h1>
+    </div>
+
+    <div id="content-container">
+        
+        <?php 
+            if($vt != null){
+                echo Gui::form("frmVt", "VehicleType/edit/" . $vt->getId());
+            } else {
+                echo Gui::form("frmVt", "VehicleType/register");
+            }
+            
+            if($error){
+                echo Gui::error($errorMsg);
+            }
+        ?>
+            <table style="width: 100%;">
+                <tr>
+                    <td>
+                        <div class="col-md-6">
+                            <h4 class="touchable">Nombre</h4>
+                            <input type="text" 
+                                   name="name" 
+                                   placeholder="Ingrese el Tipo de Vehiculo" 
+                                   class="form-control" 
+                                   value="<?php
+                                        if($vt != null){
+                                            echo $vt->getName();
+                                        }
+                                   ?>">
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <hr>
+            <input type="submit" name="submit" class="btn btn-primary" value="Guardar">
+            <?php echo Gui::href("vehicleType/all", "Volver", array("class" => "btn btn-default")); ?>
+        </form>
+    </div>
+</div>
+    
+<?php
+require_once APPPATH . DS . "html" . DS . "backend" . DS . "footer.php";
+
