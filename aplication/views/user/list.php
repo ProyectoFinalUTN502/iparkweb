@@ -1,4 +1,6 @@
 <?php
+$ac = new AdminController();
+$ac->control(new Group(USER_GROUP));
 require_once APPPATH . DS . "html" . DS . "backend" . DS . "header.php";
 require_once APPPATH . DS . "html" . DS . "backend" . DS . "topBar.php";
 require_once APPPATH . DS . "html" . DS . "backend" . DS . "sideMenu.php";
@@ -108,7 +110,7 @@ require_once APPPATH . DS . "html" . DS . "backend" . DS . "sideMenu.php";
                 . "<td>" . ucfirst($usr->getName()) . " " . ucfirst($usr->getLastName()) . "</td>"
                 . "<td>" . $usr->getEmail() . "</td>"
                 . "<td>" . Gui::href("User/upd/" . $usr->getId(), "Editar") . "</td>"
-                . "<td>" . Gui::href("javascript:;", "Eliminar", array("onclick" =>"confirmUsr(" . $usr->getId() . ")")) . "</td>"
+                . "<td>" . Gui::href("", "Eliminar", array("onclick" =>"confirmUsr(" . $usr->getId() . ")")) . "</td>"
                 . "</tr>";
             }
             ?>

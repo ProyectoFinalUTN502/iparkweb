@@ -72,7 +72,12 @@ class Group {
      */
     private $permissions;
         
-    public function __construct() {
+    public function __construct($id = "") {
+        
+        if($id != ""){
+            $this->id = $id;
+        }
+        
         $this->permissions = new ArrayCollection();
     }
     

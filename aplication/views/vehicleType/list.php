@@ -1,9 +1,10 @@
 <?php
+$ac = new AdminController();
+$ac->control(new Group(VT_GROUP));
 require_once APPPATH . DS . "html" . DS . "backend" . DS . "header.php";
 require_once APPPATH . DS . "html" . DS . "backend" . DS . "topBar.php";
 require_once APPPATH . DS . "html" . DS . "backend" . DS . "sideMenu.php";
 ?>
-
 <div id="modal" class="modal" style="font-family: 'Raleway', sans-serif;
              background: white;
              border-radius: 0px;
@@ -116,7 +117,10 @@ require_once APPPATH . DS . "html" . DS . "backend" . DS . "sideMenu.php";
             echo $cp->display();
         ?>
         <hr>
-        <?php echo Gui::href("vehicleType/add", "Agregar", array("class" => "btn btn-primary")); ?>
+        <?php
+            
+            echo Gui::href("vehicleType/add", "Agregar", array("class" => "btn btn-primary")); 
+        ?>
         <?php echo Gui::href("admin/main", "Volver", array("class" => "btn btn-default")); ?>
         </form>
     </div>

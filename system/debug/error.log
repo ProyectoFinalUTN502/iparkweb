@@ -334,3 +334,5 @@ Stack trace:
 [03-Jul-2016 23:43:38 Europe/Berlin] PHP Notice:  unserialize(): Error at offset 0 of 32 bytes in C:\xampp\htdocs\iparkweb\system\controller\StefanController.php on line 55
 [03-Jul-2016 23:52:39 Europe/Berlin] PHP Notice:  unserialize(): Error at offset 0 of 32 bytes in C:\xampp\htdocs\iparkweb\system\controller\StefanController.php on line 55
 [04-Jul-2016 00:34:51 Europe/Berlin] PHP Fatal error:  Call to a member function setName() on a non-object in C:\xampp\htdocs\iparkweb\aplication\controllers\RoleController.php on line 118
+[04-Jul-2016 02:29:27 Europe/Berlin] PHP Fatal error:  Using $this when not in object context in C:\xampp\htdocs\iparkweb\aplication\controllers\AdminController.php on line 96
+[04-Jul-2016 02:30:18 Europe/Berlin] PHP Fatal error:  Using $this when not in object context in C:\xampp\htdocs\iparkweb\aplication\controllers\AdminController.php on line 96
