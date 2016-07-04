@@ -336,3 +336,7 @@ Stack trace:
 [04-Jul-2016 00:34:51 Europe/Berlin] PHP Fatal error:  Call to a member function setName() on a non-object in C:\xampp\htdocs\iparkweb\aplication\controllers\RoleController.php on line 118
 [04-Jul-2016 02:29:27 Europe/Berlin] PHP Fatal error:  Using $this when not in object context in C:\xampp\htdocs\iparkweb\aplication\controllers\AdminController.php on line 96
 [04-Jul-2016 02:30:18 Europe/Berlin] PHP Fatal error:  Using $this when not in object context in C:\xampp\htdocs\iparkweb\aplication\controllers\AdminController.php on line 96
+[04-Jul-2016 22:40:34 Europe/Berlin] PHP Fatal error:  Call to undefined method Permission::getCreate() in C:\xampp\htdocs\iparkweb\aplication\entities\Rol.php on line 98
+[04-Jul-2016 23:44:15 Europe/Berlin] PHP Fatal error:  Non-abstract method RedirectResult::createResult() must contain body in C:\xampp\htdocs\iparkweb\aplication\controllers\RedirectResult.php on line 11
+[04-Jul-2016 23:45:43 Europe/Berlin] PHP Fatal error:  Call to undefined method RedirectResult::redirect() in C:\xampp\htdocs\iparkweb\aplication\controllers\RedirectResult.php on line 7
+[05-Jul-2016 00:06:14 Europe/Berlin] PHP Fatal error:  Interface 'IControl' not found in C:\xampp\htdocs\iparkweb\aplication\controllers\BooleanResult.php on line 3

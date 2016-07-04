@@ -1,6 +1,7 @@
 <?php
+$group = new Group(ROL_GROUP);
 $ac = new AdminController();
-$ac->control(new Group(ROL_GROUP));
+$ac->control($group, new RedirectResult());
 require_once APPPATH . DS . "html" . DS . "backend" . DS . "header.php";
 require_once APPPATH . DS . "html" . DS . "backend" . DS . "topBar.php";
 require_once APPPATH . DS . "html" . DS . "backend" . DS . "sideMenu.php";
@@ -99,10 +100,14 @@ require_once APPPATH . DS . "html" . DS . "backend" . DS . "sideMenu.php";
             <?php
             /* @var $rol Rol */
             foreach ($roles as $rol) {
+                
+                $edit = $ac->controlUpdate($group, new BooleanResult()) ? Gui::href("role/upd/" . $rol->getId(), "Editar") : "Editar";
+                $delete = $ac->controlDelete($group, new BooleanResult()) ? Gui::href("", "Eliminar", array("onclick" =>"confirm(" . $rol->getId() . ")")) : "Eliminar";
+                
                 echo "<tr>"
                 . "<td>" . $rol->getName() . "</td>"
-                . "<td>" . Gui::href("role/upd/" . $rol->getId(), "Editar") . "</td>"
-                . "<td>" . Gui::href("", "Eliminar", array("onclick" =>"confirm(" . $rol->getId() . ")")) . "</td>"
+                . "<td>" . $edit . "</td>"
+                . "<td>" . $delete . "</td>"
                 . "</tr>";
             }
             ?>
@@ -118,7 +123,11 @@ require_once APPPATH . DS . "html" . DS . "backend" . DS . "sideMenu.php";
             echo $cp->display();
         ?>
         <hr>
-        <?php echo Gui::href("Role/add", "Agregar", array("class" => "btn btn-primary")); ?>
+        <?php 
+            if($ac->controlCreate($group, new BooleanResult())){
+                echo Gui::href("Role/add", "Agregar", array("class" => "btn btn-primary")); 
+            }
+        ?>
         <?php echo Gui::href("admin/main", "Volver", array("class" => "btn btn-default")); ?>
         </form>
     </div>

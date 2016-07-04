@@ -9,7 +9,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @Table(name="rol")
  */
 class Rol {
-    
+
     /**
      * @Id 
      * @Column(type="integer") 
@@ -17,31 +17,35 @@ class Rol {
      * @var int
      * */
     private $id;
+
     /**
      * @Column(type="string", length=255)
      * @var string
      */
     private $name;
+
     /**
      * @Column(type="integer")
      * @var type 
      */
     private $isActive;
+
     /**
      * @OneToMany(targetEntity="Permission", mappedBy="rol", cascade={"persist", "detach" , "merge"})
      */
     private $permissions;
+
     /**
      * @OneToMany(targetEntity="User", mappedBy="rol", cascade={"persist"})
      */
     private $users;
-    
+
     public function __construct() {
         $this->permissions = new ArrayCollection();
         $this->users = new ArrayCollection();
         $this->isActive = 1;
     }
-    
+
     public function getId() {
         return $this->id;
     }
@@ -65,7 +69,7 @@ class Rol {
     public function setId($id) {
         $this->id = $id;
     }
-          
+
     public function setName($name) {
         $this->name = $name;
     }
@@ -73,39 +77,74 @@ class Rol {
     public function setIsActive($isActive) {
         $this->isActive = $isActive;
     }
-    
 
     public function setUsers($users) {
         $this->users = $users;
     }
-    
+
     public function addPermission(Permission $permission) {
         $this->permissions->add($permission);
     }
 
-    public function cleanPermissions(){
+    public function cleanPermissions() {
         $this->permissions->clear();
     }
-    
-    public function canCreate(Group $g){
-        return $g->getCreate() == 1;
+
+    public function canCreate(Group $g) {
+        $result = false;
+        $filtered = $this->findGroupInRol($g);
+        if(!$filtered->isEmpty()){
+            $permission = $filtered->first();
+            $result = $permission->getGroup()->getCreate() == 1;
+        }
+        return $result;
     }
-    
-    public function canUpdate(Group $g){
-        return $g->getUpdate() == 1;
+
+    public function canUpdate(Group $g) {
+         $result = false;
+        $filtered = $this->findGroupInRol($g);
+        if(!$filtered->isEmpty()){
+            $permission = $filtered->first();
+            $result = $permission->getGroup()->getUpdate() == 1;
+        }
+        return $result;
     }
-    
-    public function canDelete(Group $g){
-        return $g->getDelete() == 1;
+
+    public function canDelete(Group $g) {
+        $result = false;
+        $filtered = $this->findGroupInRol($g);
+        if(!$filtered->isEmpty()){
+            $permission = $filtered->first();
+            $result = $permission->getGroup()->getDelete() == 1;
+        }
+        return $result;
     }
-    
-    public function canList(Group $g){
+
+    public function canList(Group $g) {
         return $g->getList() == 1;
     }
-    
-    public function canSearch(Group $g){
-        return $g->getSearch() == 1;
+
+    public function canSearch(Group $g) {
+         $result = false;
+        $filtered = $this->findGroupInRol($g);
+        if(!$filtered->isEmpty()){
+            $permission = $filtered->first();
+            $result = $permission->getGroup()->getSearch() == 1;
+        }
+        return $result;
     }
 
+    public function belong(Group $g) {
+        $filtered = $this->findGroupInRol($g);
+        return !$filtered->isEmpty();
+    }
 
+    private function findGroupInRol(Group $g) {
+        $filtered = $this->permissions->filter(function($permission) use ($g) {
+            $group = $permission->getGroup();
+            return $group->getId() == $g->getId();
+        });
+        
+        return $filtered;
+    }
 }

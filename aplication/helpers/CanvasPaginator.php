@@ -1,6 +1,6 @@
 <?php
 
-require_once APPPATH . DS . "helpers" . DS . "paginator" . DS . "IPaginator.php";
+require_once APPPATH . DS . "helpers" . DS . "interfaces" . DS . "IPaginator.php";
 
 class CanvasPaginator implements IPaginator {
     

@@ -91,7 +91,8 @@ class AdminController extends StefanController {
         }
     }
 
-    public function control(Group $g) {
+    public function control(Group $g, IControl $control) {
+        
         $id = $this->filter($this->loadFromSession("userID"));
         $em = Ioc::getService("orm");
 
@@ -100,60 +101,69 @@ class AdminController extends StefanController {
         if ($user != null) {
             /* @var $rol Rol */
             $rol = $user->getRol();
-
-            $found = false;
-            /* @var $permission Permission */
-            foreach ($rol->getPermissions() as $permission) {
-                /* @var $group Group */
-                $group = $permission->getGroup();
-
-                if ($group->getId() == $g->getId()) {
-                    $found = true;
-                    break;
-                }
-            }
-
-            if (!$found) {
-                $this->redirect("admin/forbidden");
-            }
+            return $control->controlResult($this, $rol, $g);
         } else {
             $this->redirect("admin/error");
         }
     }
 
-    public function controlCreate(Group $g) {
-//        $id = $this->filter($this->loadFromSession("userID"));
-//        $em = Ioc::getService("orm");
-//
-//        /* @var $user User */
-//        $user = $em->find("User", $id);
-//        if ($user != null) {
-//            /* @var $rol Rol */
-//            $rol = $user->getRol();
-//            $permissions = $rol->getPermissions();
-//            /* @var $permision Permission */
-//            $permision = $permissions->filter(
-//                function($entry) use ($g) {
-//                    /* @var $group Group */
-//                    $group = $entry->getGroup();
-//                    return $group->getId() == $g->getId();
-//                }
-//            );
-//
-//            /* @var $permission Permission */
-//            //$permission = $permissions->
-////            foreach ($rol->getPermissions() as $permission) {
-////                /* @var $group Group */
-////                $group = $permission->getGroup();
-////
-////                if ($group->getId() == $g->getId()) {
-////                    $found = true;
-////                    break;
-////                }
-////            }
-//        } else {
-//            $this->redirect("admin/error");
-//        }
+    public function controlCreate(Group $g, IControl $control) {
+        $id = $this->filter($this->loadFromSession("userID"));
+        $em = Ioc::getService("orm");
+
+        /* @var $user User */
+        $user = $em->find("User", $id);
+        if ($user != null) {
+            /* @var $rol Rol */
+            $rol = $user->getRol();
+            return $control->createResult($this, $rol, $g);
+        } else {
+            $this->redirect("admin/error");
+        }
     }
 
+    public function controlUpdate(Group $g, IControl $control) {
+        $id = $this->filter($this->loadFromSession("userID"));
+        $em = Ioc::getService("orm");
+
+        /* @var $user User */
+        $user = $em->find("User", $id);
+        if ($user != null) {
+            /* @var $rol Rol */
+            $rol = $user->getRol();
+            return $control->updateResult($this, $rol, $g);
+        } else {
+            $this->redirect("admin/error");
+        }
+    }
+    
+    public function controlDelete(Group $g, IControl $control) {
+        $id = $this->filter($this->loadFromSession("userID"));
+        $em = Ioc::getService("orm");
+
+        /* @var $user User */
+        $user = $em->find("User", $id);
+        if ($user != null) {
+            /* @var $rol Rol */
+            $rol = $user->getRol();
+            return $control->deleteResult($this, $rol, $g);
+        } else {
+            $this->redirect("admin/error");
+        }
+    }
+    
+    public function controlSearch(Group $g, IControl $control) {
+        $id = $this->filter($this->loadFromSession("userID"));
+        $em = Ioc::getService("orm");
+
+        /* @var $user User */
+        $user = $em->find("User", $id);
+        if ($user != null) {
+            /* @var $rol Rol */
+            $rol = $user->getRol();
+            return $control->searchResult($control, $rol, $g);
+        } else {
+            $this->redirect("admin/error");
+        }
+    }
 }
