@@ -1,6 +1,14 @@
 <?php
+$group = new Group(ROL_GROUP);
 $ac = new AdminController();
-$ac->control(new Group(ROL_GROUP));
+
+if($rol != null){
+    $ac->controlUpdate($group, new RedirectResult());
+} else {
+     $ac->controlCreate($group, new RedirectResult());
+}
+
+$ac->control($group, new RedirectResult());
 require_once APPPATH . DS . "html" . DS . "backend" . DS . "header.php";
 require_once APPPATH . DS . "html" . DS . "backend" . DS . "topBar.php";
 require_once APPPATH . DS . "html" . DS . "backend" . DS . "sideMenu.php";

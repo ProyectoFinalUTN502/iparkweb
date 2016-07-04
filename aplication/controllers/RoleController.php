@@ -241,8 +241,10 @@ class RoleController extends StefanController {
         try {
             $id = $this->filter($id);
             $em = Ioc::getService("orm");
+            
             /* @var $rol Rol */
-            $rol = $em->find("Rol", $id);
+            $roles = $em->getRepository("Rol")->findBy(array("id" => $id, "isActive" => 1));
+            $rol = count($roles) > 0 ? $roles[0] : null;
             $groups = $em->getRepository("Group")->findAll();
             $em->flush();
 

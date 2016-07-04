@@ -47,7 +47,7 @@ require_once APPPATH . DS . "html" . DS . "backend" . DS . "sideMenu.php";
     <div id="content-container">
         
         <?php 
-            echo Gui::form("frmRoles", "rol/all/" . $currentPage);
+            echo Gui::form("frmRoles", "role/all/" . $currentPage);
             
             if($error){
                 echo Gui::error($errorMsg);
@@ -71,7 +71,7 @@ require_once APPPATH . DS . "html" . DS . "backend" . DS . "sideMenu.php";
         <?php 
         
             if($q != ""){
-                $href = Gui::href("rol/all", "[x]");
+                $href = Gui::href("role/all", "[x]");
                 echo "<table>"
                         . "<tr>"
                             . "<td>Resultados para la Busqueda : \"". $q ."\"</td>"

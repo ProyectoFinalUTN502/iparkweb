@@ -1,6 +1,6 @@
 <?php
 
-require_once APPPATH . DS . "controllers" . DS . "IControl.php";
+require_once APPPATH . DS . "helpers" . DS . "interfaces" . DS . "IControl.php";
 
 class RedirectResult implements IControl {
 

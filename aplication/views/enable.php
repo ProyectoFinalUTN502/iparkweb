@@ -11,7 +11,7 @@ require_once APPPATH . DS . 'html' . DS . 'backend' . DS . 'headerLogin.php';
             <h3>Acceso Denegado!</h3>
 
             <p>
-                Usted no tiene permisos suficientes para acceder a la vista solicitada
+                Permisos insuficientes para acceder a la vista solicitada
                 <br>Por favor, comuniquese con el administrador de la plataforma
             </p>
             
