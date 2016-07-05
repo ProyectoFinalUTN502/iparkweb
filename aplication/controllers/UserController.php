@@ -153,8 +153,8 @@ class UserController extends StefanController {
 
     public function add() {
         
-        $rc = new RolController();
-        $roles = $rc->listAll();
+        $em = Ioc::getService("orm");
+        $roles = $em->getRepository("Rol")->findBy(array("isActive" => 1));
         
         $arg = array();
         $arg["error"] = false;
@@ -166,14 +166,14 @@ class UserController extends StefanController {
 
     public function upd($id) {
         
-        $rc = new RolController();
-        $roles = $rc->listAll();
-        
         try {
             $id = $this->filter($id);
             $em = Ioc::getService("orm");
+            
             /* @var $usr User */
-            $usr = $em->find("User", $id);
+            $users = $em->getRepository("User")->findBy(array("id" => $id, "isActive" => 1));
+            $usr = count($users) > 0 ? $users[0] : null;
+            $roles = $em->getRepository("Rol")->findBy(array("isActive" => 1));
             $em->flush();
 
             $arg = array();

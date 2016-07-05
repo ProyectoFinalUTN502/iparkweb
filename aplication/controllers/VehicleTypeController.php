@@ -163,7 +163,8 @@ class VehicleTypeController extends StefanController {
             $id = $this->filter($id);
             $em = Ioc::getService("orm");
             /* @var $vt VehicleType */
-            $vt = $em->find("VehicleType", $id);
+            $vtypes = $em->getRepository("VehicleTYpe")->findBy(array("id" => $id, "isActive" => 1));
+            $vt = count($vtypes) > 0 ? $vtypes[0] : null;
             $em->flush();
 
             $arg = array();

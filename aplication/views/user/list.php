@@ -1,6 +1,7 @@
 <?php
+$group = new Group(USER_GROUP);
 $ac = new AdminController();
-$ac->control(new Group(USER_GROUP));
+$ac->control($group, new RedirectResult());
 require_once APPPATH . DS . "html" . DS . "backend" . DS . "header.php";
 require_once APPPATH . DS . "html" . DS . "backend" . DS . "topBar.php";
 require_once APPPATH . DS . "html" . DS . "backend" . DS . "sideMenu.php";
@@ -105,12 +106,17 @@ require_once APPPATH . DS . "html" . DS . "backend" . DS . "sideMenu.php";
             <?php
             /* @var $usr User */
             foreach ($users as $usr) {
+                
+                $edit = $ac->controlUpdate($group, new BooleanResult()) ? Gui::href("User/upd/" . $usr->getId(), "Editar") : "Editar";
+                $delete = $ac->controlDelete($group, new BooleanResult()) ? Gui::href("", "Eliminar", array("onclick" =>"confirm(" . $usr->getId() . ")")) : "Eliminar";
+                
+                
                 echo "<tr>"
                 . "<td>" . $usr->getUser() . "</td>"
                 . "<td>" . ucfirst($usr->getName()) . " " . ucfirst($usr->getLastName()) . "</td>"
                 . "<td>" . $usr->getEmail() . "</td>"
-                . "<td>" . Gui::href("User/upd/" . $usr->getId(), "Editar") . "</td>"
-                . "<td>" . Gui::href("", "Eliminar", array("onclick" =>"confirmUsr(" . $usr->getId() . ")")) . "</td>"
+                . "<td>" . $edit . "</td>"
+                . "<td>" . $delete . "</td>"
                 . "</tr>";
             }
             ?>
@@ -126,7 +132,11 @@ require_once APPPATH . DS . "html" . DS . "backend" . DS . "sideMenu.php";
             echo $cp->display();
         ?>
         <hr>
-        <?php echo Gui::href("User/add", "Agregar", array("class" => "btn btn-primary")); ?>
+        <?php 
+            if($ac->controlCreate($group, new BooleanResult())){
+                echo Gui::href("User/add", "Agregar", array("class" => "btn btn-primary")); 
+            }
+        ?>
         <?php echo Gui::href("admin/main", "Volver", array("class" => "btn btn-default")); ?>
         </form>
     </div>

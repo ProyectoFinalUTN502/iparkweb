@@ -1,4 +1,6 @@
 <?php
+/* @var $rol Rol */
+$rol;
 $group = new Group(ROL_GROUP);
 $ac = new AdminController();
 
@@ -8,12 +10,9 @@ if($rol != null){
      $ac->controlCreate($group, new RedirectResult());
 }
 
-$ac->control($group, new RedirectResult());
 require_once APPPATH . DS . "html" . DS . "backend" . DS . "header.php";
 require_once APPPATH . DS . "html" . DS . "backend" . DS . "topBar.php";
 require_once APPPATH . DS . "html" . DS . "backend" . DS . "sideMenu.php";
-/* @var $rol Rol */
-$rol;
 ?>
 <div id="content">		
 

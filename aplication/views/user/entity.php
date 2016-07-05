@@ -1,12 +1,18 @@
 <?php
+/* @var $usr User */
+$usr;
+$group = new Group(USER_GROUP);
 $ac = new AdminController();
-$ac->control(new Group(USER_GROUP));
+
+if($usr != null){
+    $ac->controlUpdate($group, new RedirectResult());
+} else {
+     $ac->controlCreate($group, new RedirectResult());
+}
+
 require_once APPPATH . DS . "html" . DS . "backend" . DS . "header.php";
 require_once APPPATH . DS . "html" . DS . "backend" . DS . "topBar.php";
 require_once APPPATH . DS . "html" . DS . "backend" . DS . "sideMenu.php";
-/* @var $usr User */
-$usr;
-$roles;
 ?>
 <div id="content">		
 

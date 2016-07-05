@@ -340,3 +340,5 @@ Stack trace:
 [04-Jul-2016 23:44:15 Europe/Berlin] PHP Fatal error:  Non-abstract method RedirectResult::createResult() must contain body in C:\xampp\htdocs\iparkweb\aplication\controllers\RedirectResult.php on line 11
 [04-Jul-2016 23:45:43 Europe/Berlin] PHP Fatal error:  Call to undefined method RedirectResult::redirect() in C:\xampp\htdocs\iparkweb\aplication\controllers\RedirectResult.php on line 7
 [05-Jul-2016 00:06:14 Europe/Berlin] PHP Fatal error:  Interface 'IControl' not found in C:\xampp\htdocs\iparkweb\aplication\controllers\BooleanResult.php on line 3
+[05-Jul-2016 02:43:13 Europe/Berlin] PHP Fatal error:  Class 'RolController' not found in C:\xampp\htdocs\iparkweb\aplication\controllers\UserController.php on line 169
+[05-Jul-2016 02:44:33 Europe/Berlin] PHP Fatal error:  Class 'RolController' not found in C:\xampp\htdocs\iparkweb\aplication\controllers\UserController.php on line 169
