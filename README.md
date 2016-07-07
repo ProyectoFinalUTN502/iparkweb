@@ -34,6 +34,12 @@ llama **create.sql**. Lo abren, y lo corren.
 
 ## Usando la Aplicacion
 
+Si le dieron Run desde el netbeans. La aplicacion los va a llevar a la Landing.  
+De la Landing yo estuve editando el CSS, me equivoque en un directorio y rompi
+todo el maquetado. No se asusten, despues lo arreglo.  
+Para acceder al login de la app, lo que tienen que hacer es escribir la URL
+http://localhost/iParkWeb/ y aca le mandan **admin/login** y acceden al login 
+
 Para Loguearse:  
 
 USR : La primer letra de su nombre y su apellido completo y en minusculas  
