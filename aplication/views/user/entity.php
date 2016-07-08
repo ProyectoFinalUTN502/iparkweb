@@ -137,7 +137,7 @@ require_once APPPATH . DS . "html" . DS . "backend" . DS . "sideMenu.php";
                     <td>
                         <div class="col-md-6" style="margin-bottom:10px;">
                             <h4 class="touchable">Rol</h4>
-                            <select name="rol_id" class="form-control">
+                            <select name="rol" class="form-control">
                                 <?php 
                                     if($usr == null){
                                         /* @var $rol Rol */

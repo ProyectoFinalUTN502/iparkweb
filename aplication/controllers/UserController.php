@@ -8,13 +8,54 @@ class UserController extends StefanController {
     // <editor-fold defaultstate="collapsed" desc="PROCESOS">
     public function validate(User $usr) {
 
-//        $result = true;
-//        $result = Validator::isNull($vt->getName()) ? false : $result;
-//        $result = !Validator::lettersOnly($vt->getName()) ? false : $result;
-//        return $result;
+        $result = true;
+        $result = Validator::isNull($usr->getUser()) || !Validator::lettersOnly($usr->getUser()) ? false : $result;
+        $result = !Validator::minLength($usr->getPassword(), 6)? false : $result;
+        $result = Validator::isNull($usr->getName())? false : $result;
+        $result = Validator::isNull($usr->getLastName())? false : $result;
+        $result = !Validator::emailValidation($usr->getEmail())? false : $result;
+        $result = $usr->getRol() == null ? false : $result;
+        
+        
+        return $result;
     }
 
     public function register() {
+        $user = $this->getInput(INPUT_POST, "user");
+        $password = $this->getInput(INPUT_POST, "password");
+        $repassword = $this->getInput(INPUT_POST, "repassword");
+        $name = $this->getInput(INPUT_POST, "name");
+        $lastName = $this->getInput(INPUT_POST, "lastName");
+        $email = $this->getInput(INPUT_POST, "email");
+        $rolId = $this->getInput(INPUT_POST, "rol");
+        
+        if($password == $repassword){
+            
+            $em = Ioc::getService("orm");
+            /* @var $rol Rol */
+            $rol = $em->find("Rol", $rolId);
+            
+            $usr = new User();
+            $usr->setUser($user);
+            $usr->setPassword($password);
+            $usr->setName($name);
+            $usr->setLastName($lastName);
+            $usr->setEmail($email);
+            $usr->setRole($rol);
+            
+            if($this->validate($usr)){
+                
+            } else {
+                // ERROR DE VALIDACION
+            }
+            
+        } else {
+            // LOS PASSWORDS, NO CONCUERDAN
+        }
+        
+        
+        
+        
 //        $name = $this->getInput(INPUT_POST, "name");
 //
 //        $vt = new VehicleType($name);
