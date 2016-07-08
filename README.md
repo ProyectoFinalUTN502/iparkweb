@@ -53,8 +53,13 @@ Pantalla Principal:
 La pantalla principal, solo tiene los menues asociados al rol que cumplen en la 
 plataforma. Como nuestros usuarios son Administradores, van a tener casi todas
 las opciones menos Editar Establecimiento y Actualizar Tarifas que eso les 
-corresponde a los clientes. A partir de la pagina principal, vayan navegando por 
-la aplicacion y jugando un poco con los registros. A medida que vaya subiendo 
-funcionalidades nuevas voy a ir actualizando este archivo.  
-Ahi se ven
+corresponde a los clientes.   
+  
+Funcionalidades Desarrolladas:  
+- Gestion de Roles
+- Gestion de Usuarios
+- Gestion de Tipo de Vehiculo
+- Control de Roles y Permisos  
+
+
 
