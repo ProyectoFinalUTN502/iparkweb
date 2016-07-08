@@ -67,7 +67,8 @@ class User {
     private $rol;
     
     public function __construct() {
-        
+        $this->loginCount = 0;
+        $this->isActive = 1;
     }
 
     public function getId() {

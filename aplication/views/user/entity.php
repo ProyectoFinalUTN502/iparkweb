@@ -62,7 +62,8 @@ require_once APPPATH . DS . "html" . DS . "backend" . DS . "sideMenu.php";
                                     <td>
                                         <div class='col-md-6' style='margin-bottom:10px;'>
                                             <h4 class='touchable'>Password</h4>
-                                            <input type='password' 
+                                            <input type='password'
+                                                   id='password'
                                                    name='password' 
                                                    placeholder='Contrase&ntilde;a' 
                                                    class='form-control' 
@@ -117,22 +118,23 @@ require_once APPPATH . DS . "html" . DS . "backend" . DS . "sideMenu.php";
                         </div>
                     </td>
                 </tr>
-                <tr>
-                    <td>
-                        <div class="col-md-6" style="margin-bottom:10px;">
-                            <h4 class="touchable">Email</h4>
-                            <input type="text" 
-                                   name="email" 
-                                   placeholder="Ingrese el Email del Administrador" 
-                                   class="form-control" 
-                                   value="<?php
-                                        if($usr != null){
-                                            echo $usr->getEmail();
-                                        }
-                                   ?>">
-                        </div>
-                    </td>
-                </tr>
+                <?php 
+                    if($usr == null){
+                        echo "<tr>
+                                <td>
+                                    <div class='col-md-6' style='margin-bottom:10px;'>
+                                        <h4 class='touchable'>Email</h4>
+                                        <input type='text' 
+                                               name='email' 
+                                               placeholder='Ingrese el Email del Administrador' 
+                                               class='form-control' 
+                                               value=''>
+                                    </div>
+                                </td>
+                            </tr>";
+                    }
+                ?>
+                
                 <tr>
                     <td>
                         <div class="col-md-6" style="margin-bottom:10px;">

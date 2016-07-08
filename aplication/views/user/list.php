@@ -96,6 +96,9 @@ require_once APPPATH . DS . "html" . DS . "backend" . DS . "sideMenu.php";
                         Email
                     </th>
                     <th>
+                        Restablecer Password
+                    </th>
+                    <th>
                         Editar
                     </th>
                     <th>
@@ -107,6 +110,7 @@ require_once APPPATH . DS . "html" . DS . "backend" . DS . "sideMenu.php";
             /* @var $usr User */
             foreach ($users as $usr) {
                 
+                $password = $ac->controlUpdate($group, new BooleanResult()) ? Gui::href("User/updPassword/" . $usr->getId(), "Restablecer Password") : "Restablecer Password";
                 $edit = $ac->controlUpdate($group, new BooleanResult()) ? Gui::href("User/upd/" . $usr->getId(), "Editar") : "Editar";
                 $delete = $ac->controlDelete($group, new BooleanResult()) ? Gui::href("", "Eliminar", array("onclick" =>"confirm(" . $usr->getId() . ")")) : "Eliminar";
                 
@@ -115,6 +119,7 @@ require_once APPPATH . DS . "html" . DS . "backend" . DS . "sideMenu.php";
                 . "<td>" . $usr->getUser() . "</td>"
                 . "<td>" . ucfirst($usr->getName()) . " " . ucfirst($usr->getLastName()) . "</td>"
                 . "<td>" . $usr->getEmail() . "</td>"
+                . "<td>" . $password . "</td>"
                 . "<td>" . $edit . "</td>"
                 . "<td>" . $delete . "</td>"
                 . "</tr>";

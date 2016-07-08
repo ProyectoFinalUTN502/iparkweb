@@ -6,18 +6,21 @@ class UserController extends StefanController {
     static $rootFolder = "user";
 
     // <editor-fold defaultstate="collapsed" desc="PROCESOS">
-    public function validate(User $usr) {
+    public function remoteDuplicateUser(){
+        $userName = $this->getInput(INPUT_POST, "user");
+        $validator = new UserNew();
+        echo $validator->existingUser($userName) ? "true" : "false";
+    }
+    
+    public function remoteDuplicateEmail(){
+        $email = $this->getInput(INPUT_POST, "email");
+        $validator = new UserNew();
+        echo $validator->existingEmail($email) ? "true" : "false";
+    }
+    
+    public function validate(User $usr, IUserValidatorMode $mode) {
 
-        $result = true;
-        $result = Validator::isNull($usr->getUser()) || !Validator::lettersOnly($usr->getUser()) ? false : $result;
-        $result = !Validator::minLength($usr->getPassword(), 6)? false : $result;
-        $result = Validator::isNull($usr->getName())? false : $result;
-        $result = Validator::isNull($usr->getLastName())? false : $result;
-        $result = !Validator::emailValidation($usr->getEmail())? false : $result;
-        $result = $usr->getRol() == null ? false : $result;
-        
-        
-        return $result;
+        return $mode->validate($usr);
     }
 
     public function register() {
@@ -29,104 +32,166 @@ class UserController extends StefanController {
         $email = $this->getInput(INPUT_POST, "email");
         $rolId = $this->getInput(INPUT_POST, "rol");
         
+        $em = Ioc::getService("orm");
+        $roles = $em->getRepository("Rol")->findBy(array("isActive" => 1));
+        
         if($password == $repassword){
-            
-            $em = Ioc::getService("orm");
             /* @var $rol Rol */
             $rol = $em->find("Rol", $rolId);
             
             $usr = new User();
             $usr->setUser($user);
-            $usr->setPassword($password);
+            $usr->setPassword(Security::generateHash($password, new SHA256()));
             $usr->setName($name);
             $usr->setLastName($lastName);
             $usr->setEmail($email);
             $usr->setRole($rol);
             
-            if($this->validate($usr)){
-                
+            if($this->validate($usr, new UserNew())){
+                try {
+                $em = Ioc::getService("orm");
+                $em->persist($usr);
+                $em->flush();
+                $this->redirect(self::$name . "/all");
+            } catch (Exception $ex) {
+                $arg = array();
+                $arg["error"] = true;
+                $arg["errorMsg"] = $ex->getMessage();
+                $arg["usr"] = null;
+                $arg["roles"] = $roles;
+                $this->loadView(self::$rootFolder . DS . "entity", $arg);
+            }
             } else {
                 // ERROR DE VALIDACION
+                $arg = array();
+                $arg["error"] = true;
+                $arg["errorMsg"] = "La informacion ingresada no es valida";
+                $arg["roles"] = $roles;
+                $arg["usr"] = null;
+                $this->loadView(self::$rootFolder . DS . "entity", $arg);
             }
             
         } else {
             // LOS PASSWORDS, NO CONCUERDAN
+            $arg = array();
+            $arg["error"] = true;
+            $arg["errorMsg"] = "Las contrase&ntilde;as debe coincidir";
+            $arg["roles"] = $roles;
+            $arg["usr"] = null;
+            $this->loadView(self::$rootFolder . DS . "entity", $arg);
         }
-        
-        
-        
-        
-//        $name = $this->getInput(INPUT_POST, "name");
-//
-//        $vt = new VehicleType($name);
-//        if ($this->validate($vt)) {
-//
-//            try {
-//                $em = Ioc::getService("orm");
-//                $em->persist($vt);
-//                $em->flush();
-//                $this->redirect(self::$name . "/all");
-//            } catch (Exception $ex) {
-//                $arg = array();
-//                $arg["error"] = true;
-//                $arg["errorMsg"] = $ex->getMessage();
-//                $arg["vt"] = null;
-//                $this->loadView(self::$rootFolder . DS . "vt", $arg);
-//            }
-//        } else {
-//            $arg = array();
-//            $arg["error"] = true;
-//            $arg["errorMsg"] = "Controle la Informacion Ingresada";
-//            $arg["vt"] = null;
-//            $this->loadView(self::$rootFolder . DS . "vt", $arg);
-//        }
     }
 
     public function edit($id) {
-//        $name = $this->getInput(INPUT_POST, "name");
-//        $id = $this->filter($id);
-//
-//        $vt = new VehicleType();
-//        $vt->setId($id);
-//        $vt->setName($name);
-//
-//        if ($this->validate($vt)) {
-//
-//            try {
-//                $em = Ioc::getService("orm");
-//                $em->merge($vt);
-//                $em->flush();
-//                $this->redirect(self::$name . "/all");
-//            } catch (Exception $ex) {
-//                $arg = array();
-//                $arg["error"] = true;
-//                $arg["errorMsg"] = $ex->getMessage();
-//                $arg["vt"] = null;
-//                $this->loadView(self::$rootFolder . DS . "vt", $arg);
-//            }
-//        } else {
-//            $arg = array();
-//            $arg["error"] = true;
-//            $arg["errorMsg"] = "Controle la Informacion Ingresada";
-//            $arg["vt"] = null;
-//            $this->loadView(self::$rootFolder . DS . "vt", $arg);
-//        }
+        $id = $this->filter($id);
+                
+        $name = $this->getInput(INPUT_POST, "name");
+        $lastName = $this->getInput(INPUT_POST, "lastName");
+        $rolId = $this->getInput(INPUT_POST, "rol");
+
+        /* @var $rol Rol */
+        $em = Ioc::getService("orm");
+        $rol = $em->find("Rol", $rolId);
+        $criteria = array("isActive" => 1);
+        $roles = $em->getRepository("Rol")->findBy($criteria);
+        
+        /* @var $usr User */
+        $criteria = array("id" => $id, "isActive" => 1);
+        $users = $em->getRepository("User")->findBy($criteria);
+        
+        if(count($users)== 0){
+            $this->redirect("admin/error");
+        }
+        
+        $usr = $users[0];
+        $usr->setName($name);
+        $usr->setLastName($lastName);
+        $usr->setRole($rol);
+
+        if ($this->validate($usr, new UserEdit())) {
+            try {
+                $em->merge($usr);
+                $em->flush();
+                $this->redirect(self::$name . "/all");
+            } catch (Exception $ex) {
+                $arg = array();
+                $arg["error"] = true;
+                $arg["errorMsg"] = $ex->getMessage();
+                $arg["roles"] = $roles;
+                $arg["usr"] = $usr;
+                $this->loadView(self::$rootFolder . DS . "entity", $arg);
+            }
+        } else {
+            $arg = array();
+            $arg["error"] = true;
+            $arg["errorMsg"] = "La informacion ingresada no es valida";
+            $arg["roles"] = $roles;
+            $arg["usr"] = $usr;
+            $this->loadView(self::$rootFolder . DS . "entity", $arg);
+        }
     }
 
+    public function editPassword($id){
+        $id = $this->filter($id);
+                
+        $password = $this->getInput(INPUT_POST, "password");
+        $repassword = $this->getInput(INPUT_POST, "repassword");
+        
+        /* @var $rol Rol */
+        $em = Ioc::getService("orm");
+        
+        /* @var $usr User */
+        $criteria = array("id" => $id, "isActive" => 1);
+        $users = $em->getRepository("User")->findBy($criteria);
+        
+        if(count($users)== 0){
+            $this->redirect("admin/error");
+        }
+        
+        $usr = $users[0];
+        if($password != $repassword){
+            $arg = array();
+            $arg["error"] = true;
+            $arg["errorMsg"] = "Las contrase&ntilde;as deben coincidir";
+            $arg["usr"] = $usr;
+            $this->loadView(self::$rootFolder . DS . "password", $arg);
+            exit();
+        }
+        
+        $usr->setPassword(Security::generateHash($password, new SHA256()));
+        if ($this->validate($usr, new UserEditPassword())) {
+            try {
+                $em->merge($usr);
+                $em->flush();
+                $this->redirect(self::$name . "/all");
+            } catch (Exception $ex) {
+                $arg = array();
+                $arg["error"] = true;
+                $arg["errorMsg"] = $ex->getMessage();
+                $arg["usr"] = $usr;
+                $this->loadView(self::$rootFolder . DS . "password", $arg);
+            }
+        } else {
+            $arg = array();
+            $arg["error"] = true;
+            $arg["errorMsg"] = "La informacion ingresada no es valida";
+            $arg["usr"] = $usr;
+            $this->loadView(self::$rootFolder . DS . "password", $arg);
+        }
+    }
+    
     public function del() {
-//
-//        $id = $this->getInput(INPUT_POST, "id");
-//
-//        try {
-//            $em = Ioc::getService("orm");
-//            /* @var $vt VehicleType */
-//            $vt = $em->find("VehicleType", $id);
-//            $vt->setIsActive(false);
-//            $em->merge($vt);
-//            $em->flush();
-//        } catch (Exception $ex) {
-//            
-//        }
+
+        $id = $this->getInput(INPUT_POST, "id");
+
+        try {
+            $em = Ioc::getService("orm");
+            /* @var $usr User */
+            $usr = $em->find("User", $id);
+            $usr->setIsActive(false);
+            $em->merge($usr);
+            $em->flush();
+        } catch (Exception $ex) {}
     }
 
     // </editor-fold>
@@ -233,5 +298,29 @@ class UserController extends StefanController {
         }
     }
 
+    public function updPassword($id){
+        try {
+            $id = $this->filter($id);
+            $em = Ioc::getService("orm");
+            
+            /* @var $usr User */
+            $criteria = array("id" => $id, "isActive" => 1);
+            $users = $em->getRepository("User")->findBy($criteria);
+            $usr = count($users) > 0 ? $users[0] : null;
+            $em->flush();
+
+            $arg = array();
+            $arg["error"] = false;
+            $arg["errorMsg"] = "";
+            $arg["usr"] = $usr;
+            $this->loadView(self::$rootFolder . DS . "password", $arg);
+        } catch (Exception $ex) {
+            $arg = array();
+            $arg["error"] = true;
+            $arg["errorMsg"] = $ex->getMessage();
+            $arg["usr"] = null;
+            $this->loadView(self::$rootFolder . DS . "password", $arg);
+        }
+    }
     // </editor-fold>
 }
