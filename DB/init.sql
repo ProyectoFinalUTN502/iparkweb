@@ -7,7 +7,7 @@
 USE central_dev;
 
 -- PARAMETRIZACION BASICA
-INSERT INTO param (keyParam , valueParam, keyText, valueText, creationDate) VALUES ('baseUrl', 'localhost/iparkweb', 'Dominio', 'URL Base de la Plataforma', now());
+INSERT INTO param (keyParam , valueParam, keyText, valueText, creationDate) VALUES ('baseUrl', 'localhost/iParkWeb', 'Dominio', 'URL Base de la Plataforma', now());
 INSERT INTO param (keyParam , valueParam, keyText, valueText, creationDate) VALUES ('contact','contacto@iparking.com.ar','Direccion de Contacto', 'Direccion de Contacto para cientes', now());
 INSERT INTO param (keyParam , valueParam, keyText, valueText, creationDate) VALUES ('mail','cesarcappetto@sw-ingenieria.com.ar','Direccion de Origen (email)', '',now());
 INSERT INTO param (keyParam , valueParam, keyText, valueText, creationDate) VALUES ('sender','iParking','Nombre de Origen (email)','', now());
@@ -1177,7 +1177,7 @@ INSERT INTO `group` (`name`, `text`, `description`, `style`, `ref`, `create` , `
 VALUES ('Gestion de TIpo de Vehiculo', 'Tipo de Vehiculo', 'Creacion y Edicion de Tipos de Vehiculo', '', 'vehicleType/all', 1, 1, 1, 1, 1);
 
 INSERT INTO `group` (`name`, `text`, `description`, `style`, `ref`, `create` , `delete`, `update`, `list`, `search`) 
-VALUES ('Gestion de Configuracion', 'Configuracion', 'Configuracion de la Plataforma', '', '', 1, 1, 1, 1, 1);
+VALUES ('Gestion de Configuracion', 'Configuracion', 'Configuracion de la Plataforma', '', 'param/all', 1, 1, 1, 1, 1);
 
 INSERT INTO `group` (`name`, `text`, `description`, `style`, `ref`, `create` , `delete`, `update`, `list`, `search`) 
 VALUES ('Acceso a Reportes', 'Reportes y Estadisticas', 'Estadisticas y Reportes del Sistema', '', '', 1, 1, 1, 1, 1);
