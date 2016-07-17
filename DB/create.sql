@@ -259,18 +259,6 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `central_dev`.`layout_state`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `central_dev`.`layout_state` ;
-
-CREATE TABLE IF NOT EXISTS `central_dev`.`layout_state` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `description` VARCHAR(255) NOT NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `central_dev`.`floor_layout`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `central_dev`.`floor_layout` ;
@@ -281,13 +269,12 @@ CREATE TABLE IF NOT EXISTS `central_dev`.`floor_layout` (
   `yPoint` INT NOT NULL,
   `valid` INT NOT NULL DEFAULT 1,
   `circulationValue` INT NOT NULL DEFAULT 0,
+  `state` VARCHAR(255) NOT NULL,
   `layout_id` INT NOT NULL,
   `vehicle_type_id` INT NOT NULL,
-  `layout_state_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_floor_layout_layout1_idx` (`layout_id` ASC),
   INDEX `fk_floor_layout_vehicle_type1_idx` (`vehicle_type_id` ASC),
-  INDEX `fk_floor_layout_layout_state1_idx` (`layout_state_id` ASC),
   CONSTRAINT `fk_floor_layout_layout1`
     FOREIGN KEY (`layout_id`)
     REFERENCES `central_dev`.`layout` (`id`)
@@ -296,11 +283,6 @@ CREATE TABLE IF NOT EXISTS `central_dev`.`floor_layout` (
   CONSTRAINT `fk_floor_layout_vehicle_type1`
     FOREIGN KEY (`vehicle_type_id`)
     REFERENCES `central_dev`.`vehicle_type` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_floor_layout_layout_state1`
-    FOREIGN KEY (`layout_state_id`)
-    REFERENCES `central_dev`.`layout_state` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

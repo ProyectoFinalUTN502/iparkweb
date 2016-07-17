@@ -1221,11 +1221,6 @@ INSERT INTO vehicle_type (name, creationDate) VALUES ('Pick-up y SUV', now());
 INSERT INTO vehicle_type (name, creationDate) VALUES ('Auto', now());
 INSERT INTO vehicle_type (name, creationDate) VALUES ('Motocicleta', now());
 
--- ESTADOS DE LAYOUT EN TIEMPO REAL
-INSERT INTO layout_state (description) VALUES ('Libre');
-INSERT INTO layout_state (description) VALUES ('Reservada');
-INSERT INTO layout_state (description) VALUES ('Ocupada');
-
 -- ESTADOS DE REPORTE DE BUG 
 INSERT INTO bug_state (description) VALUES ('Nuevo');
 INSERT INTO bug_state (description) VALUES ('Atendido');
