@@ -26,6 +26,11 @@ class City {
      */
     private $state;
     
+    /**
+     * @OneToMany(targetEntity="Parkinglot", mappedBy="city", cascade={"persist", "detach" , "merge"})
+     */
+    private $parkinglots;
+    
     function getId() {
         return $this->id;
     }

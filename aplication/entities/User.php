@@ -1,4 +1,5 @@
 <?php
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * User
@@ -65,10 +66,15 @@ class User {
      * @JoinColumn(name="rol_id", referencedColumnName="id")
      */
     private $rol;
+    /**
+     * @OneToMany(targetEntity="Parkinglot", mappedBy="user", cascade={"persist", "detach" , "merge"})
+     */
+    private $parkinglots;
     
     public function __construct() {
         $this->loginCount = 0;
         $this->isActive = 1;
+        $this->parkinglots = new ArrayCollection();
     }
 
     public function getId() {
@@ -115,6 +121,11 @@ class User {
         return $this->rol;
     }
 
+    public function getParkinglots() {
+        return $this->parkinglots;
+    }
+
+        
     public function setId($id) {
         $this->id = $id;
     }
@@ -159,5 +170,12 @@ class User {
         $this->rol = $rol;
     }
 
+    public function addParkingLot(ParkingLot $p){
+        $this->parkinglots->add($p);
+    }
+    
+    public function hastParkingLot(){
+        return $this->parkinglots->isEmpty();
+    }
 
 }

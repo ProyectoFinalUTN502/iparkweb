@@ -259,11 +259,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `central_dev`.`floor_layout`
+-- Table `central_dev`.`layout_position`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `central_dev`.`floor_layout` ;
+DROP TABLE IF EXISTS `central_dev`.`layout_position` ;
 
-CREATE TABLE IF NOT EXISTS `central_dev`.`floor_layout` (
+CREATE TABLE IF NOT EXISTS `central_dev`.`layout_position` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `xPoint` INT NOT NULL,
   `yPoint` INT NOT NULL,
@@ -324,18 +324,18 @@ CREATE TABLE IF NOT EXISTS `central_dev`.`vehicle_parking` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `creationDate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `vehicle_id` INT NOT NULL,
-  `floor_layout_id` INT NOT NULL,
+  `layout_position_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_client_parking_vehicle1_idx` (`vehicle_id` ASC),
-  INDEX `fk_vehicle_parking_floor_layout1_idx` (`floor_layout_id` ASC),
+  INDEX `fk_vehicle_parking_floor_layout1_idx` (`layout_position_id` ASC),
   CONSTRAINT `fk_client_parking_vehicle1`
     FOREIGN KEY (`vehicle_id`)
     REFERENCES `central_dev`.`vehicle` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_vehicle_parking_floor_layout1`
-    FOREIGN KEY (`floor_layout_id`)
-    REFERENCES `central_dev`.`floor_layout` (`id`)
+    FOREIGN KEY (`layout_position_id`)
+    REFERENCES `central_dev`.`layout_position` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

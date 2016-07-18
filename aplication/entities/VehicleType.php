@@ -1,5 +1,5 @@
 <?php
-
+use Doctrine\Common\Collections\ArrayCollection;
 /**
  * VehicleType
  *
@@ -15,6 +15,7 @@ class VehicleType {
      * @var int
      * */
     private $id;
+    
     /**
      * @Column(type="string", length=255)
      * @var string
@@ -27,9 +28,23 @@ class VehicleType {
      */
     private $isActive;
     
+    /**
+     * @OneToMany(targetEntity="Price", mappedBy="vehicleType", cascade={"persist", "detach" , "merge"})
+     */
+    private $prices;
+    /**
+     * @OneToMany(targetEntity="LayoutPosition", mappedBy="vehicleType", cascade={"persist", "detach" , "merge"})
+     */
+    private $layoutPositions;
+    
+//    private $clientProfiles;
+//    private $vehicles;
+    
     public function __construct($name = "") {
         $this->name = $name;
         $this->isActive = 1;
+        $this->prices = new ArrayCollection();
+        $this->layoutPositions = new ArrayCollection();
     }
 
     public function getId() {
@@ -44,6 +59,14 @@ class VehicleType {
         return $this->isActive == 1 ? true : false;
     }
     
+    public function getPrices() {
+        return $this->prices;
+    }
+
+    public function getLayoutPositions(){
+        return $this->layoutPositions;
+    }
+        
     public function setId($id) {
         $this->id = $id;
     }
@@ -55,6 +78,12 @@ class VehicleType {
     public function setIsActive($state) {
         $this->isActive = $state ? 1 : 0;
     }
-
-
+    
+    public function addPrice(Price $p){
+        $this->prices->add($p);
+    }
+    
+    public function addLayoutPosition(LayoutPosition $lp){
+        $this->layoutPositions->add($lp);
+    }
 }
