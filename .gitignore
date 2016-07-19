@@ -1,5 +1,5 @@
 _local/
 nbproject/
+DB/*.bak
 system/debug/*.log
 system/mapping/
-DB/*.bak
