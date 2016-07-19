@@ -112,21 +112,21 @@ abstract class LayoutPosition {
 }
 
 /** @Entity **/
-class FreeLayoutPosition {
+class FreeLayoutPosition extends LayoutPosition {
     public function getState(){
         return "LIBRE";
     }
 }
 
 /** @Entity **/
-class BookedLayoutPosition {
+class BookedLayoutPosition extends LayoutPosition {
     public function getState(){
         return "RESERVADA";
     }
 }
 
 /** @Entity **/
-class UnavailableLayoutPosition {
+class UnavailableLayoutPosition extends LayoutPosition {
     public function getState(){
         return "NO DISPONIBLE";
     }

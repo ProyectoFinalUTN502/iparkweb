@@ -1162,7 +1162,7 @@ INSERT INTO `group` (`name`, `text`, `description`, `style`, `ref`, `create` , `
 VALUES ('Gestion de Usuarios', 'Usuarios', 'Creacion y Edicion de Usuarios Administradores', '', 'user/all', 1, 1, 1, 1, 1);
 
 INSERT INTO `group` (`name`, `text`, `description`, `style`, `ref`, `create` , `delete`, `update`, `list`, `search`) 
-VALUES ('Habilitacion de Establecimiento', 'Establecimiento', 'Registro y Baja de Establecimiento', '', '', 1, 1, 0, 1, 1);
+VALUES ('Habilitacion de Establecimiento', 'Establecimiento', 'Registro y Baja de Establecimiento', '', 'parkinglot/add', 1, 1, 0, 1, 1);
 
 INSERT INTO `group` (`name`, `text`, `description`, `style`, `ref`, `create` , `delete`, `update`, `list`, `search`)  
 VALUES ('Edicion de Establecimiento', 'Mi Establecimiento', 'Edicion de informacion de Establecimiento', '', '', 0, 0, 1, 1, 1);
@@ -1222,6 +1222,6 @@ INSERT INTO vehicle_type (name, creationDate) VALUES ('Auto', now());
 INSERT INTO vehicle_type (name, creationDate) VALUES ('Motocicleta', now());
 
 -- ESTADOS DE REPORTE DE BUG 
-INSERT INTO bug_state (description) VALUES ('Nuevo');
-INSERT INTO bug_state (description) VALUES ('Atendido');
-INSERT INTO bug_state (description) VALUES ('Resuelto');
+-- INSERT INTO bug_state (description) VALUES ('Nuevo');
+-- INSERT INTO bug_state (description) VALUES ('Atendido');
+-- INSERT INTO bug_state (description) VALUES ('Resuelto');
