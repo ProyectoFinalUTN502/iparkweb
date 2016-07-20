@@ -31,6 +31,7 @@
         <script src="/<?php echo $base; ?>/aplication/public/backend/js/App.js"></script>
         <script src="/<?php echo $base; ?>/aplication/public/backend/js/Validations.js"></script>
         <script src="/<?php echo $base; ?>/aplication/public/backend/js/confirm.js"></script>
+        <script src="/<?php echo $base; ?>/aplication/public/backend/js/gMaps.js"></script>
         <script src="/<?php echo $base; ?>/aplication/public/backend/js/ajax.js"></script>
         <!-- -- -->
     </head>
