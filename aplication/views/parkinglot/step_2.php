@@ -141,6 +141,51 @@ require_once APPPATH . DS . "html" . DS . "backend" . DS . "sideMenu.php";
             </tr>
             <tr>
                 <td>
+                    <div class='col-md-6  bootstrap-timepicker' style='margin-bottom:10px;'>
+                        <h4 class='touchable'>Pais</h4>
+                        <select id="country" name="country" class="form-control" onchange="getProvinces();">
+                        <?php
+                                /* @var $countries Country */
+                            foreach($countries as $country){
+                                echo "<option value='" . $country->getId() . "'>" . $country->getDescription() . "</option>";
+                            }
+                        ?>    
+                        </select>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class='col-md-6  bootstrap-timepicker' style='margin-bottom:10px;'>
+                        <h4 class='touchable'>Provincia</h4>
+                        <select id="province" name="province" class="form-control" onchange="getStates();">
+                            <option value="1">No disponible</option>
+                        </select>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class='col-md-6  bootstrap-timepicker' style='margin-bottom:10px;'>
+                        <h4 class='touchable'>Partido</h4>
+                        <select id="state" name="state" class="form-control" onchange="getCities();">
+                            <option value="1">No disponible</option>
+                        </select>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class='col-md-6  bootstrap-timepicker' style='margin-bottom:10px;'>
+                        <h4 class='touchable'>Localidad</h4>
+                        <select id="city" name="city" class="form-control">
+                            <option value="1">No disponible</option>
+                        </select>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
                     <div class="col-md-6" style="font-size: 16px;">
                         El Establecimiento posee Cocheras Cubiertas&nbsp;
                         <input type="radio" name="isCovered" value="1">&nbsp;Si&nbsp;
@@ -150,33 +195,40 @@ require_once APPPATH . DS . "html" . DS . "backend" . DS . "sideMenu.php";
             </tr>
         </table>
         <br>
-        <table style="width: 100%;">
-            <tr>
-                <td>
-                     <div class="col-md-6">
-                         <p>
-                             <strong>Ubicacion de Establecimiento: </strong>Ingrese la calle y la altura 
-                             del establecimiento en el buscador. Al finalizar presione la Tecla <i>Enter</i>.
-                             <br>El sistema realizara la busqueda del Establecimiento y marcara en el mapa la 
-                             posicion del mismo. Si la posicion no es correcta, realice la busqueda nuevamente
-                         </p>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="col-md-6" style="height: 50px;">
-                        <input type="search" id="addressSearch" class="form-control" placeholder="Direccion, Localidad, Partido, Provincia, Pais">
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div id="map" class="col-md-6" style="height: 400px;"></div>
-                </td>
-            </tr>
-        </table>
+        <div id="gMapsArea" class="col-md-12" style="display:none;">
+            <table style="width: 100%;">
+                <tr>
+                    <td>
+                         <div class="col-md-6">
+                            <h4 class='touchable'>Ubicacion de Establecimiento</h4>
+                             <p>
+                                 Ingrese la calle y la altura del establecimiento en el buscador. Al finalizar presione el boton <i>Buscar</i>.
+                                 <br>El sistema realizara la busqueda del Establecimiento y marcara en el mapa la 
+                                 posicion del mismo.<br>Si la posicion no es correcta, realice la busqueda nuevamente
+                             </p>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div id="searchArea" class="col-md-5" style="height: 50px;">
+                            <input type="search" id="addressSearch" class="form-control" placeholder="Ingrese Calle y Altura del Establecimiento">
+                        </div>
+                        <div class="col-md-1" style="padding-left: 0px;">
+                            <input type="button" id="btnSearch" class="btn btn-primary" value="Buscar">
+                        </div>
+                        <div id="imgSearch" class="col-md-6"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div id="map" class="col-md-6" style="height: 400px;"></div>
+                    </td>
+                </tr>
+            </table>
+        </div>
         <hr>
+        <input type="text" id="address" name="address" style="display: none;" value="">
         <input type="text" id="lat" name="lat" style="display: none;" value="">
         <input type="text" id="lng" name="lng" style="display: none;" value="">
         <input type="submit" name="submit" class="btn btn-primary" value="Siguiente">
@@ -184,26 +236,49 @@ require_once APPPATH . DS . "html" . DS . "backend" . DS . "sideMenu.php";
         </form>
     </div>
 </div>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAA-kRCMxJ66iI2909Ti5WopU3m0_kfgyA&callback=initMap"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAA-kRCMxJ66iI2909Ti5WopU3m0_kfgyA"></script>
 <script>
+    $('#btnSearch').click(function (e){
+        getLocation();
+    });
+    
     $('#addressSearch').keypress(function (e) {
-        var key = e.which;
-        if (key === 13) {
-            var val = $("#addressSearch").val();
-            console.log(val);
-            getLocation(val);
-            return false;
+        var key = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+        var regex = new RegExp("^[a-zA-Z0-9\\-\\s]+$");
+        if (!regex.test(key)) {
+           e.preventDefault();
+           return false;
         }
     });
+    
+    $('#openTime').keypress(function (e) {
+        var key = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+        var regex = new RegExp("^[0-9]+$");
+        if (!regex.test(key)) {
+           e.preventDefault();
+           return false;
+        }
+    });
+    
+    $('#openTime').keydown(function (e) {
+        var text = $("#openTime").val() + String.fromCharCode(e.keyCode);;
+        console.log(text + " | " + text.length);
+        if(text.length === 2){
+            $("#openTime").val(text + ":");
+        }
+    });
+    
+    
+    $('#closeTime').keypress(function (e) {
+        var key = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+        var regex = new RegExp("^[0-9]+$");
+        if (!regex.test(key)) {
+           e.preventDefault();
+           return false;
+        }
+    });
+    
 </script>
-
-
-<!--<script>
-$(function(){
-    $('#openTime').timepicker({defaultTime: '00:00'});
-    $('#closeTime').timepicker({defaultTime: '00:00'});
-});
-</script>-->
 
 <?php
 require_once APPPATH . DS . "html" . DS . "backend" . DS . "footer.php";

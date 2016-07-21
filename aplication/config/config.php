@@ -5,7 +5,7 @@ $config["db_schema"] = "central_dev";
 $config["db_user"] = "root";
 $config["db_password"] = "";
 $config["db_port"] = "";
-$config["db_charset"] = "";
+$config["db_charset"] = "utf8";
 
 $config["user_autoload"] = array("entities", "helpers");
 $config["page_size"] = "10";

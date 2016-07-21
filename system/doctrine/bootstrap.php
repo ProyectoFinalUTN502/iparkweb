@@ -15,7 +15,11 @@ $conn = array(
     'host'      => $config["db_server"],
     'dbname'    => $config["db_schema"],
     'user'      => $config["db_user"],
-    'password'  => $config["db_password"]
+    'password'  => $config["db_password"],
+    'charset'   => $config["db_charset"],
+    'driverOptions' => array(
+        1002 => 'SET NAMES ' . $config["db_charset"]
+    )
 );
 
 $entityManager = EntityManager::create($conn, $doctrinConfig);
