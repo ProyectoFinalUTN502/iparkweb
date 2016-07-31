@@ -23,6 +23,12 @@ class VehicleType {
     private $name;
     
     /**
+     * @Column(type="string", length=255)
+     * @var string
+     */
+    private $color;
+    
+    /**
      * @Column(type="integer")
      * @var type 
      */
@@ -55,6 +61,10 @@ class VehicleType {
         return $this->name;
     }
 
+    public function getColor() {
+        return $this->color;
+    }
+        
     public function getIsActive() {
         return $this->isActive == 1 ? true : false;
     }
@@ -75,6 +85,10 @@ class VehicleType {
         $this->name = $name;
     }
 
+    public function setColor($color) {
+        $this->color = $color;
+    }
+        
     public function setIsActive($state) {
         $this->isActive = $state ? 1 : 0;
     }

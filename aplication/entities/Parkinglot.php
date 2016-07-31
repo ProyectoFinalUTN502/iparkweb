@@ -33,12 +33,7 @@ class Parkinglot {
      * @Column(type="string", length=255)
      * @var string
      */
-    private $addressName;
-    /**
-     * @Column(type="string", length=255)
-     * @var string
-     */
-    private $addressNumber;
+    private $address;
     /**
      * @Column(type="integer") 
      * @var int
@@ -111,12 +106,8 @@ class Parkinglot {
         return $this->description;
     }
 
-    public function getAddressName() {
-        return $this->addressName;
-    }
-
-    public function getAddressNumber() {
-        return $this->addressNumber;
+    public function getAddress() {
+        return $this->address;
     }
 
     public function getIsActive() {
@@ -175,12 +166,8 @@ class Parkinglot {
         $this->description = $description;
     }
 
-    public function setAddressName($addressName) {
-        $this->addressName = $addressName;
-    }
-
-    public function setAddressNumber($addressNumber) {
-        $this->addressNumber = $addressNumber;
+    public function setAddress($address) {
+        $this->address = $address;
     }
 
     public function setIsActive($isActive) {

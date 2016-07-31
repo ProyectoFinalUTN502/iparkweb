@@ -1,6 +1,6 @@
 <?php
 $ac = new AdminController();
-$ac->control(new Group(VT_GROUP));
+$ac->control(new Group(VT_GROUP), new RedirectResult());
 require_once APPPATH . DS . "html" . DS . "backend" . DS . "header.php";
 require_once APPPATH . DS . "html" . DS . "backend" . DS . "topBar.php";
 require_once APPPATH . DS . "html" . DS . "backend" . DS . "sideMenu.php";

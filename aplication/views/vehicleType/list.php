@@ -1,6 +1,6 @@
 <?php
 $ac = new AdminController();
-$ac->control(new Group(VT_GROUP));
+$ac->control(new Group(VT_GROUP), new RedirectResult());
 require_once APPPATH . DS . "html" . DS . "backend" . DS . "header.php";
 require_once APPPATH . DS . "html" . DS . "backend" . DS . "topBar.php";
 require_once APPPATH . DS . "html" . DS . "backend" . DS . "sideMenu.php";
@@ -88,6 +88,9 @@ require_once APPPATH . DS . "html" . DS . "backend" . DS . "sideMenu.php";
                         Tipo de Vehiculo
                     </th>
                     <th>
+                        Color
+                    </th>
+                    <th>
                         Editar
                     </th>
                     <th>
@@ -100,6 +103,7 @@ require_once APPPATH . DS . "html" . DS . "backend" . DS . "sideMenu.php";
             foreach ($vTypes as $vt) {
                 echo "<tr>"
                 . "<td>" . $vt->getName() . "</td>"
+                . "<td><div style='width:32px; height:32px; background-color:" . $vt->getColor() . "'></div></td>"
                 . "<td>" . Gui::href("vehicleType/upd/" . $vt->getId(), "Editar") . "</td>"
                 . "<td>" . Gui::href("", "Eliminar", array("onclick" =>"confirm(" . $vt->getId() . ")")) . "</td>"
                 . "</tr>";

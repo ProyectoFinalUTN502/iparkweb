@@ -131,6 +131,7 @@ class ParkingLotController extends StefanController {
                 }
                 break;
             case 3:
+                
                 $this->loadView(self::$rootFolder . DS . "step_3", $arg);
                 break;
             default:

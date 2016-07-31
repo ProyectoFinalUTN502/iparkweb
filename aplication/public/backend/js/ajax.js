@@ -66,6 +66,7 @@ function getLocation() {
 
             } else {
                 console.log("Recibido: " + response.lat + " , " + response.lng);
+                $("#address").val(addressSearch);
                 $("#lat").val(response.lat);
                 $("#lng").val(response.lng);
                 addMarker(response.lat, response.lng);

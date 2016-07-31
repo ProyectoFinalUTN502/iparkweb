@@ -129,8 +129,7 @@ CREATE TABLE IF NOT EXISTS `central_dev`.`parkinglot` (
   `ssid` VARCHAR(255) NOT NULL,
   `name` VARCHAR(255) NOT NULL,
   `description` VARCHAR(255) NULL,
-  `addressName` VARCHAR(255) NOT NULL,
-  `addressNumber` VARCHAR(255) NOT NULL,
+  `address` VARCHAR(255) NOT NULL,
   `isActive` INT NOT NULL DEFAULT 1,
   `isCovered` INT NOT NULL DEFAULT 0,
   `latMap` DOUBLE NOT NULL,
@@ -186,6 +185,7 @@ DROP TABLE IF EXISTS `central_dev`.`vehicle_type` ;
 CREATE TABLE IF NOT EXISTS `central_dev`.`vehicle_type` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(255) NOT NULL,
+  `color` VARCHAR(255) NOT NULL,
   `isActive` INT NOT NULL DEFAULT 1,
   `creationDate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`))

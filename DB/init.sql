@@ -1216,10 +1216,10 @@ INSERT INTO user (user,  password, name,  lastName,  email, creationDate, rol_id
 VALUES ('ncarusso', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Nicolas', 'Carusso', 'ncarusso@gmail.com', now(), 1);
 
 -- TIPOS DE VEHICULOS
-INSERT INTO vehicle_type (name, creationDate) VALUES ('Van y Utilitarios', now()); 
-INSERT INTO vehicle_type (name, creationDate) VALUES ('Pick-up y SUV', now()); 
-INSERT INTO vehicle_type (name, creationDate) VALUES ('Auto', now());
-INSERT INTO vehicle_type (name, creationDate) VALUES ('Motocicleta', now());
+INSERT INTO vehicle_type (name, color, creationDate) VALUES ('Van y Utilitarios', '#f27dc5', now()); 
+INSERT INTO vehicle_type (name, color, creationDate) VALUES ('Pick-up y SUV', '#cdb2f4', now()); 
+INSERT INTO vehicle_type (name, color, creationDate) VALUES ('Auto', '#c9e377', now());
+INSERT INTO vehicle_type (name, color, creationDate) VALUES ('Motocicleta', '#f4b1a3', now());
 
 -- ESTADOS DE REPORTE DE BUG 
 -- INSERT INTO bug_state (description) VALUES ('Nuevo');

@@ -93,26 +93,6 @@ require_once APPPATH . DS . "html" . DS . "backend" . DS . "sideMenu.php";
                     </div>
                 </td>
             </tr>
-<!--            <tr>
-                <td>
-                    <div class="col-md-6" style="margin-bottom:10px;">
-                        <h4 class="touchable">Direccion</h4>
-                        <input type="text" 
-                               name="addressName" 
-                               placeholder="Ingrese la calle del establecimiento" 
-                               class="form-control" 
-                               value=""
-                               style="display: inline-block; width: 85%;">
-                        &nbsp;
-                        <input type="text" 
-                               name="addressNumber" 
-                               placeholder="Altura" 
-                               class="form-control" 
-                               value=""
-                               style="display: inline-block; width: 13%;">
-                    </div>
-                </td>
-            </tr>-->
             <tr>
                 <td>
                     <div class="col-md-6  bootstrap-timepicker" style="margin-bottom:10px;">
@@ -120,22 +100,27 @@ require_once APPPATH . DS . "html" . DS . "backend" . DS . "sideMenu.php";
                         <input type="text" 
                                id="openTime"
                                name="openTime" 
-                               placeholder="" 
                                class="form-control" 
-                               value="">
+                               value=""
+                               placeholder="Ingrese el Horario de Apertura"
+                               maxlength="5">
                     </div>
                 </td>
             </tr>
             <tr>
                 <td>
                     <div class='col-md-6  bootstrap-timepicker' style='margin-bottom:10px;'>
-                        <h4 class='touchable'>Hora de Cierre*</h4>
-                        <input type='text'
+                        <h4 class='touchable'>Hora de Cierre</h4> 
+                        <span style="font-size: 11px;">
+                            (Para 24 Hs, ingrese el Horario de Inicio)
+                        </span>
+                        <input type="text" 
                                id="closeTime"
-                               name='closeTime' 
-                               placeholder="" 
-                               class='form-control' 
-                               value=''>
+                               name="closeTime" 
+                               class="form-control" 
+                               value=""
+                               placeholder="Ingrese el Horario de Cierre"
+                               maxlength="5">
                     </div>
                 </td>
             </tr>
@@ -228,6 +213,7 @@ require_once APPPATH . DS . "html" . DS . "backend" . DS . "sideMenu.php";
             </table>
         </div>
         <hr>
+        <!--style="display: none;" -->
         <input type="text" id="address" name="address" style="display: none;" value="">
         <input type="text" id="lat" name="lat" style="display: none;" value="">
         <input type="text" id="lng" name="lng" style="display: none;" value="">
@@ -238,6 +224,7 @@ require_once APPPATH . DS . "html" . DS . "backend" . DS . "sideMenu.php";
 </div>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAA-kRCMxJ66iI2909Ti5WopU3m0_kfgyA"></script>
 <script>
+    //^([01]\d|2[0-3]):?([0-5]\d)$
     $('#btnSearch').click(function (e){
         getLocation();
     });
@@ -253,7 +240,7 @@ require_once APPPATH . DS . "html" . DS . "backend" . DS . "sideMenu.php";
     
     $('#openTime').keypress(function (e) {
         var key = String.fromCharCode(!e.charCode ? e.which : e.charCode);
-        var regex = new RegExp("^[0-9]+$");
+        var regex = new RegExp("^[0-9]+|\:$");
         if (!regex.test(key)) {
            e.preventDefault();
            return false;
@@ -261,23 +248,55 @@ require_once APPPATH . DS . "html" . DS . "backend" . DS . "sideMenu.php";
     });
     
     $('#openTime').keydown(function (e) {
-        var text = $("#openTime").val() + String.fromCharCode(e.keyCode);;
-        console.log(text + " | " + text.length);
-        if(text.length === 2){
-            $("#openTime").val(text + ":");
+        var element = $("#openTime");
+        var keyCode = e.keyCode || e.which;
+        var key =  String.fromCharCode(keyCode);
+        
+        var value = element.val();
+        var text = value + key;
+                
+        if (e.keyCode >= 96 && e.keyCode <= 105){
+            e.preventDefault();
+            return false;
+        }
+        
+        if(text.length === 2 && keyCode !== 8){
+            element.empty();
+            element.val(text + ":00");
+            e.preventDefault();
+            return false;
         }
     });
     
-    
     $('#closeTime').keypress(function (e) {
         var key = String.fromCharCode(!e.charCode ? e.which : e.charCode);
-        var regex = new RegExp("^[0-9]+$");
+        var regex = new RegExp("^[0-9]+|\:$");
         if (!regex.test(key)) {
            e.preventDefault();
            return false;
         }
     });
     
+    $('#closeTime').keydown(function (e) {
+        var element = $("#closeTime");
+        var keyCode = e.keyCode || e.which;
+        var key =  String.fromCharCode(keyCode);
+        
+        var value = element.val();
+        var text = value + key;
+                
+        if (e.keyCode >= 96 && e.keyCode <= 105){
+            e.preventDefault();
+            return false;
+        }
+        
+        if(text.length === 2 && keyCode !== 8){
+            element.empty();
+            element.val(text + ":00");
+            e.preventDefault();
+            return false;
+        }
+    });
 </script>
 
 <?php
