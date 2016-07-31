@@ -1,13 +1,28 @@
 $(document).ready(function () {
     $("#frmVt").validate({
+        ignore: [],
         rules:
                 {
-                    name: {required: true, maxlength: 255}
+                    name: {required: true, maxlength: 255},
+                    color: {required: true}
                 },
         messages:
                 {
-                    name: {required: "Este Campo es obligatorio", maxlength: "La longitud maxima es de 255 caracteres"}
+                    name: {required: "Este Campo es obligatorio", maxlength: "La longitud maxima es de 255 caracteres"},
+                    color: {required: "Debe elegir un color de referencia"}
                 },
+        errorPlacement: function (error, element)
+        {
+            switch (element.attr("name"))
+            {
+                case "color":
+                    error.appendTo("#errorDiv");
+                    break;
+                default:
+                    error.insertAfter(element);
+                    break;
+            }
+        },
         errorElement: "div"
     });
 });

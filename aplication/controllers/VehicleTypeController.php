@@ -5,19 +5,23 @@ class VehicleTypeController extends StefanController {
     static $name = "vehicleType";
     static $rootFolder = "vehicleType";
 
-    // <editor-fold defaultstate="collapsed" desc="PROCESOS">
     public function validate(VehicleType $vt) {
 
         $result = true;
         $result = Validator::isNull($vt->getName()) ? false : $result;
+        $result = Validator::isNull($vt->getColor()) ? false : $result;
         $result = !Validator::lettersOnly($vt->getName()) ? false : $result;
         return $result;
     }
 
     public function register() {
         $name = $this->getInput(INPUT_POST, "name");
-
-        $vt = new VehicleType($name);
+        $color = $this->getInput(INPUT_POST, "color");
+        
+        $vt = new VehicleType();
+        $vt->setName($name);
+        $vt->setColor($color);
+        
         if ($this->validate($vt)) {
 
             try {
@@ -42,12 +46,14 @@ class VehicleTypeController extends StefanController {
     }
 
     public function edit($id) {
-        $name = $this->getInput(INPUT_POST, "name");
         $id = $this->filter($id);
+        $name = $this->getInput(INPUT_POST, "name");
+        $color = $this->getInput(INPUT_POST, "color");
 
         $vt = new VehicleType();
         $vt->setId($id);
         $vt->setName($name);
+        $vt->setColor($color);
 
         if ($this->validate($vt)) {
 
@@ -87,10 +93,7 @@ class VehicleTypeController extends StefanController {
             
         }
     }
-    // </editor-fold>
     
-    
-    // <editor-fold defaultstate="collapsed" desc="VISTAS">
     public function all($currentPage = 1, $search = "") {
         
         $currentPage = $this->filter($currentPage);
@@ -180,5 +183,5 @@ class VehicleTypeController extends StefanController {
             $this->loadView(self::$rootFolder . DS . "vt", $arg);
         }
     }
-    // </editor-fold>
+
 }

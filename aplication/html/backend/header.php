@@ -19,6 +19,7 @@
         <link rel="stylesheet" href="/<?php echo $base; ?>/aplication/public/backend/js/libs/css/ui-lightness/jquery-ui-1.9.2.custom.css" type="text/css" />
         <link rel="stylesheet" href="/<?php echo $base; ?>/aplication/public/backend/css/App.css" type="text/css" />
         <link rel="stylesheet" href="/<?php echo $base; ?>/aplication/public/backend/css/custom.css" type="text/css" />
+        <link rel="stylesheet" href="/<?php echo $base; ?>/aplication/public/backend/js/plugins/spectrum/spectrum.css" type="text/css" />
         <!-- -- -->
         
         <!-- JS -->
@@ -33,6 +34,7 @@
         <script src="/<?php echo $base; ?>/aplication/public/backend/js/confirm.js"></script>
         <script src="/<?php echo $base; ?>/aplication/public/backend/js/gMaps.js"></script>
         <script src="/<?php echo $base; ?>/aplication/public/backend/js/ajax.js"></script>
+        <script src="/<?php echo $base; ?>/aplication/public/backend/js/plugins/spectrum/spectrum.js"></script>
         <!-- -- -->
     </head>
 
