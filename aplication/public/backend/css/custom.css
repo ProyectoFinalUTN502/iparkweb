@@ -1,3 +1,6 @@
+.layoutTable { width: 50%; border-collapse: collapse; }
+.layoutTable td { border: 1px solid black; height: 30px; }
+
 .error{
     color: red;
 }

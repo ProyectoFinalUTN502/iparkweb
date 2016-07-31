@@ -168,3 +168,25 @@ function getCities(){
 
     });
 }
+
+function sendLayout(data) {
+    
+    var jsonData = JSON.stringify(data);
+    var params = {"data": jsonData};
+    
+    $.ajax({
+        data: params,
+        url: 'ajax.php',
+        type: 'POST',
+        beforeSend: function () {
+            console.log(jsonData);
+        },
+        success: function () {
+            console.log("Layout Enviado");
+        },
+        error: function (xhr, status, error) {
+            var err = eval("(" + xhr.responseText + ")");
+            console.log(err.Message);
+        }
+    });
+}

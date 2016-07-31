@@ -1162,7 +1162,7 @@ INSERT INTO `group` (`name`, `text`, `description`, `style`, `ref`, `create` , `
 VALUES ('Gestion de Usuarios', 'Usuarios', 'Creacion y Edicion de Usuarios Administradores', '', 'user/all', 1, 1, 1, 1, 1);
 
 INSERT INTO `group` (`name`, `text`, `description`, `style`, `ref`, `create` , `delete`, `update`, `list`, `search`) 
-VALUES ('Habilitacion de Establecimiento', 'Establecimiento', 'Registro y Baja de Establecimiento', '', 'parkinglot/add', 1, 1, 0, 1, 1);
+VALUES ('Habilitacion de Establecimiento', 'Establecimiento', 'Registro y Baja de Establecimiento', '', 'parkinglot/step/1', 1, 1, 0, 1, 1);
 
 INSERT INTO `group` (`name`, `text`, `description`, `style`, `ref`, `create` , `delete`, `update`, `list`, `search`)  
 VALUES ('Edicion de Establecimiento', 'Mi Establecimiento', 'Edicion de informacion de Establecimiento', '', '', 0, 0, 1, 1, 1);

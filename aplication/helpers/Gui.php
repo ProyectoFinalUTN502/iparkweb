@@ -98,5 +98,18 @@ class Gui {
 
         return $html;
     }
+    
+    public static function script($file){
+        
+        if($file == ""){
+            return;
+        }
+        
+        $domain = Ioc::getService("domain");
+        $href = "/" . $domain . "/aplication/public/backend/js/" . $file;
+         
+        $html = "<script type='text/javascript' src='" . $href . "'></script>";
+        return $html;
+    }
 
 }

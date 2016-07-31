@@ -212,13 +212,14 @@ require_once APPPATH . DS . "html" . DS . "backend" . DS . "sideMenu.php";
                 </tr>
             </table>
         </div>
+        <div id='errorDiv' class="col-md-12"></div>
         <hr>
         <!--style="display: none;" -->
         <input type="text" id="address" name="address" style="display: none;" value="">
         <input type="text" id="lat" name="lat" style="display: none;" value="">
         <input type="text" id="lng" name="lng" style="display: none;" value="">
         <input type="submit" name="submit" class="btn btn-primary" value="Siguiente">
-        <?php echo Gui::href("parkinglot/all", "Volver", array("class" => "btn btn-default")); ?>
+        <?php echo Gui::href("parkinglot/cancel", "Cancelar", array("class" => "btn btn-default")); ?>
         </form>
     </div>
 </div>

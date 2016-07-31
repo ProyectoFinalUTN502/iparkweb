@@ -109,7 +109,7 @@ require_once APPPATH . DS . "html" . DS . "backend" . DS . "sideMenu.php";
         
             <hr>
             <input type="submit" name="submit" class="btn btn-primary" value="Siguiente">
-            <?php echo Gui::href("parkinglot/all", "Volver", array("class" => "btn btn-default")); ?>
+            <?php echo Gui::href("parkinglot/cancel", "Cancelar", array("class" => "btn btn-default")); ?>
         </form>
     </div>
 </div>

@@ -54,6 +54,15 @@ class StefanController {
         $serialized = Security::decrypt($encrypted);
         return unserialize($serialized);
     }
+    
+    /**
+     * Erase a key form the session array
+     * @param string $key The key used to save the value on the array
+     */
+    public function deleteFromSession($key) {
+        Session::deleteValue($key); 
+    }
+    
     /**
      * Performs the loading of the system view sesion.php, weach allows the
      * developer to see the content of the SESSION[] array in real time
@@ -95,6 +104,14 @@ class StefanController {
         return $result;
     }
 
+    /**
+     * Get the entire $_POST send
+     * @return array The Post just send
+     */
+    public function getAllPost(){
+        return filter_input_array(INPUT_POST);
+    }
+    
     /**
      * Performs the sanitization of a value
      * @param mix $value The value to be sanitize.<br> Needs to be a primary 

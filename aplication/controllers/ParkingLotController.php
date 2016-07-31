@@ -1,17 +1,45 @@
 <?php
 
-/**
- * ParkingLotController
- *
- * 
- */
 class ParkingLotController extends StefanController {
 
     static $name = "parkinglot";
     static $rootFolder = "parkinglot";
 
     public function save($currentStep) {
-        $this->redirect(self::$rootFolder . DS . "step_1");
+        
+        $nextStep = $currentStep + 1;
+        
+        $post = $this->getAllPost();
+        $this->saveInSession("currentStep", $currentStep);
+        $this->saveInSession("step_" . $currentStep, $post);
+        $this->redirect(self::$rootFolder . DS . "step/" . $nextStep);
+        
+        
+//        switch ($currentStep) {
+//            case 1:
+//                $post = $this->getAllPost();
+//                $this->saveInSession("step_1", serialize($post));
+//                $this->redirect(self::$rootFolder . DS . "step/2");
+//                break;
+//            case 2:
+//                
+//                break;
+//            case 3:
+//                break;
+//        }
+    }
+    
+    public function cancel(){
+        $steps = $this->loadFromSession("currentStep");
+        if ($steps != false) {
+            for($i = 1; $i <= $steps; $i++) {
+                $this->deleteFromSession("step_" . $i);
+            }
+            $this->deleteFromSession("currentStep");
+        }
+        
+        $this->redirect("admin/main");
+        
     }
 
     public function findLocation() {
@@ -55,8 +83,8 @@ class ParkingLotController extends StefanController {
             echo $result;
         }
     }
-    
-    public function findStates(){
+
+    public function findStates() {
         $result = "";
         $id = $this->getInput(INPUT_POST, "id");
 
@@ -79,7 +107,7 @@ class ParkingLotController extends StefanController {
             echo $result;
         }
     }
-    
+
     public function findCities() {
         $result = "";
         $id = $this->getInput(INPUT_POST, "id");
@@ -131,8 +159,19 @@ class ParkingLotController extends StefanController {
                 }
                 break;
             case 3:
-                
-                $this->loadView(self::$rootFolder . DS . "step_3", $arg);
+                $arg["vTypes"] = array();
+                try{
+                    $em = Ioc::getService("orm");
+                    $vtypes = $em->getRepository("VehicleType")->findBy(array("isActive" => 1));
+                    if (count($vtypes) > 0) {
+                        $arg["vTypes"] = $vtypes;
+                    }
+                } catch (Exception $ex) {
+                    $arg["error"] = true;
+                    $arg["errorMsg"] = $ex->getMessage();
+                } finally {
+                    $this->loadView(self::$rootFolder . DS . "step_3", $arg);
+                }
                 break;
             default:
                 break;

@@ -70,11 +70,12 @@ class Session {
      * @return boolean
      */
     public static function deleteValue($key) {
+        global $config;
         $result = false;
 
         self::activate();
-        if (isset($_SESSION[$key])) {
-            unset($_SESSION[$key]);
+        if (isset($_SESSION[$config["sesion_project"] . $key])) {
+            unset($_SESSION[$config["sesion_project"] . $key]);
             $result = true;
         }
 
