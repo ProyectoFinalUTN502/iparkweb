@@ -169,16 +169,24 @@ function getCities(){
     });
 }
 
-function sendLayout(data) {
+function sendLayout(data, floor, maxRows, maxCols) {
     
     var jsonData = JSON.stringify(data);
-    var params = {"data": jsonData};
+    var params = {
+        "data": jsonData,
+        "floor" : floor,
+        "maxRows" : maxRows,
+        "maxCols" : maxCols
+    };
     
     $.ajax({
         data: params,
-        url: 'ajax.php',
+        url: '../saveLayout',
         type: 'POST',
         beforeSend: function () {
+            console.log(floor);
+            console.log(maxRows);
+            console.log(maxCols);
             console.log(jsonData);
         },
         success: function () {

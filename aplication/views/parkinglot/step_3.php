@@ -86,7 +86,7 @@ require_once APPPATH . DS . "html" . DS . "backend" . DS . "sideMenu.php";
 
         <div id="tableArea" class='col-md-12'>
             <table id = "layoutTable" class='layoutTable'></table>
-            <br><br>
+            <br>
         </div>
         <div class='col-md-12'>
             <input type="hidden" id="rangeColor" value="">
@@ -112,9 +112,10 @@ require_once APPPATH . DS . "html" . DS . "backend" . DS . "sideMenu.php";
 <!--            <input type="button" onclick="readAll();" value="Leer">
             <input type="button" onclick="generate();" value="Generar POST">    -->
             <br><br>
+            <input type="button" onclick="generate();" class="btn btn-info" value="Guardar Nivel">
         </div>
         <hr>
-        <input type="submit" name="submit" class="btn btn-primary" value="Siguiente">
+        <input type="submit" name="submit" class="btn btn-primary" value="Finalizar">
         <?php echo Gui::href("parkinglot/cancel", "Cancelar", array("class" => "btn btn-default")); ?>
         </form>
     </div>

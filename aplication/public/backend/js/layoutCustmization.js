@@ -96,6 +96,7 @@ function createTable() {
     
     if(level === "" || maxRows === "" || maxCols === ""){
         var content = "<span class='error'><b>** La inforacion ingresada no es correcta **</b></span>";
+        $("#layoutTable").empty();
         $("#errorDiv").html(content);
         return;
     } else {
@@ -108,7 +109,7 @@ function createTable() {
         for (var i = 0; i < maxRows; i++) {
             table += "<tr>";
             for (var j = 0; j < maxCols; j++) {
-                table += "<td id='" + pos + "' align='center' data-circulation-value ='0' ></td>";
+                table += "<td id='" + (i + "-" + j)  + "' align='center' data-circulation-value ='0' ></td>";
                 pos++;
             }
             table += "</tr>";
@@ -151,15 +152,15 @@ function cleanAll() {
     circulation = false;
 }
 
-function readAll() {
-    $("#layoutTable td").each(function () {
-        var id = $(this).attr("id");
-        var cv = $(this).data("circulation-value"); 
-        var color = $(this).css("background-color");
-        
-        console.log(id + " |" + cv + " | " + color);
-    });
-}
+//function readAll() {
+//    $("#layoutTable td").each(function () {
+//        var id = $(this).attr("id");
+//        var cv = $(this).data("circulation-value"); 
+//        var color = $(this).css("background-color");
+//        
+//        console.log(id + " |" + cv + " | " + color);
+//    });
+//}
 
 function hexc(colorval) {
     var parts = colorval.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
@@ -176,9 +177,20 @@ function hexc(colorval) {
     return color;
 }
 
+function clearFields() {
+    $("#floor").val("");
+    $("#maxRows").val("");
+    $("#maxCols").val("");
+    $("#rangeColor").val("");
+    $("#layoutTable").empty();
+    $("#errorDiv").empty();
+}
 
 function generate()
 {
+    var floor   = $("#floor").val();
+    var maxRows = $("#maxRows").val();
+    var maxCols = $("#maxCols").val();
     var dataArray = [];
    
     $("#layoutTable td").each(function () {
@@ -194,5 +206,6 @@ function generate()
         dataArray.push(obj);
     });
     
-    sendLayout(dataArray);
+    sendLayout(dataArray, floor, maxRows, maxCols);
+    clearFields();
 }
