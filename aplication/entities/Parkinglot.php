@@ -1,5 +1,7 @@
 <?php
+
 use Doctrine\Common\Collections\ArrayCollection;
+
 /**
  * Parkinglot
  * 
@@ -7,6 +9,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @Table(name="parkinglot")
  */
 class Parkinglot {
+
     /**
      * @Id 
      * @Column(type="integer") 
@@ -14,80 +17,104 @@ class Parkinglot {
      * @var int
      * */
     private $id;
+
     /**
      * @Column(type="string", length=255)
      * @var string
      */
     private $ssid;
+
     /**
      * @Column(type="string", length=255)
      * @var string
      */
     private $name;
+
     /**
      * @Column(type="string", length=255)
      * @var string
      */
     private $description;
+
     /**
      * @Column(type="string", length=255)
      * @var string
      */
     private $address;
+
     /**
      * @Column(type="integer") 
      * @var int
      * */
     private $isActive;
+
     /**
      * @Column(type="integer") 
      * @var int
      * */
     private $isCovered;
+
     /**
      * @Column(type="decimal")
      * @var string
      */
     private $latMap;
+
     /**
      * @Column(type="decimal")
      * @var string
      */
     private $longMap;
+
     /**
      * @Column(type="time")
      * @var Datetime
      */
     private $openTime;
+
     /**
      * @Column(type="time")
      * @var Datetime
      */
     private $closeTIme;
-    
+
     /**
      * @ManyToOne(targetEntity="User", inversedBy="parkinglots")
      * @JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
+
     /**
      * @ManyToOne(targetEntity="City", inversedBy="parkinglots")
      * @JoinColumn(name="city_id", referencedColumnName="id")
      */
     private $city;
-    
+
     /**
      * @OneToMany(targetEntity="Layout", mappedBy="parkinglot", cascade={"persist", "detach" , "merge"})
      */
     private $layouts;
+
     /**
      * @OneToMany(targetEntity="Price", mappedBy="parkinglot", cascade={"persist", "detach" , "merge"})
      */
     private $prices;
-    
+
     public function __construct() {
         $this->layouts = new ArrayCollection();
         $this->prices = new ArrayCollection();
+    }
+
+    public function __toString() {
+        return $this->ssid . "<hr>" .
+        $this->name . "<hr>" .
+        $this->description . "<hr>" .
+        $this->address . "<hr>" .
+        $this->latMap . "<hr>" .
+        $this->longMap . "<hr>" .
+        $this->getOpenTime() . "<hr>" .
+        $this->getCloseTIme() . "<hr>" .
+        $this->getCity()->getDescription();
     }
 
     public function getId() {
@@ -111,11 +138,11 @@ class Parkinglot {
     }
 
     public function getIsActive() {
-        return $this->isActive;
+        return $this->isActive == 1 ? true : false;
     }
 
     public function getIsCovered() {
-        return $this->isCovered;
+        return $this->isCovered == 1 ? true : false;
     }
 
     public function getLatMap() {
@@ -127,11 +154,11 @@ class Parkinglot {
     }
 
     public function getOpenTime() {
-        return $this->openTime;
+        return $this->openTime->format("H:i");
     }
 
     public function getCloseTIme() {
-        return $this->closeTIme;
+        return $this->closeTIme->format("H:i");
     }
 
     public function getUser() {
@@ -170,10 +197,10 @@ class Parkinglot {
         $this->address = $address;
     }
 
-    public function setIsActive($isActive) {
-        $this->isActive = $isActive;
+    public function setIsActive($state) {
+        $this->isActive = $state ? 1 : 0;
     }
-
+    
     public function setIsCovered($isCovered) {
         $this->isCovered = $isCovered;
     }
@@ -186,12 +213,20 @@ class Parkinglot {
         $this->longMap = $longMap;
     }
 
-    public function setOpenTime(Datetime $openTime) {
-        $this->openTime = $openTime;
+    public function setOpenTime($openTime) {
+//        $timeArray = explode(":" , $openTime);
+//        $hour = $timeArray[0];
+//        array_shift($timeArray);
+//        $minute = $timeArray[0];
+//        
+//        $this->openTime = new DateTime();
+//        $this->openTime->setTime($hour, $minute);
+        
+        $this->openTime = new DateTime($openTime);
     }
 
-    public function setCloseTIme(Datetime $closeTIme) {
-        $this->closeTIme = $closeTIme;
+    public function setCloseTIme($closeTIme) {
+        $this->closeTIme = new DateTime($closeTIme);
     }
 
     public function setUser($user) {
@@ -202,11 +237,11 @@ class Parkinglot {
         $this->city = $city;
     }
 
-    public function addLayout(Layout $l){
+    public function addLayout(Layout $l) {
         $this->layouts->add($l);
     }
-    
-    public function addPrice(Price $p){
+
+    public function addPrice(Price $p) {
         $this->layouts->add($p);
     }
 

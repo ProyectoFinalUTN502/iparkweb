@@ -89,8 +89,8 @@ class Layout {
         $this->parkinglot = $parkinglot;
     }
 
-    public function addLayoutPosition(FloorLayout $fl){
-        $this->layoutPositions->add($fl);
+    public function addLayoutPosition(LayoutPosition $lp){
+        $this->layoutPositions->add($lp);
     }
     
 

@@ -76,6 +76,10 @@ class User {
         $this->isActive = 1;
         $this->parkinglots = new ArrayCollection();
     }
+    
+     public function __toString() {
+        return $this->user . "  " . $this->password . " " . $this->name . " " . $this->lastName . " " . $this->email;
+    }
 
     public function getId() {
         return $this->id;
@@ -106,7 +110,7 @@ class User {
     }
 
     public function getIsActive() {
-        return $this->isActive;
+        return $this->isActive == 1 ? true : false;
     }
 
     public function getLastLogin() {
@@ -154,8 +158,8 @@ class User {
         $this->email = $email;
     }
 
-    public function setIsActive($isActive) {
-        $this->isActive = $isActive;
+    public function setIsActive($state) {
+        $this->isActive = $state ? 1 : 0;
     }
 
     public function updateLogin() {
@@ -177,5 +181,7 @@ class User {
     public function hastParkingLot(){
         return $this->parkinglots->isEmpty();
     }
+    
+   
 
 }

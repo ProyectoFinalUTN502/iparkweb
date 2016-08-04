@@ -5,6 +5,19 @@ class VehicleTypeController extends StefanController {
     static $name = "vehicleType";
     static $rootFolder = "vehicleType";
 
+    public static function findByColor($color) {
+        $result = null;
+        $em = IOC::getService("orm");
+
+        $criteria = array("color" => $color);
+        $list = $em->getRepository("VehicleType")->findBy($criteria);
+        if (count($list) > 0) {
+            $result = $list[0];
+        }
+        
+        return $result;
+    }
+
     public function validate(VehicleType $vt) {
 
         $result = true;
@@ -17,11 +30,11 @@ class VehicleTypeController extends StefanController {
     public function register() {
         $name = $this->getInput(INPUT_POST, "name");
         $color = $this->getInput(INPUT_POST, "color");
-        
+
         $vt = new VehicleType();
         $vt->setName($name);
         $vt->setColor($color);
-        
+
         if ($this->validate($vt)) {
 
             try {
@@ -93,27 +106,26 @@ class VehicleTypeController extends StefanController {
             
         }
     }
-    
+
     public function all($currentPage = 1, $search = "") {
-        
+
         $currentPage = $this->filter($currentPage);
         $search = $this->filter($search);
-        
+
         $val = $this->getInput(INPUT_POST, "q");
-        if($val == NULL){
+        if ($val == NULL) {
             $q = $search;
         } else {
             $q = $val;
         }
 
-        try
-        {
+        try {
             $pageSize = 10;
             $em = Ioc::getService("orm");
 
             $dql = "SELECT vts FROM VehicleType vts WHERE vts.isActive = 1 AND vts.name LIKE :q";
             $query = $em->createQuery($dql);
-            $query->setParameter("q","%" . $q . "%");
+            $query->setParameter("q", "%" . $q . "%");
             $paginator = new \Doctrine\ORM\Tools\Pagination\Paginator($query);
 
             $totalItems = count($paginator);
@@ -121,13 +133,13 @@ class VehicleTypeController extends StefanController {
 
             $paginator
                     ->getQuery()
-                    ->setFirstResult($pageSize * ($currentPage - 1)) 
-                    ->setMaxResults($pageSize); 
-            
-            
+                    ->setFirstResult($pageSize * ($currentPage - 1))
+                    ->setMaxResults($pageSize);
+
+
             $prev = "/" . Ioc::getService("domain") . "/" . self::$name . "/all/" . ($currentPage - 1) . "/" . $q;
-            $next = "/" . Ioc::getService("domain") . "/" . self::$name . "/all/" . ($currentPage + 1). "/" . $q;
-            
+            $next = "/" . Ioc::getService("domain") . "/" . self::$name . "/all/" . ($currentPage + 1) . "/" . $q;
+
             $arg = array();
             $arg["error"] = false;
             $arg["errorMsg"] = "";
@@ -138,7 +150,6 @@ class VehicleTypeController extends StefanController {
             $arg["next"] = $next;
             $arg["q"] = $q;
             $this->loadView(self::$rootFolder . DS . "list", $arg);
-            
         } catch (Exception $ex) {
             $arg = array();
             $arg["error"] = true;

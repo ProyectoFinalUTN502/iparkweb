@@ -209,7 +209,7 @@ $(document).ready(function () {
                 {
                     ssid: {required: true, maxlength: 255},
                     name: {required: true, maxlength: 255},
-                    description: {required: true},
+                    description: {required: true, maxlength: 255},
                     openTime: {required: true},
                     closeTime: {required: true},
                     country: {notEqual: "1"},
@@ -230,7 +230,10 @@ $(document).ready(function () {
                         required: "Este Campo es obligatorio", 
                         maxlength: "La longitud maxima es de 255 caracteres"
                     },
-                    description: {required: "Este Campo es obligatorio"},
+                    description: {
+                        required: "Este Campo es obligatorio",
+                        maxlength: "La longitud maxima es de 255 caracteres"
+                    },
                     openTime: {required: "Este Campo es obligatorio"},
                     closeTime: {required: "Este Campo es obligatorio"},
                     country: {notEqual: "Debe Seleccionar un Pais"},
