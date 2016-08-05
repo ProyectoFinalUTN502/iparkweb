@@ -1,5 +1,5 @@
 # iParkWeb
-Repostorio Aplicacion Web para proyecto iParking 
+Repostorio Aplicacion Web para proyecto iParking  
 **Programas y Versiones para Despliegue** 
 
 - Apache 2.4.9 / PHP 5.5.11
