@@ -1,5 +1,7 @@
 <?php
+
 use Doctrine\Common\Collections\ArrayCollection;
+
 /**
  * Layout
  * 
@@ -7,6 +9,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @Table(name="layout")
  */
 class Layout {
+
     /**
      * @Id 
      * @Column(type="integer") 
@@ -14,35 +17,45 @@ class Layout {
      * @var int
      */
     private $id;
+
     /**
      * @Column(type="integer") 
      * @var int
      */
     private $floor;
+
     /**
      * @Column(type="integer") 
      * @var int
      */
     private $maxRows;
+
     /**
      * @Column(type="integer") 
      * @var int
      */
     private $maxCols;
-    
+
     /**
      * @ManyToOne(targetEntity="Parkinglot", inversedBy="layouts")
      * @JoinColumn(name="parkinglot_id", referencedColumnName="id")
      */
     private $parkinglot;
-    
+
     /**
      * @OneToMany(targetEntity="LayoutPosition", mappedBy="layout", cascade={"persist", "detach" , "merge"})
      */
     private $layoutPositions;
-    
+
     public function __construct() {
         $this->layoutPositions = new ArrayCollection();
+    }
+
+    public function __toString() {
+        return $this->id . "<br>" .
+                $this->floor . "<br>" .
+                $this->maxCols . "<br>" .
+                $this->maxRows;
     }
 
     public function getId() {
@@ -89,10 +102,8 @@ class Layout {
         $this->parkinglot = $parkinglot;
     }
 
-    public function addLayoutPosition(LayoutPosition $lp){
+    public function addLayoutPosition(LayoutPosition $lp) {
         $this->layoutPositions->add($lp);
     }
-    
-
 
 }

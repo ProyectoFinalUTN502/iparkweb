@@ -62,11 +62,28 @@ las opciones menos Editar Establecimiento y Actualizar Tarifas que eso les
 corresponde a los clientes.   
   
 Funcionalidades Desarrolladas:  
+- Alta de Establecimiento
 - Configuracion de la Plataforma
 - Gestion de Roles
 - Gestion de Usuarios
 - Gestion de Tipo de Vehiculo
 - Control de Roles y Permisos  
 
+## Modificaciones Sobre el Modelo 
 
+Salvo que explicitamente les aclare que hay que tirar el modelo y levantarlo
+de nuevo, para actualizar la BD hacen lo siguiente:  
+
+Abren el archivo **modelo.mwb** desde el MySql Workbench, y van a 
+*Database* -> *Synchronize Model*, y siguen estos pasos:  
+
+- Paso 1: Eligen a que Base se van a conectar
+- Paso 2: Eligen el esquema que van a modificar, como en este caso el esquema se 
+llama igual que en la vista de diseño, le dan siguiente
+- Paso 3: Les muestra que entidadse van a ser modificadas por el cambio. Le dan 
+siguiente
+- Paso 4: Les muestra el script que va a terminar ejecutando en la DB (yo les 
+aconsejaria que hagan una copia de ese script, por si falla. Asi me lo pueden 
+mandar). Una vez que llegaron  a la parte del SQL, lo que tienen que hacer es 
+darle finalizar, y listo, ya tienen el esquema sincronizado con la DB
 

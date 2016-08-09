@@ -101,20 +101,21 @@ class Parkinglot {
     private $prices;
 
     public function __construct() {
+        $this->isActive = 1;
         $this->layouts = new ArrayCollection();
         $this->prices = new ArrayCollection();
     }
 
     public function __toString() {
-        return $this->ssid . "<hr>" .
-        $this->name . "<hr>" .
-        $this->description . "<hr>" .
-        $this->address . "<hr>" .
-        $this->latMap . "<hr>" .
-        $this->longMap . "<hr>" .
-        $this->getOpenTime() . "<hr>" .
-        $this->getCloseTIme() . "<hr>" .
-        $this->getCity()->getDescription();
+        return $this->ssid . "<br>" .
+                $this->name . "<br>" .
+                $this->description . "<br>" .
+                $this->address . "<br>" .
+                $this->latMap . "<br>" .
+                $this->longMap . "<br>" .
+                $this->getOpenTime() . "<br>" .
+                $this->getCloseTIme() . "<br>" .
+                $this->getCity()->getDescription();
     }
 
     public function getId() {
@@ -200,7 +201,7 @@ class Parkinglot {
     public function setIsActive($state) {
         $this->isActive = $state ? 1 : 0;
     }
-    
+
     public function setIsCovered($isCovered) {
         $this->isCovered = $isCovered;
     }
@@ -221,7 +222,7 @@ class Parkinglot {
 //        
 //        $this->openTime = new DateTime();
 //        $this->openTime->setTime($hour, $minute);
-        
+
         $this->openTime = new DateTime($openTime);
     }
 

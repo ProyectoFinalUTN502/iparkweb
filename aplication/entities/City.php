@@ -1,4 +1,7 @@
 <?php
+
+use Doctrine\Common\Collections\ArrayCollection;
+
 /**
  * City
  * 
@@ -6,6 +9,7 @@
  * @Table(name="city")
  */
 class City {
+
     /**
      * @Id 
      * @Column(type="integer") 
@@ -19,43 +23,52 @@ class City {
      * @var string
      */
     private $description;
-    
+
     /**
      * @ManyToOne(targetEntity="State", inversedBy="cities")
      * @JoinColumn(name="state_id", referencedColumnName="id")
      */
     private $state;
-    
+
     /**
      * @OneToMany(targetEntity="Parkinglot", mappedBy="city", cascade={"persist", "detach" , "merge"})
      */
     private $parkinglots;
-    
-    function getId() {
+
+    public function __construct() {
+        $this->parkinglots = new ArrayCollection();
+    }
+
+    public function getId() {
         return $this->id;
     }
 
-    function getDescription() {
+    public function getDescription() {
         return $this->description;
     }
 
-    function getState() {
+    public function getState() {
         return $this->state;
     }
 
-    function setId($id) {
+    public function getParkinglots() {
+        return $this->parkinglots;
+    }
+
+    public function setId($id) {
         $this->id = $id;
     }
 
-    function setDescription($description) {
+    public function setDescription($description) {
         $this->description = $description;
     }
 
-    function setState($state) {
+    public function setState($state) {
         $this->state = $state;
     }
 
-
-
+    public function addParkinglot(Parkinglot $p) {
+        $this->parkinglots->add($p);
+    }
 
 }

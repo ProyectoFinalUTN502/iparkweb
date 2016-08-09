@@ -271,7 +271,7 @@ CREATE TABLE IF NOT EXISTS `central_dev`.`layout_position` (
   `circulationValue` INT NOT NULL DEFAULT 0,
   `state` VARCHAR(255) NOT NULL,
   `layout_id` INT NOT NULL,
-  `vehicle_type_id` INT NOT NULL,
+  `vehicle_type_id` INT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_floor_layout_layout1_idx` (`layout_id` ASC),
   INDEX `fk_floor_layout_vehicle_type1_idx` (`vehicle_type_id` ASC),

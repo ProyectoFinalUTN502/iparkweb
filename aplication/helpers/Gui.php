@@ -49,7 +49,7 @@ class Gui {
 
         return $html;
     }
-
+    
     public static function messageBox($title, $msg) {
         $html = "<div class='portlet portlet-plain'>
                     <div class='portlet-header'>

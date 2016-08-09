@@ -5,17 +5,10 @@ class VehicleTypeController extends StefanController {
     static $name = "vehicleType";
     static $rootFolder = "vehicleType";
 
-    public static function findByColor($color) {
-        $result = null;
+    public static function find($id) {
         $em = IOC::getService("orm");
-
-        $criteria = array("color" => $color);
-        $list = $em->getRepository("VehicleType")->findBy($criteria);
-        if (count($list) > 0) {
-            $result = $list[0];
-        }
-        
-        return $result;
+        $vt = $em->find("VehicleType", $id);
+        return $vt;
     }
 
     public function validate(VehicleType $vt) {

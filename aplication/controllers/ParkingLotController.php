@@ -109,13 +109,19 @@ class ParkingLotController extends StefanController {
     public function saveLayout() {
 
         $layouts = array();
-        $post = $this->getAllPost();
         $step3 = $this->loadFromSession("step_3");
 
         if ($step3 != false) {
             $layouts = $step3;
         }
-        array_push($layouts, base64_encode($post));
+
+        $postInfo = array();
+        $postInfo["floor"] = $this->getInput(INPUT_POST, "floor");
+        $postInfo["maxRows"] = $this->getInput(INPUT_POST, "maxRows");
+        $postInfo["maxCols"] = $this->getInput(INPUT_POST, "maxCols");
+        $postInfo["data"] = $this->getInput(INPUT_POST, "data");
+
+        array_push($layouts, $postInfo);
 
         $this->saveInSession("currentStep", 3);
         $this->saveInSession("step_3", $layouts);
@@ -190,7 +196,6 @@ class ParkingLotController extends StefanController {
     }
 
     public function register() {
-
         $step1 = $this->loadFromSession("step_1");
         $step2 = $this->loadFromSession("step_2");
         $step3 = $this->loadFromSession("step_3");
@@ -200,7 +205,7 @@ class ParkingLotController extends StefanController {
 
             $opUser = $this->generateClientUser($step1);
             if ($opUser->isError()) {
-                echo $opUser;
+                $this->fail($opUser->getMessage());
                 exit();
             }
 
@@ -209,27 +214,28 @@ class ParkingLotController extends StefanController {
 
             $opPl = $this->generateParkingLot($step2);
             if ($opPl->isError()) {
-                echo $opPl;
+                $this->fail($opPl->getMessage());
                 exit();
             }
 
             /* @var $parkinglot Parkinglot */
             $parkinglot = $opPl->getData();
+            $parkinglot->setUser($user);
+            $user->addParkingLot($parkinglot);
 
             $this->generateLayout($parkinglot, $step3);
 
-            $parkinglot->setUser($user);
-            $user->addParkingLot($parkinglot);
+
             try {
                 $em = Ioc::getService("orm");
                 $em->persist($user);
                 $em->flush();
+                $this->redirect(self::$name . DS . "success");
             } catch (Exception $ex) {
-                echo $ex->getCode() . " " . $ex->getMessage();
+                $this->fail($ex->getMessage());
             }
         } else {
-            // IR A PANTALLA DE ERROR
-            echo "Hubo un error con la informacion almacenada";
+            $this->fail("Ocurrio un error con la informacion almacenada");
         }
     }
 
@@ -263,10 +269,12 @@ class ParkingLotController extends StefanController {
             if ($validation) {
                 $result->setData($usr);
             } else {
-                $result->setMessage("La informacion ingresada no es valida");
+                $result->setError();
+                $result->setMessage("El Usuario ingresado no contiene informacion valida");
             }
         } else {
-            $result->setMessage("Las Contrase&ntilde;as debe coincidir");
+            $result->setError();
+            $result->setMessage("Las Contrase&ntilde;as ingresada en el Usuario no es valida");
         }
 
         return $result;
@@ -298,68 +306,99 @@ class ParkingLotController extends StefanController {
         $pl->setOpenTime($openTime);
         $pl->setCloseTIme($closeTime);
 
+        /* @var $city City */
         $em = Ioc::getService("orm");
         $city = $em->find("City", $cityId);
 
         $pl->setCity($city);
+        $city->addParkinglot($pl);
+
         if ($this->validate($pl)) {
             $result->setData($pl);
         } else {
-            $result->setMessage("La informacion ingresada no es valida");
+            $result->setError();
+            $result->setMessage("El Establecimiento ingresado no contiene informacion valida");
         }
 
         return $result;
     }
 
-    private function generateLayout(ParkingLot &$pl, $data) {
+    private function generateLayout(ParkingLot &$parkingLot, $data) {
 
         for ($i = 0; $i < count($data); $i++) {
 
-            $dl = base64_decode($data[$i]);
+            $dl = $data[$i];
 
-            $floor = $this->filter($dl["floor"]);
-            $maxRows = $this->filter($dl["maxRows"]);
-            $maxCols = $this->filter($dl["maxCols"]);
+            $floor = $dl["floor"];
+            $maxRows = $dl["maxRows"];
+            $maxCols = $dl["maxCols"];
 
-            $temp = html_entity_decode($this->filter($dl["data"]));
-            $dataLy = json_decode($temp);
+            $temp = html_entity_decode($dl["data"]);
+            $positionData = json_decode($temp);
 
 
             $layout = new Layout();
             $layout->setFloor($floor);
             $layout->setMaxRows($maxRows);
             $layout->setMaxCols($maxCols);
-            $layout->setParkinglot($pl);
+            $layout->setParkinglot($parkingLot);
 
-            $this->generateLayoutPosition($layout, $dataLy);
+            $parkingLot->addLayout($layout);
+            $this->generateLayoutPosition($layout, $positionData);
         }
     }
 
-    private function generateLayoutPosition(Layout &$ly, $data) {
+    private function generateLayoutPosition(Layout &$layout, $data) {
         foreach ($data as $obj) {
-            
-            $vt = VehicleTypeController::findByColor($obj->color);
-            
-            if($vt != null){
-                $lyp = new FreeLayoutPosition();
 
-                $posArray = explode("-", $obj->id);
-                $x = $posArray[0];
-                $y = $posArray[1];
-                
-                $circulationValue = $obj->cv;
-                
-                $lyp->setXPoint($x);
-                $lyp->setYPoint($y);
-                $lyp->setCirculationValue($circulationValue);
-                $lyp->setValid(1);
-                $lyp->setVehicleType($vt);
-                $lyp->setLayout($ly);
-                
-                $ly->addLayoutPosition($lyp);
-                
+            $x = $obj->x;
+            $y = $obj->y;
+            $valid = $obj->valid;
+            $circulationValue = $obj->cv;
+            $vtId = $obj->vt;
+
+
+            $position = new FreeLayoutPosition();
+            $position->setXPoint($x);
+            $position->setYPoint($y);
+            $position->setCirculationValue($circulationValue);
+            $position->setValid($valid);
+            $position->setLayout($layout);
+            $layout->addLayoutPosition($position);
+
+            if ($vtId != 0) {
+                /* @var $vt VehicleType */
+                $vt = VehicleTypeController::find($vtId);
+                $position->setVehicleType($vt);
+                $vt->addLayoutPosition($position);
             }
         }
+    }
+
+    public function success() {
+        $this->deleteFromSession("step_1");
+        $this->deleteFromSession("step_2");
+        $this->deleteFromSession("step_3");
+        $this->deleteFromSession("currentStep");
+
+        $arg = array();
+        $arg["error"] = false;
+        $arg["msg"] = "";
+        
+        $this->loadView(self::$rootFolder . DS . "result", $arg);
+    }
+
+    public function fail($msg) {
+        $this->deleteFromSession("step_1");
+        $this->deleteFromSession("step_2");
+        $this->deleteFromSession("step_3");
+        $this->deleteFromSession("currentStep");
+
+        $arg = array();
+        $arg["error"] = true;
+        $arg["msg"] = $msg;
+
+        $this->loadView(self::$rootFolder . DS . "result", $arg);
     }
 
 }

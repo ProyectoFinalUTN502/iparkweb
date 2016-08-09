@@ -1,4 +1,5 @@
 <?php
+
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
@@ -8,7 +9,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @Table(name="user")
  */
 class User {
-    
+
     /**
      * @Id 
      * @Column(type="integer") 
@@ -16,69 +17,84 @@ class User {
      * @var int
      * */
     private $id;
+
     /**
      * @Column(type="string", length=255)
      * @var string
      */
     private $user;
+
     /**
      * @Column(type="string", length=255)
      * @var string
      */
     private $password;
+
     /**
      * @Column(type="integer")
      * @var type 
      */
     private $loginCount;
+
     /**
      * @Column(type="string", length=255)
      * @var string
      */
     private $name;
+
     /**
      * @Column(type="string", length=255)
      * @var string
      */
     private $lastName;
+
     /**
      * @Column(type="string", length=255)
      * @var string
      */
     private $email;
+
     /**
      * @Column(type="integer")
      * @var type 
      */
     private $isActive;
+
     /**
      * @Column(type="datetime")
      * @var Datetime
      */
     private $lastLogin;
+
     /**
      * @Column(type="string", length=255)
      * @var string
      */
     private $lastIp;
+
     /**
      * @ManyToOne(targetEntity="Rol", inversedBy="users")
      * @JoinColumn(name="rol_id", referencedColumnName="id")
      */
     private $rol;
+
     /**
      * @OneToMany(targetEntity="Parkinglot", mappedBy="user", cascade={"persist", "detach" , "merge"})
      */
     private $parkinglots;
-    
+
     public function __construct() {
         $this->loginCount = 0;
         $this->isActive = 1;
         $this->parkinglots = new ArrayCollection();
     }
-    
-     public function __toString() {
-        return $this->user . "  " . $this->password . " " . $this->name . " " . $this->lastName . " " . $this->email;
+
+    public function __toString() {
+        return $this->user . "<br>" .
+                $this->password . "<br>" .
+                $this->name . "<br>" .
+                $this->lastName . "<br>" .
+                $this->email;
     }
 
     public function getId() {
@@ -129,7 +145,6 @@ class User {
         return $this->parkinglots;
     }
 
-        
     public function setId($id) {
         $this->id = $id;
     }
@@ -169,19 +184,17 @@ class User {
     public function setLastIp($lastIp) {
         $this->lastIp = $lastIp;
     }
-    
-    public function setRole(Rol $rol){
+
+    public function setRole(Rol $rol) {
         $this->rol = $rol;
     }
 
-    public function addParkingLot(ParkingLot $p){
+    public function addParkingLot(ParkingLot $p) {
         $this->parkinglots->add($p);
     }
-    
-    public function hastParkingLot(){
+
+    public function hasParkingLot() {
         return $this->parkinglots->isEmpty();
     }
-    
-   
 
 }

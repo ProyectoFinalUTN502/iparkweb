@@ -92,7 +92,8 @@ class Session {
         reset($_SESSION);
         while (list($key, $val) = each($_SESSION)) {
             if (String::contains($key, $config["sesion_project"])) {
-                self::deleteValue($key);
+                unset($_SESSION[$key]);
+                //self::deleteValue($key);
             }
         }
 

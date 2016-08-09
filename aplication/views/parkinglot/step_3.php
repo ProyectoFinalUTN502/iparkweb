@@ -19,7 +19,7 @@ require_once APPPATH . DS . "html" . DS . "backend" . DS . "sideMenu.php";
     <div id="content-container">
 
         <?php
-        echo Gui::form("frmStep_3", "parkinglot/save/3");
+        echo Gui::form("frmStep_3", "parkinglot/register");
 
         if ($error) {
             echo Gui::error($errorMsg);
@@ -89,28 +89,26 @@ require_once APPPATH . DS . "html" . DS . "backend" . DS . "sideMenu.php";
             <br>
         </div>
         <div class='col-md-12'>
-            <input type="hidden" id="rangeColor" value="">
+            <input type="text" id="rangeColor" value="" style="display: none;">
+            <input type="text" id="vehicleType" value="" style="display: none;">
             <?php 
                 /* @var $vt VehicleType */
                 foreach($vTypes as $vt){
                     echo "<input    type='button'
-                                    onclick='setColor(\"" . $vt->getColor() . "\");'
+                                    onclick='setColor(\"" . $vt->getColor() . "\", " . $vt->getId() . ");'
                                     class='btn btn-default'
                                     style='background-color: " . $vt->getColor() . ";'
                                     value='" . $vt->getName() . "'>&nbsp;";
                 }
             ?>
             <br><br>
-            <input type="button" onclick="setColor('#909090');" class='btn btn-default' style='background-color: #909090;' value="No Disponible">
+            <input type="button" onclick="setInvalid();" class='btn btn-default' style='background-color: #909090;' value="No Disponible">
             &nbsp;
             <input type="button" onclick="setCirculation();" class='btn btn-default' value="Circulacion">
             &nbsp;
             <input type="button" onclick="clean();" class='btn btn-default' value="Limpiar">
             &nbsp;
             <input type="button" onclick="cleanAll();" class='btn btn-default' value="Limipiar Todo">
-            
-<!--            <input type="button" onclick="readAll();" value="Leer">
-            <input type="button" onclick="generate();" value="Generar POST">    -->
             <br><br>
             <input type="button" onclick="generate();" class="btn btn-info" value="Guardar Nivel">
         </div>

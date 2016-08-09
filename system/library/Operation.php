@@ -14,7 +14,7 @@ class Operation {
     }
     
     public function __toString() {
-        "<strong>Error</strong> " . $this->code . ": " . $this->message;
+        return "<strong>Error</strong> " . $this->code . ": " . $this->message;
     }
     
     public function getData() {

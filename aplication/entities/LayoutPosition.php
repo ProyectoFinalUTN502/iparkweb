@@ -47,11 +47,30 @@ abstract class LayoutPosition {
     private $layout;
     /**
      * @ManyToOne(targetEntity="VehicleType", inversedBy="layoutPositions")
-     * @JoinColumn(name="layout_id", referencedColumnName="id")
+     * @JoinColumn(name="vehicle_type_id", referencedColumnName="id")
      */
     private $vehicleType;
     
     //private $vehicleParking;
+    public function __construct() {
+        $this->layout = null;
+        $this->vehicleType = null;
+    }
+    
+    public function __toString() {
+        $result = $this->xPoint . "<br>" . 
+                $this->yPoint . "<br>" . 
+                $this->valid . "<br>" .
+                $this->circulationValue . "<br>";
+        
+        if($this->vehicleType == null) {
+            $result .= "Sin Vehiculo<br>";
+        } else {
+            $result .= $this->vehicleType->getName() . "<br>";
+        }
+        
+        return $result;
+    }
     
     public function getId() {
         return $this->id;
@@ -101,11 +120,11 @@ abstract class LayoutPosition {
         $this->circulationValue = $circulationValue;
     }
 
-    public function setLayout($layout) {
+    public function setLayout(Layout $layout) {
         $this->layout = $layout;
     }
 
-    public function setVehicleType($vehicleType) {
+    public function setVehicleType(VehicleType $vehicleType) {
         $this->vehicleType = $vehicleType;
     }
     
