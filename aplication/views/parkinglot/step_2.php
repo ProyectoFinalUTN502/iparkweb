@@ -1,7 +1,32 @@
 <?php
+/* @var $pkl Parkinglot */
+$pkl;
+
+/* @var $pklCity City */
+$pklCity;
+
+/* @var $pklState State */
+$pklState;
+
+/* @var $pklProvince Province */
+$pklProvince;
+
+/* @var $pklCountry Country */
+$pklCountry;
+
 $group = new Group(PARKINGLOT_GROUP);
 $ac = new AdminController();
-$ac->controlCreate($group, new RedirectResult());
+
+if($pkl != null){
+    $ac->controlUpdate($group, new RedirectResult());
+    
+    $pklCity = $pkl->getCity();
+    $pklState = $pklCity->getState();
+    $pklProvince = $pklState->getProvince();
+    $pklCountry = $pklProvince->getCountry();
+} else {
+    $ac->controlCreate($group, new RedirectResult());
+}
 
 require_once APPPATH . DS . "html" . DS . "backend" . DS . "header.php";
 require_once APPPATH . DS . "html" . DS . "backend" . DS . "topBar.php";
@@ -42,14 +67,26 @@ require_once APPPATH . DS . "html" . DS . "backend" . DS . "sideMenu.php";
 
     <div id="content-header">
         <h1>
-            Paso 2: Registro de Establecimiento
+            <?php 
+                if($pkl != null) {
+                    echo "Editar Establecimiento";
+                } else {
+                    echo "Paso 2: Registro de Establecimiento";
+                }
+            ?>
         </h1>
     </div>
 
     <div id="content-container">
 
         <?php
-        echo Gui::form("frmStep_2", "parkinglot/save/2");
+        
+        if ($pkl != null) {
+            echo Gui::form("frmStep_2", "parkinglot/edit/" . $pkl->getId());
+        } else {
+            echo Gui::form("frmStep_2", "parkinglot/save/2");
+        }
+        
 
         if ($error) {
             echo Gui::error($errorMsg);
@@ -66,7 +103,11 @@ require_once APPPATH . DS . "html" . DS . "backend" . DS . "sideMenu.php";
                                name='ssid' 
                                placeholder='Ingrese el Identificador de Red para el Establecimiento' 
                                class='form-control' 
-                               value=''>
+                               value='<?php 
+                                        if ($pkl != NULL) {
+                                            echo $pkl->getSsid(); 
+                                        }
+                                ?>'>
                     </div>
                 </td>
             </tr>
@@ -78,7 +119,11 @@ require_once APPPATH . DS . "html" . DS . "backend" . DS . "sideMenu.php";
                                name='name' 
                                placeholder='Ingrese el Nombre del Establecimiento' 
                                class='form-control' 
-                               value=''>
+                               value='<?php 
+                                        if ($pkl != NULL) {
+                                            echo $pkl->getName(); 
+                                        }
+                                ?>'>
                     </div>
                 </td>
             </tr>
@@ -89,7 +134,11 @@ require_once APPPATH . DS . "html" . DS . "backend" . DS . "sideMenu.php";
                         <textarea name="description" 
                                   placeholder="Ingrese una Breve Descripcion del Establecimiento"
                                   class="form-control"
-                                  style="resize: none;"></textarea>
+                                  style="resize: none;"><?php 
+                                        if ($pkl != NULL) {
+                                            echo $pkl->getDescription(); 
+                                        }
+                                ?></textarea>
                     </div>
                 </td>
             </tr>
@@ -101,7 +150,11 @@ require_once APPPATH . DS . "html" . DS . "backend" . DS . "sideMenu.php";
                                id="openTime"
                                name="openTime" 
                                class="form-control" 
-                               value=""
+                               value="<?php 
+                                        if ($pkl != NULL) {
+                                            echo $pkl->getOpenTime(); 
+                                        }
+                                ?>"
                                placeholder="Ingrese el Horario de Apertura"
                                maxlength="5">
                     </div>
@@ -118,7 +171,11 @@ require_once APPPATH . DS . "html" . DS . "backend" . DS . "sideMenu.php";
                                id="closeTime"
                                name="closeTime" 
                                class="form-control" 
-                               value=""
+                               value="<?php 
+                                        if ($pkl != NULL) {
+                                            echo $pkl->getCloseTIme(); 
+                                        }
+                                ?>"
                                placeholder="Ingrese el Horario de Cierre"
                                maxlength="5">
                     </div>
@@ -130,9 +187,18 @@ require_once APPPATH . DS . "html" . DS . "backend" . DS . "sideMenu.php";
                         <h4 class='touchable'>Pais</h4>
                         <select id="country" name="country" class="form-control" onchange="getProvinces();">
                         <?php
-                                /* @var $countries Country */
-                            foreach($countries as $country){
-                                echo "<option value='" . $country->getId() . "'>" . $country->getDescription() . "</option>";
+                            if ($pkl != NULL) {
+                                foreach($countries as $country){
+                                    if ($pklCountry->getId() == $country->getId()) {
+                                        echo "<option value='" . $country->getId() . "' selected>" . $country->getDescription() . "</option>";
+                                    } else {
+                                        echo "<option value='" . $country->getId() . "'>" . $country->getDescription() . "</option>";
+                                    }
+                                }
+                            } else {
+                                foreach($countries as $country){
+                                    echo "<option value='" . $country->getId() . "'>" . $country->getDescription() . "</option>";
+                                }
                             }
                         ?>    
                         </select>
@@ -144,7 +210,19 @@ require_once APPPATH . DS . "html" . DS . "backend" . DS . "sideMenu.php";
                     <div class='col-md-6  bootstrap-timepicker' style='margin-bottom:10px;'>
                         <h4 class='touchable'>Provincia</h4>
                         <select id="province" name="province" class="form-control" onchange="getStates();">
-                            <option value="1">No disponible</option>
+                        <?php
+                            if ($pkl != NULL) {
+                                foreach($pklCountry->getProvinces() as $province){
+                                    if ($pklProvince->getId() == $province->getId()) {
+                                        echo "<option value='" . $province->getId() . "' selected>" . $province->getDescription() . "</option>";
+                                    } else {
+                                        echo "<option value='" . $province->getId() . "'>" . $province->getDescription() . "</option>";
+                                    }
+                                }
+                            } else {
+                                echo "<option value='1'>No disponible</option>";
+                            }
+                        ?>        
                         </select>
                     </div>
                 </td>
@@ -154,7 +232,19 @@ require_once APPPATH . DS . "html" . DS . "backend" . DS . "sideMenu.php";
                     <div class='col-md-6  bootstrap-timepicker' style='margin-bottom:10px;'>
                         <h4 class='touchable'>Partido</h4>
                         <select id="state" name="state" class="form-control" onchange="getCities();">
-                            <option value="1">No disponible</option>
+                        <?php
+                            if ($pkl != NULL) {
+                                foreach($pklProvince->getStates() as $state){
+                                    if ($pklState->getId() == $state->getId()) {
+                                        echo "<option value='" . $state->getId() . "' selected>" . $state->getDescription() . "</option>";
+                                    } else {
+                                        echo "<option value='" . $state->getId() . "'>" . $state->getDescription() . "</option>";
+                                    }
+                                }
+                            } else {
+                                echo "<option value='1'>No disponible</option>";
+                            }
+                        ?>  
                         </select>
                     </div>
                 </td>
@@ -164,7 +254,19 @@ require_once APPPATH . DS . "html" . DS . "backend" . DS . "sideMenu.php";
                     <div class='col-md-6  bootstrap-timepicker' style='margin-bottom:10px;'>
                         <h4 class='touchable'>Localidad</h4>
                         <select id="city" name="city" class="form-control">
-                            <option value="1">No disponible</option>
+                        <?php
+                            if ($pkl != NULL) {
+                                foreach($pklState->getCities() as $city){
+                                    if ($pklCity->getId() == $city->getId()) {
+                                        echo "<option value='" . $city->getId() . "' selected>" . $city->getDescription() . "</option>";
+                                    } else {
+                                        echo "<option value='" . $city->getId() . "'>" . $city->getDescription() . "</option>";
+                                    }
+                                }
+                            } else {
+                                echo "<option value='1'>No disponible</option>";
+                            }
+                        ?>  
                         </select>
                     </div>
                 </td>
@@ -173,14 +275,35 @@ require_once APPPATH . DS . "html" . DS . "backend" . DS . "sideMenu.php";
                 <td>
                     <div class="col-md-6" style="font-size: 16px;">
                         El Establecimiento posee Cocheras Cubiertas&nbsp;
-                        <input type="radio" name="isCovered" value="1">&nbsp;Si&nbsp;
-                        <input type="radio" name="isCovered" value="0" checked>&nbsp;No
+                        <?php 
+                            if ($pkl != NULL) {
+                                
+                                if ($pkl->getIsCovered()) {
+                                    echo "<input type='radio' name='isCovered' value='1' checked>&nbsp;Si&nbsp;";
+                                    echo "<input type='radio' name='isCovered' value='0'>&nbsp;No";
+                                } else {
+                                    echo "<input type='radio' name='isCovered' value='1'>&nbsp;Si&nbsp;";
+                                    echo "<input type='radio' name='isCovered' value='0' checked>&nbsp;No";
+                                }
+                                
+                            } else {
+                                echo "<input type='radio' name='isCovered' value='1'>&nbsp;Si&nbsp;";
+                                echo "<input type='radio' name='isCovered' value='0' checked>&nbsp;No";
+                            }
+                        ?>
                     </div>
                 </td>
             </tr>
         </table>
         <br>
-        <div id="gMapsArea" class="col-md-12" style="display:none;">
+        
+        <?php 
+            if ($pkl != NULL) {
+                echo "<div id='gMapsArea' class='col-md-12'>";
+            } else {
+                echo "<div id='gMapsArea' class='col-md-12' style='display:none;'>";
+            }
+        ?>
             <table style="width: 100%;">
                 <tr>
                     <td>
@@ -197,7 +320,15 @@ require_once APPPATH . DS . "html" . DS . "backend" . DS . "sideMenu.php";
                 <tr>
                     <td>
                         <div id="searchArea" class="col-md-5" style="height: 50px;">
-                            <input type="search" id="addressSearch" class="form-control" placeholder="Ingrese Calle y Altura del Establecimiento">
+                            <input type="search" 
+                                   id="addressSearch" 
+                                   class="form-control" 
+                                   placeholder="Ingrese Calle y Altura del Establecimiento"
+                                   value="<?php 
+                                        if ($pkl != NULL) {
+                                            echo $pkl->getAddress();
+                                        }
+                                   ?>">
                         </div>
                         <div class="col-md-1" style="padding-left: 0px;">
                             <input type="button" id="btnSearch" class="btn btn-primary" value="Buscar">
@@ -214,18 +345,59 @@ require_once APPPATH . DS . "html" . DS . "backend" . DS . "sideMenu.php";
         </div>
         <div id='errorDiv' class="col-md-12"></div>
         <hr>
-        <!--style="display: none;" -->
-        <input type="text" id="address" name="address" style="display: none;" value="">
-        <input type="text" id="lat" name="lat" style="display: none;" value="">
-        <input type="text" id="lng" name="lng" style="display: none;" value="">
-        <input type="submit" name="submit" class="btn btn-primary" value="Siguiente">
-        <?php echo Gui::href("parkinglot/cancel", "Cancelar", array("class" => "btn btn-default")); ?>
+        
+        <!-- DATOS DEL ESTABLECIMIENTO-->
+        <input type="text" 
+               id="address" 
+               name="address" 
+               style="display: none;" 
+               value="<?php 
+                    if ($pkl != NULL) {
+                        echo $pkl->getAddress();
+                    }
+               ?>">
+        
+        <input type="text" 
+               id="lat" 
+               name="lat" 
+               style="display: none;" 
+               value="<?php 
+                    if ($pkl != NULL) {
+                        echo $pkl->getLatMap();
+                    }
+               ?>">
+        
+        <input type="text" 
+               id="lng" 
+               name="lng" 
+               style="display: none;" 
+               value="<?php 
+                    if ($pkl != NULL) {
+                        echo $pkl->getLongMap();
+                    }
+               ?>">
+        
+        <?php 
+            if ($pkl != NULL) {
+                echo "<input type='submit' name='submit' class='btn btn-primary' value='Editar'> &nbsp;";
+                echo Gui::href("parkinglot/all", "Volver", array("class" => "btn btn-default"));
+            } else {
+                echo "<input type='submit' name='submit' class='btn btn-primary' value='Siguiente'> &nbsp;";
+                echo Gui::href("parkinglot/cancel", "Cancelar", array("class" => "btn btn-default")); 
+            }
+        ?>
         </form>
     </div>
 </div>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAA-kRCMxJ66iI2909Ti5WopU3m0_kfgyA"></script>
 <script>
-    //^([01]\d|2[0-3]):?([0-5]\d)$
+    
+    <?php 
+        if ($pkl != NULL) {
+            echo "getLocation()";
+        }
+    ?>
+    
     $('#btnSearch').click(function (e){
         getLocation();
     });

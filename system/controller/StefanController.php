@@ -50,9 +50,14 @@ class StefanController {
      * on failure
      */
     public function loadFromSession($key) {
+        $result = false;
+        
         $encrypted = Session::getValue($key);
-        $serialized = Security::decrypt($encrypted);
-        return unserialize($serialized);
+        if ($encrypted != false) {
+            $serialized = Security::decrypt($encrypted);
+            $result = unserialize($serialized);
+        }
+        return $result;
     }
     
     /**

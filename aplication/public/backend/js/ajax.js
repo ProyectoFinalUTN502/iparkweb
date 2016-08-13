@@ -155,6 +155,10 @@ function getCities(){
             
             var resultValue = $("#city").val();
             if(resultValue === "1"){
+                $("#addressSearch").val("");
+                $("#address").val("");
+                $("#lat").val("");
+                $("#lng").val("");
                 $("#gMapsArea").hide();
             } else{
                 $("#gMapsArea").show();

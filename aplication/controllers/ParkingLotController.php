@@ -16,6 +16,8 @@ class ParkingLotController extends StefanController {
         return $result;
     }
 
+    
+    
     public function findLocation() {
         $address = $this->getInput(INPUT_POST, "address");
         $result = array();
@@ -138,15 +140,28 @@ class ParkingLotController extends StefanController {
                 $this->loadView(self::$rootFolder . DS . "step_1", $arg);
                 break;
             case 2:
-                $arg["countries"] = array();
+                
                 try {
                     $em = Ioc::getService("orm");
                     $countries = $em->getRepository("Country")->findAll();
-                    if (count($countries) > 0) {
-                        $arg["countries"] = $countries;
-                    }
+                    $provinces = $em->getRepository("Province")->findAll();
+                    $states = $em->getRepository("State")->findAll();
+                    $cities = $em->getRepository("City")->findAll();
                     $em->flush();
+                    
+                    $arg["pkl"] = NULL;
+                    $arg["countries"] = count($countries) > 0 ? $countries : array();
+                    $arg["provinces"] = count($provinces) > 0 ? $provinces : array();
+                    $arg["states"] = count($states) > 0 ? $states : array();
+                    $arg["cities"] = count($cities) > 0 ? $cities : array();
+                    
                 } catch (Exception $ex) {
+                    $arg["pkl"] = NULL;
+                    $arg["countries"] = array();
+                    $arg["provinces"] = array();
+                    $arg["states"] = array();
+                    $arg["cities"] = array();
+                    
                     $arg["error"] = true;
                     $arg["errorMsg"] = $ex->getMessage();
                 } finally {
@@ -192,7 +207,7 @@ class ParkingLotController extends StefanController {
             $this->deleteFromSession("currentStep");
         }
 
-        $this->redirect("admin/main");
+        $this->redirect(self::$name . DS . "all");
     }
 
     public function register() {
@@ -400,5 +415,166 @@ class ParkingLotController extends StefanController {
 
         $this->loadView(self::$rootFolder . DS . "result", $arg);
     }
+    
+    public function edit($id) {
+        $id = $this->filter($id);
+                
+        $ssid = $this->getInput(INPUT_POST,"ssid");
+        $name = $this->getInput(INPUT_POST,"name");
+        $description = $this->getInput(INPUT_POST,"description");
+        $address = $this->getInput(INPUT_POST,"address");
+        $isCovered = $this->getInput(INPUT_POST,"isCovered");
+        $latMap = $this->getInput(INPUT_POST,"lat");
+        $longMap = $this->getInput(INPUT_POST,"lng");
+        $openTime = $this->getInput(INPUT_POST,"openTime");
+        $closeTime = $this->getInput(INPUT_POST,"closeTime");
+        $cityId = $this->getInput(INPUT_POST,"city");
+        
+        $em = Ioc::getService("orm");
+        
+        $criteria = array("id" => $id, "isActive" => 1);
+        $parkinglots = $em->getRepository("Parkinglot")->findBy($criteria);
+        $countries = $em->getRepository("Country")->findAll();
+        
+        $city = $em->find("City", $cityId);
+        
+        if(count($parkinglots) == 0){
+            $this->redirect("admin/error");
+        }
+        
+        /* @var $pkl Parkinglot */
+        $pkl = $parkinglots[0];
+        $pkl->setSsid($ssid);
+        $pkl->setName($name);
+        $pkl->setDescription($description);
+        $pkl->setAddress($address);
+        $pkl->setIsCovered($isCovered);
+        $pkl->setLatMap($latMap);
+        $pkl->setLongMap($longMap);
+        $pkl->setOpenTime($openTime);
+        $pkl->setCloseTIme($closeTime);
+        $pkl->setCity($city);
 
+        if ($this->validate($pkl)) {
+            try {
+                $em->merge($pkl);
+                $em->flush();
+                $this->redirect(self::$name . DS . "all");
+            } catch (Exception $ex) {
+                $arg = array();
+                $arg["pkl"] = $pkl;
+                $arg["countries"] = count($countries) > 0 ? $countries : array();
+                $arg["error"] = true;
+                $arg["errorMsg"] = $ex->getMessage();
+                $this->loadView(self::$rootFolder . DS . "step_2", $arg);
+            }
+        } else {
+            $arg = array();
+            $arg["pkl"] = $pkl;
+            $arg["countries"] = count($countries) > 0 ? $countries : array();
+            $arg["error"] = true;
+            $arg["errorMsg"] = "La informacion ingresada no es valida";
+            $this->loadView(self::$rootFolder . DS . "step_2", $arg);
+        }
+    }
+    
+    public function del() {
+
+        $id = $this->getInput(INPUT_POST, "id");
+
+        try {
+            $em = Ioc::getService("orm");
+            /* @var $usr User */
+            $usr = $em->find("Parkinglot", $id);
+            $usr->setIsActive(false);
+            $em->merge($usr);
+            $em->flush();
+        } catch (Exception $ex) {}
+    }
+
+    
+    public function all($currentPage = 1, $search = "") {
+
+        $currentPage = $this->filter($currentPage);
+        $search = $this->filter($search);
+
+        $val = $this->getInput(INPUT_POST, "q");
+        if ($val == NULL) {
+            $q = $search;
+        } else {
+            $q = $val;
+        }
+
+        try {
+            $pageSize = 10;
+            $em = Ioc::getService("orm");
+            
+            $dql = "SELECT pkl FROM Parkinglot pkl WHERE pkl.isActive = 1 AND pkl.name LIKE :q1";
+            $query = $em->createQuery($dql);
+            $query->setParameter("q1", "%" . $q . "%");
+                      
+            $paginator = new \Doctrine\ORM\Tools\Pagination\Paginator($query);
+
+            $totalItems = count($paginator);
+            $pagesCount = ceil($totalItems / $pageSize);
+
+            $paginator
+                    ->getQuery()
+                    ->setFirstResult($pageSize * ($currentPage - 1))
+                    ->setMaxResults($pageSize);
+
+
+            $prev = "/" . Ioc::getService("domain") . "/" . self::$name . "/all/" . ($currentPage - 1) . "/" . $q;
+            $next = "/" . Ioc::getService("domain") . "/" . self::$name . "/all/" . ($currentPage + 1) . "/" . $q;
+
+            $arg = array();
+            $arg["error"] = false;
+            $arg["errorMsg"] = "";
+            $arg["parkinglots"] = $paginator;
+            $arg["pagesCount"] = $pagesCount;
+            $arg["currentPage"] = $currentPage;
+            $arg["prev"] = $prev;
+            $arg["next"] = $next;
+            $arg["q"] = $q;
+            $this->loadView(self::$rootFolder . DS . "list", $arg);
+        } catch (Exception $ex) {
+            $arg = array();
+            $arg["error"] = true;
+            $arg["errorMsg"] = $ex->getMessage();
+            $arg["parkinglots"] = array();
+            $arg["pagesCount"] = 1;
+            $arg["currentPage"] = 1;
+            $arg["prev"] = "";
+            $arg["next"] = "";
+            $arg["q"] = "";
+            $this->loadView(self::$rootFolder . DS . "list", $arg);
+        }
+    }
+    
+    public function upd($id) {
+         try {
+            $id = $this->filter($id);
+            $em = Ioc::getService("orm");
+            
+            /* @var $parkinglot Parkinglot */
+            $parkinglots = $em->getRepository("Parkinglot")->findBy(array("id" => $id, "isActive" => 1));
+            $countries = $em->getRepository("Country")->findAll();
+            
+            $em->flush();
+
+            $arg = array();
+            $arg["pkl"] = count($parkinglots) > 0 ? $parkinglots[0] : null;
+            $arg["countries"] = count($countries) > 0 ? $countries : array();
+            $arg["error"] = false;
+            $arg["errorMsg"] = "";
+            $this->loadView(self::$rootFolder . DS . "step_2", $arg);
+        } catch (Exception $ex) {
+            $arg = array();
+            $arg["pkl"] = NULL;
+            $arg["countries"] = array();
+            $arg["error"] = true;
+            $arg["errorMsg"] = $ex->getMessage();
+            $this->loadView(self::$rootFolder . DS . "step_2", $arg);
+        }
+    }
 }

@@ -1,5 +1,5 @@
 <?php
-$group = new Group(USER_GROUP);
+$group = new Group(PARKINGLOT_GROUP);
 $ac = new AdminController();
 $ac->control($group, new RedirectResult());
 require_once APPPATH . DS . "html" . DS . "backend" . DS . "header.php";
@@ -41,13 +41,13 @@ require_once APPPATH . DS . "html" . DS . "backend" . DS . "sideMenu.php";
 <div id="content">		
 
     <div id="content-header">
-        <h1>Usuarios Administradores</h1>
+        <h1>Establecimientos Registrados</h1>
     </div>
 
     <div id="content-container">
         
         <?php 
-            echo Gui::form("frmVts", "User/all/" . $currentPage);
+            echo Gui::form("frmPkl", "Parkinglot/all/" . $currentPage);
             
             if($error){
                 echo Gui::error($errorMsg);
@@ -58,7 +58,7 @@ require_once APPPATH . DS . "html" . DS . "backend" . DS . "sideMenu.php";
             <table>
                 <tr>
                     <td>
-                        <input class="form-control input-sm" style="width: 400px" type="text" name="q" placeholder="Buscar Usuario por Nombre de Usuario, Nombre o Email..."/>
+                        <input class="form-control input-sm" style="width: 400px" type="text" name="q" placeholder="Buscar Establecimiento por Nombre"/>
                     </td>
                     <td>
                         <button type="submit" id="search-btn" class="btn btn-default">Buscar</button>       
@@ -71,7 +71,7 @@ require_once APPPATH . DS . "html" . DS . "backend" . DS . "sideMenu.php";
         <?php 
         
             if($q != ""){
-                $href = Gui::href("User/all", "[x]");
+                $href = Gui::href("Parkinglot/all", "[x]");
                 echo "<table>"
                         . "<tr>"
                             . "<td>Resultados para la Busqueda : \"". $q ."\"</td>"
@@ -87,22 +87,19 @@ require_once APPPATH . DS . "html" . DS . "backend" . DS . "sideMenu.php";
             <thead>
                 <tr>
                     <th>
-                        Usuario
+                        Nombre
                     </th>
                     <th>
-                        Nombre y Apellido
+                        Responsable
                     </th>
                     <th>
-                        Email
-                    </th>
-                    <th>
-                        Rol
-                    </th>
-                    <th>
-                        Restablecer Password
+                        Ubicacion
                     </th>
                     <th>
                         Editar
+                    </th>
+                    <th>
+                        Editar Layout
                     </th>
                     <th>
                         Eliminar
@@ -110,22 +107,34 @@ require_once APPPATH . DS . "html" . DS . "backend" . DS . "sideMenu.php";
                 </tr>
             </thead>
             <?php
-            /* @var $usr User */
-            foreach ($users as $usr) {
+            /* @var $pkl Parkinglot */
+            foreach ($parkinglots as $pkl) {
                 
-                $password = $ac->controlUpdate($group, new BooleanResult()) ? Gui::href("User/updPassword/" . $usr->getId(), "Restablecer Password") : "Restablecer Password";
-                $edit = $ac->controlUpdate($group, new BooleanResult()) ? Gui::href("User/upd/" . $usr->getId(), "Editar") : "Editar";
-                $delete = $ac->controlDelete($group, new BooleanResult()) ? Gui::href("", "Eliminar", array("onclick" =>"confirm(" . $usr->getId() . ")")) : "Eliminar";
+                $name = ucfirst($pkl->getName());
                 
+                /* @var $userClient User */
+                $userClient = $pkl->getUser();
+                $client = ucfirst($userClient->getName()) . " " . ucfirst($userClient->getLastName());
+                
+                /* @var $pklCity City */
+                $pklCity = $pkl->getCity();
+                /* @var $pklState State */
+                $pklState = $pklCity->getState();
+                $location = ucfirst($pkl->getAddress()) . ", " . 
+                            ucfirst($pklCity->getDescription()) . ", " . 
+                            ucfirst($pklState->getDescription());
+                
+                
+                $edit = $ac->controlUpdate($group, new BooleanResult()) ? Gui::href("parkinglot/upd/" . $pkl->getId(), "Editar") : "Editar";
+                $delete = $ac->controlDelete($group, new BooleanResult()) ? Gui::href("", "Eliminar", array("onclick" =>"confirm(" . $pkl->getId() . ")")) : "Eliminar";
                 
                 echo "<tr>"
-                . "<td>" . $usr->getUser() . "</td>"
-                . "<td>" . ucfirst($usr->getName()) . " " . ucfirst($usr->getLastName()) . "</td>"
-                . "<td>" . $usr->getEmail() . "</td>"
-                . "<td>" . $usr->getRol()->getName() . "</td>"
-                . "<td>" . $password . "</td>"
-                . "<td>" . $edit . "</td>"
-                . "<td>" . $delete . "</td>"
+                    . "<td>" . $name . "</td>"
+                    . "<td>" . $client . "</td>"
+                    . "<td>" . $location . "</td>"
+                    . "<td>" . $edit . "</td>"
+                    . "<td>" . $edit . "</td>"
+                    . "<td>" . $delete . "</td>"
                 . "</tr>";
             }
             ?>
@@ -143,7 +152,7 @@ require_once APPPATH . DS . "html" . DS . "backend" . DS . "sideMenu.php";
         <hr>
         <?php 
             if($ac->controlCreate($group, new BooleanResult())){
-                echo Gui::href("User/add", "Agregar", array("class" => "btn btn-primary")); 
+                echo Gui::href("parkinglot/step/1", "Agregar", array("class" => "btn btn-primary")); 
             }
         ?>
         <?php echo Gui::href("admin/main", "Volver", array("class" => "btn btn-default")); ?>

@@ -25,20 +25,26 @@ class AdminController extends StefanController {
 
     public function main() {
         try {
-            $user = null;
             $userId = $this->loadFromSession("userID");
             if ($userId != false) {
-                $em = Ioc::getService("orm");
-                $user = $em->find("User", $userId);
-                $em->flush();
-                $arg = array();
-                $arg["user"] = $user;
-                $this->loadView("main", $arg);
-            } else {
                 
+                $em = Ioc::getService("orm");
+                $criteria = array("id" => $userId, "isActive" => 1);
+                $users = $em->getRepository("User")->findBy($criteria);
+                $em->flush();
+                
+                if (count($users) > 0) {
+                    $arg = array();
+                    $arg["user"] = $users[0];
+                    $this->loadView("main", $arg);
+                } else {
+                    $this->redirect(self::$name . DS . "login");
+                }
+            } else {
+                $this->redirect(self::$name . DS . "login");
             }
         } catch (Exception $ex) {
-            echo $ex->getMessage();
+            $this->redirect(self::$name . DS . "error");
         }
     }
 
@@ -49,6 +55,16 @@ class AdminController extends StefanController {
 
     public function forbidden() {
         $this->loadView("enable");
+    }
+
+    public function getLoggedUser() {
+        $user = $this->loadFromSession("userUser");
+
+        if ($user == false) {
+            $this->redirect(self::$name . DS . "login");
+        }
+
+        return $user;
     }
 
     public function authenticate() {
@@ -86,13 +102,12 @@ class AdminController extends StefanController {
                 $this->login(true);
             }
         } catch (Exception $ex) {
-            echo $ex->getMessage() . "<hr>";
-            exit();
+            $this->redirect(self::$name . DS . "error");
         }
     }
 
     public function control(Group $g, IControl $control) {
-        
+
         $id = $this->filter($this->loadFromSession("userID"));
         $em = Ioc::getService("orm");
 
@@ -136,7 +151,7 @@ class AdminController extends StefanController {
             $this->redirect("admin/error");
         }
     }
-    
+
     public function controlDelete(Group $g, IControl $control) {
         $id = $this->filter($this->loadFromSession("userID"));
         $em = Ioc::getService("orm");
@@ -151,7 +166,7 @@ class AdminController extends StefanController {
             $this->redirect("admin/error");
         }
     }
-    
+
     public function controlSearch(Group $g, IControl $control) {
         $id = $this->filter($this->loadFromSession("userID"));
         $em = Ioc::getService("orm");
@@ -166,4 +181,5 @@ class AdminController extends StefanController {
             $this->redirect("admin/error");
         }
     }
+
 }

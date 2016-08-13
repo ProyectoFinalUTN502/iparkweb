@@ -7,11 +7,9 @@
             <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:;">
                 <i class="fa fa-user"></i>
                     <?php 
-                        $sc = new AdminController();
-                        $val = $sc->loadFromSession("userUser");
-                        if($val != false){
-                            echo $val;
-                        }
+                        $admin = new AdminController();
+                        $userName = $admin->getLoggedUser();
+                        echo $userName;
                     ?>
                 <span class="caret"></span>
             </a>
