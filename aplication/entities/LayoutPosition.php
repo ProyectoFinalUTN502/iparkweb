@@ -100,6 +100,10 @@ abstract class LayoutPosition {
         return $this->vehicleType;
     }
 
+    public function isValid() {
+        return $this->valid == 1 ? true : false;
+    }
+    
     public function setId($id) {
         $this->id = $id;
     }

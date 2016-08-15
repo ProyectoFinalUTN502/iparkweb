@@ -96,6 +96,9 @@ require_once APPPATH . DS . "html" . DS . "backend" . DS . "sideMenu.php";
                         Ubicacion
                     </th>
                     <th>
+                        Layout
+                    </th>
+                    <th>
                         Editar
                     </th>
                     <th>
@@ -124,16 +127,18 @@ require_once APPPATH . DS . "html" . DS . "backend" . DS . "sideMenu.php";
                             ucfirst($pklCity->getDescription()) . ", " . 
                             ucfirst($pklState->getDescription());
                 
-                
+                $layout = Gui::href("parkinglot/layout/" . $pkl->getId(), "Ver", array("target" => "_blank"));
                 $edit = $ac->controlUpdate($group, new BooleanResult()) ? Gui::href("parkinglot/upd/" . $pkl->getId(), "Editar") : "Editar";
+                $editLayout = $ac->controlUpdate($group, new BooleanResult()) ? Gui::href("parkinglot/updLayout/" . $pkl->getId(), "Editar") : "Editar";
                 $delete = $ac->controlDelete($group, new BooleanResult()) ? Gui::href("", "Eliminar", array("onclick" =>"confirm(" . $pkl->getId() . ")")) : "Eliminar";
                 
                 echo "<tr>"
                     . "<td>" . $name . "</td>"
                     . "<td>" . $client . "</td>"
                     . "<td>" . $location . "</td>"
+                    . "<td>" . $layout . "</td>"
                     . "<td>" . $edit . "</td>"
-                    . "<td>" . $edit . "</td>"
+                    . "<td>" . $editLayout . "</td>"
                     . "<td>" . $delete . "</td>"
                 . "</tr>";
             }

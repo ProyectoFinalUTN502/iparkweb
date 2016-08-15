@@ -62,7 +62,7 @@ las opciones menos Editar Establecimiento y Actualizar Tarifas que eso les
 corresponde a los clientes.   
   
 Funcionalidades Desarrolladas:  
-- Alta de Establecimiento
+- Gestion de Establecimiento
 - Configuracion de la Plataforma
 - Gestion de Roles
 - Gestion de Usuarios

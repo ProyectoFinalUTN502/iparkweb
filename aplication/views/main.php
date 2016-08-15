@@ -24,7 +24,7 @@ require_once APPPATH . DS . "html" . DS . "backend" . DS . "sideMenu.php";
             
             echo "<a class='dashboard-stat primary' href='../". $group->getRef() ."'>
                         <div class='visual'>
-                            <i class='fa fa-user'></i>
+                            <i class='" . $group->getStyle() . "'></i>
                         </div> 
                         <div class='details'>
                             <span class='content'>". $group->getText() ."</span>

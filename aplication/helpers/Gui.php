@@ -51,7 +51,7 @@ class Gui {
     }
     
     public static function messageBox($title, $msg) {
-        $html = "<div class='portlet portlet-plain'>
+        $html = "<div class='portlet' style='width>
                     <div class='portlet-header'>
 			<h3>" . $title . "</h3>
                     </div> 

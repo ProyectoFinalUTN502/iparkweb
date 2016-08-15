@@ -1,7 +1,15 @@
 <?php
+/* @var $pkl Parkinglot */
+$pkl;
+
 $group = new Group(PARKINGLOT_GROUP);
 $ac = new AdminController();
-$ac->controlCreate($group, new RedirectResult());
+
+if($pkl != null){
+    $ac->controlUpdate($group, new RedirectResult());
+} else {
+    $ac->controlCreate($group, new RedirectResult());
+}
 
 require_once APPPATH . DS . "html" . DS . "backend" . DS . "header.php";
 require_once APPPATH . DS . "html" . DS . "backend" . DS . "topBar.php";
@@ -12,18 +20,45 @@ require_once APPPATH . DS . "html" . DS . "backend" . DS . "sideMenu.php";
 
     <div id="content-header">
         <h1>
-            Paso 3: Generar Layout
+            <?php 
+                if ($pkl != NULL) {
+                    echo "Edicion de Layout";
+                } else {
+                    echo "Paso 3: Generar Layout";
+                }
+            ?>
         </h1>
     </div>
 
     <div id="content-container">
 
         <?php
-        echo Gui::form("frmStep_3", "parkinglot/register");
-
         if ($error) {
             echo Gui::error($errorMsg);
         }
+        
+        if ($pkl != null) {
+            echo Gui::form("frmStep_3", "parkinglot/editLayout/" . $pkl->getId());
+            
+            $title = "IMPORTANTE";
+            $msg = "Debido a la complejidad que representa la creacion del "
+                    . "Layout, la edicion del mismo se realizara creando un "
+                    . "nuevo Layout<br> (uno por cada nivel necesario) que "
+                    . "reemplazara al anterior";
+            
+            echo "<div class='portlet' style='width: 50%;'>
+                    <div class='portlet-header'>
+			<h3><i class='fa fa-info'></i>" . $title . "</h3>
+                    </div> 
+                    <div class='portlet-content'>
+			<p>" . $msg . "</p>
+                    </div>
+		</div>";
+            
+        } else {
+            echo Gui::form("frmStep_3", "parkinglot/register");
+        }
+
         ?>
         
         <table style='width: 30%;'>
@@ -113,8 +148,15 @@ require_once APPPATH . DS . "html" . DS . "backend" . DS . "sideMenu.php";
             <input type="button" onclick="generate();" class="btn btn-info" value="Guardar Nivel">
         </div>
         <hr>
-        <input type="submit" name="submit" class="btn btn-primary" value="Finalizar">
-        <?php echo Gui::href("parkinglot/cancel", "Cancelar", array("class" => "btn btn-default")); ?>
+        <?php 
+            if ($pkl != NULL) {
+                echo "<input type='submit' name='submit' class='btn btn-primary' value='Editar'>&nbsp;";
+                echo Gui::href("parkinglot/all", "Volver", array("class" => "btn btn-default")); 
+            } else {
+                echo "<input type='submit' name='submit' class='btn btn-primary' value='Finalizar'>&nbsp;";
+                echo Gui::href("parkinglot/cancel", "Cancelar", array("class" => "btn btn-default")); 
+            }
+        ?>
         </form>
     </div>
 </div>

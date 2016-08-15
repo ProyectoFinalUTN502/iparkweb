@@ -1156,31 +1156,27 @@ INSERT INTO city(description,state_id) VALUES ('Escalada', 136 );
 
 -- GRUPOS
 INSERT INTO `group` (`name`, `text`, `description`, `style`, `ref`, `create` , `delete`, `update`, `list`, `search`) 
-VALUES ('Gestion de Roles', 'Roles', 'Gestion de Permisos y Accesos', '', 'role/all', 1, 1, 1, 1, 1);
+VALUES ('Gestion de Roles', 'Roles', 'Gestion de Permisos y Accesos', 'fa fa-th-list', 'role/all', 1, 1, 1, 1, 1);
 
 INSERT INTO `group` (`name`, `text`, `description`, `style`, `ref`, `create` , `delete`, `update`, `list`, `search`) 
-VALUES ('Gestion de Usuarios', 'Usuarios', 'Creacion y Edicion de Usuarios Administradores', '', 'user/all', 1, 1, 1, 1, 1);
+VALUES ('Gestion de Usuarios', 'Usuarios', 'Creacion y Edicion de Usuarios Administradores', 'fa fa-male', 'user/all', 1, 1, 1, 1, 1);
 
 INSERT INTO `group` (`name`, `text`, `description`, `style`, `ref`, `create` , `delete`, `update`, `list`, `search`) 
-VALUES ('Habilitacion de Establecimiento', 'Establecimientos', 'Registro y Baja de Establecimiento', '', 'parkinglot/all', 1, 1, 1, 1, 1);
+VALUES ('Habilitacion de Establecimiento', 'Establecimientos', 'Registro y Baja de Establecimiento', 'fa fa-hospital', 'parkinglot/all', 1, 1, 1, 1, 1);
+
+INSERT INTO `group` (`name`, `text`, `description`, `style`, `ref`, `create` , `delete`, `update`, `list`, `search`) 
+VALUES ('Gestion de TIpo de Vehiculo', 'Tipo de Vehiculo', 'Creacion y Edicion de Tipos de Vehiculo', 'fa fa-road', 'vehicleType/all', 1, 1, 1, 1, 1);
+
+INSERT INTO `group` (`name`, `text`, `description`, `style`, `ref`, `create` , `delete`, `update`, `list`, `search`) 
+VALUES ('Gestion de Configuracion', 'Configuracion', 'Configuracion de la Plataforma', 'fa fa-cogs', 'param/all', 1, 1, 1, 1, 1);
+
+
 
 INSERT INTO `group` (`name`, `text`, `description`, `style`, `ref`, `create` , `delete`, `update`, `list`, `search`)  
-VALUES ('Edicion de Establecimiento', 'Mi Establecimiento', 'Edicion de informacion de Establecimiento', '', '', 0, 0, 1, 1, 1);
+VALUES ('Edicion de Establecimiento', 'Mi Establecimiento', 'Edicion de informacion de Establecimiento', 'fa fa-star-o', '', 0, 0, 1, 1, 1);
 
 INSERT INTO `group` (`name`, `text`, `description`, `style`, `ref`, `create` , `delete`, `update`, `list`, `search`) 
-VALUES ('Gestion de Mapa de Establecimiento', 'Mapa', 'Carga y Modificacion de Mapa de Ubicaciones', '', '', 1, 1, 0, 0, 0);
-
-INSERT INTO `group` (`name`, `text`, `description`, `style`, `ref`, `create` , `delete`, `update`, `list`, `search`) 
-VALUES ('Gestion de Tarifas', 'Tarifas', 'Carga y Actualizacion de Tarifas', '', '', 1, 0, 1, 1, 0);
-
-INSERT INTO `group` (`name`, `text`, `description`, `style`, `ref`, `create` , `delete`, `update`, `list`, `search`) 
-VALUES ('Gestion de TIpo de Vehiculo', 'Tipo de Vehiculo', 'Creacion y Edicion de Tipos de Vehiculo', '', 'vehicleType/all', 1, 1, 1, 1, 1);
-
-INSERT INTO `group` (`name`, `text`, `description`, `style`, `ref`, `create` , `delete`, `update`, `list`, `search`) 
-VALUES ('Gestion de Configuracion', 'Configuracion', 'Configuracion de la Plataforma', '', 'param/all', 1, 1, 1, 1, 1);
-
-INSERT INTO `group` (`name`, `text`, `description`, `style`, `ref`, `create` , `delete`, `update`, `list`, `search`) 
-VALUES ('Acceso a Reportes', 'Reportes y Estadisticas', 'Estadisticas y Reportes del Sistema', '', '', 1, 1, 1, 1, 1);
+VALUES ('Gestion de Tarifas', 'Tarifas', 'Carga y Actualizacion de Tarifas', 'fa fa-dollar', '', 1, 0, 1, 1, 1);
 
 
 -- ROLES ADMINISTRADOR Y CLIENTE
@@ -1191,13 +1187,11 @@ INSERT INTO rol (name, creationDate) VALUES ('Cliente', now());
 INSERT INTO `permission` (`rol_id`, `group_id`) VALUES (1, 1);
 INSERT INTO `permission` (`rol_id`, `group_id`) VALUES (1, 2);
 INSERT INTO `permission` (`rol_id`, `group_id`) VALUES (1, 3);
+INSERT INTO `permission` (`rol_id`, `group_id`) VALUES (1, 4);
 INSERT INTO `permission` (`rol_id`, `group_id`) VALUES (1, 5);
-INSERT INTO `permission` (`rol_id`, `group_id`) VALUES (1, 7);
-INSERT INTO `permission` (`rol_id`, `group_id`) VALUES (1, 8);
-INSERT INTO `permission` (`rol_id`, `group_id`) VALUES (1, 9);
 
-INSERT INTO `permission` (`rol_id`, `group_id`) VALUES (2, 4);
 INSERT INTO `permission` (`rol_id`, `group_id`) VALUES (2, 6);
+INSERT INTO `permission` (`rol_id`, `group_id`) VALUES (2, 7);
 
 -- USUARIO ADMINISTRADOR PRINCIPAL
 INSERT INTO user (user,  password, name,  lastName,  email, creationDate, rol_id) 
@@ -1220,8 +1214,3 @@ INSERT INTO vehicle_type (name, color, creationDate) VALUES ('Van y Utilitarios'
 INSERT INTO vehicle_type (name, color, creationDate) VALUES ('Pick-up y SUV', '#cdb2f4', now()); 
 INSERT INTO vehicle_type (name, color, creationDate) VALUES ('Auto', '#c9e377', now());
 INSERT INTO vehicle_type (name, color, creationDate) VALUES ('Motocicleta', '#f4b1a3', now());
-
--- ESTADOS DE REPORTE DE BUG 
--- INSERT INTO bug_state (description) VALUES ('Nuevo');
--- INSERT INTO bug_state (description) VALUES ('Atendido');
--- INSERT INTO bug_state (description) VALUES ('Resuelto');
