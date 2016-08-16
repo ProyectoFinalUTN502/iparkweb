@@ -47,7 +47,7 @@ require_once APPPATH . DS . 'html' . DS . 'backend' . DS . 'headerLogin.php';
 
         </form>
 
-        <a href="password/recuperar" class="btn btn-default">Recuperar Contrase&ntilde;a</a>
+<!--        <a href="password/recuperar" class="btn btn-default">Recuperar Contrase&ntilde;a</a>-->
 
     </div>
 </div>

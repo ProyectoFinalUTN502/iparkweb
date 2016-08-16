@@ -16,10 +16,9 @@
 
             <ul class="dropdown-menu" role="menu">
                 <li>
-                    <a href="perfil" target="_blank">
-                        <i class="fa fa-user"></i> 
-                        &nbsp;&nbsp;Perfil
-                    </a>
+                    <?php 
+                        echo Gui::href("user/profile", "<i class='fa fa-user'></i>&nbsp;&nbsp;Perfil", array("target" => "_blank"));
+                    ?>
                 </li>
                 <li class="divider"></li>
                 <li>

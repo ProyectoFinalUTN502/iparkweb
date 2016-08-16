@@ -180,6 +180,55 @@ class UserController extends StefanController {
         }
     }
     
+    public function editPasswordClient($id) {
+        $id = $this->filter($id);
+                
+        $password = $this->getInput(INPUT_POST, "password");
+        $repassword = $this->getInput(INPUT_POST, "repassword");
+        
+        
+        $em = Ioc::getService("orm");
+        
+        /* @var $usr User */
+        $criteria = array("id" => $id, "isActive" => 1);
+        $users = $em->getRepository("User")->findBy($criteria);
+        
+        if(count($users) == 0){
+            $this->redirect("admin/error");
+        }
+        
+        $usr = $users[0];
+        if($password != $repassword){
+            $arg = array();
+            $arg["error"] = true;
+            $arg["errorMsg"] = "Las contrase&ntilde;as deben coincidir";
+            $arg["usr"] = $usr;
+            $this->loadView(self::$rootFolder . DS . "password_client", $arg);
+            exit();
+        }
+        
+        $usr->setPassword(Security::generateHash($password, new SHA256()));
+        if ($this->validate($usr, new UserEditPassword())) {
+            try {
+                $em->merge($usr);
+                $em->flush();
+                $this->redirect("admin/logout");
+            } catch (Exception $ex) {
+                $arg = array();
+                $arg["error"] = true;
+                $arg["errorMsg"] = $ex->getMessage();
+                $arg["usr"] = $usr;
+                $this->loadView(self::$rootFolder . DS . "password_client", $arg);
+            }
+        } else {
+            $arg = array();
+            $arg["error"] = true;
+            $arg["errorMsg"] = "La informacion ingresada no es valida";
+            $arg["usr"] = $usr;
+            $this->loadView(self::$rootFolder . DS . "password_client", $arg);
+        }
+    }
+    
     public function del() {
 
         $id = $this->getInput(INPUT_POST, "id");
@@ -321,6 +370,53 @@ class UserController extends StefanController {
             $arg["usr"] = null;
             $this->loadView(self::$rootFolder . DS . "password", $arg);
         }
+    }
+    
+    public function updPasswordClient($id) {
+        try {
+            $id = $this->filter($id);
+            $em = Ioc::getService("orm");
+            
+            /* @var $usr User */
+            $criteria = array("id" => $id, "isActive" => 1);
+            $users = $em->getRepository("User")->findBy($criteria);
+            
+            if (count($users) == 0) {
+                $this->redirect("admin/error");
+            }
+            
+            $usr = $users[0];
+            $em->flush();
+
+            $arg = array();
+            $arg["error"] = false;
+            $arg["errorMsg"] = "";
+            $arg["usr"] = $usr;
+            $this->loadView(self::$rootFolder . DS . "password_client", $arg);
+        } catch (Exception $ex) {
+            $arg = array();
+            $arg["error"] = true;
+            $arg["errorMsg"] = $ex->getMessage();
+            $arg["usr"] = null;
+            $this->loadView(self::$rootFolder . DS . "password_client", $arg);
+        }
+    }
+    
+    public function profile() {
+        
+        $em = Ioc::getService("orm");
+        
+        $userId = $this->loadFromSession("userID");
+        $user = $em->find("User", $userId);
+        
+        if ($user == NULL) {
+            $this->redirect("admin/error");
+        }
+        
+        $arg = array();
+        $arg["user"] = $user;
+        $this->loadView(self::$rootFolder . DS . "view", $arg);
+        
     }
     // </editor-fold>
 }

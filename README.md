@@ -70,6 +70,7 @@ Funcionalidades Desarrolladas:
 - Control de Roles y Permisos 
 - Edicion de Establecimiento para Clientes
 - Creacion y Edicion de Tarifas para Clientes 
+- Perfil de Usuario
 
 ## Modificaciones Sobre el Modelo 
 
