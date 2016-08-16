@@ -106,6 +106,27 @@ class ParkingLotController extends StefanController {
         }
     }
 
+    public static function getUserParkinglot($userId) {
+        try {
+            $result = NULL;
+            
+            /* @var $user User */
+            $em = Ioc::getService("orm");
+            $user = $em->find("User", $userId);
+            $em->flush();
+            
+            if ($user != NULL){
+                $parkinglot = $user->getParkinglots()->first();
+                $result = $parkinglot;
+            }
+            
+        } catch (Exception $ex) {
+            $result = NULL;
+        }
+        
+        return $result;
+    }
+    
     public function saveLayout() {
 
         $layouts = array();
@@ -523,6 +544,66 @@ class ParkingLotController extends StefanController {
         }
     }
     
+    public function editClient($id) {
+        $id = $this->filter($id);
+
+        $name = $this->getInput(INPUT_POST, "name");
+        $description = $this->getInput(INPUT_POST, "description");
+        $address = $this->getInput(INPUT_POST, "address");
+        $isCovered = $this->getInput(INPUT_POST, "isCovered");
+        $latMap = $this->getInput(INPUT_POST, "lat");
+        $longMap = $this->getInput(INPUT_POST, "lng");
+        $openTime = $this->getInput(INPUT_POST, "openTime");
+        $closeTime = $this->getInput(INPUT_POST, "closeTime");
+        $cityId = $this->getInput(INPUT_POST, "city");
+
+        $em = Ioc::getService("orm");
+
+        $criteria = array("id" => $id, "isActive" => 1);
+        $parkinglots = $em->getRepository("Parkinglot")->findBy($criteria);
+        $countries = $em->getRepository("Country")->findAll();
+
+        $city = $em->find("City", $cityId);
+
+        if (count($parkinglots) == 0) {
+            $this->redirect("admin/error");
+        }
+
+        /* @var $pkl Parkinglot */
+        $pkl = $parkinglots[0];
+        $pkl->setName($name);
+        $pkl->setDescription($description);
+        $pkl->setAddress($address);
+        $pkl->setIsCovered($isCovered);
+        $pkl->setLatMap($latMap);
+        $pkl->setLongMap($longMap);
+        $pkl->setOpenTime($openTime);
+        $pkl->setCloseTIme($closeTime);
+        $pkl->setCity($city);
+
+        if ($this->validate($pkl)) {
+            try {
+                $em->merge($pkl);
+                $em->flush();
+                $this->redirect(self::$name . DS . "view");
+            } catch (Exception $ex) {
+                $arg = array();
+                $arg["pkl"] = $pkl;
+                $arg["countries"] = count($countries) > 0 ? $countries : array();
+                $arg["error"] = true;
+                $arg["errorMsg"] = $ex->getMessage();
+                $this->loadView(self::$rootFolder . DS . "edit_client", $arg);
+            }
+        } else {
+            $arg = array();
+            $arg["pkl"] = $pkl;
+            $arg["countries"] = count($countries) > 0 ? $countries : array();
+            $arg["error"] = true;
+            $arg["errorMsg"] = "La informacion ingresada no es valida";
+            $this->loadView(self::$rootFolder . DS . "edit_client", $arg);
+        }
+    }
+    
     public function del() {
 
         $id = $this->getInput(INPUT_POST, "id");
@@ -649,6 +730,33 @@ class ParkingLotController extends StefanController {
         }
     }
     
+    public function updClient($id) {
+        try {
+            $id = $this->filter($id);
+            $em = Ioc::getService("orm");
+
+            /* @var $parkinglot Parkinglot */
+            $parkinglots = $em->getRepository("Parkinglot")->findBy(array("id" => $id, "isActive" => 1));
+            $countries = $em->getRepository("Country")->findAll();
+
+            $em->flush();
+
+            $arg = array();
+            $arg["pkl"] = count($parkinglots) > 0 ? $parkinglots[0] : null;
+            $arg["countries"] = count($countries) > 0 ? $countries : array();
+            $arg["error"] = false;
+            $arg["errorMsg"] = "";
+            $this->loadView(self::$rootFolder . DS . "edit_client", $arg);
+        } catch (Exception $ex) {
+            $arg = array();
+            $arg["pkl"] = NULL;
+            $arg["countries"] = array();
+            $arg["error"] = true;
+            $arg["errorMsg"] = $ex->getMessage();
+            $this->loadView(self::$rootFolder . DS . "edit_client", $arg);
+        }
+    }
+    
     public function layout($id) {
         
         $id = $this->filter($id);
@@ -665,4 +773,36 @@ class ParkingLotController extends StefanController {
         $this->loadView(self::$rootFolder . DS . "layout", $arg);
     }
 
+    public function view() {
+        
+        /* @var $parkinglot Parkinglot */
+        $userId = $this->loadFromSession("userID");
+        $parkinglot = self::getUserParkinglot($userId);
+        
+        if ($parkinglot == NULL) {
+            $this->redirect("admin/error");
+        }
+        
+        try {
+            $em = Ioc::getService("orm");
+            $countries = $em->getRepository("Country")->findAll();
+            $em->flush();
+            
+            $arg = array();
+            $arg["pkl"] = $parkinglot;
+            $arg["countries"] = count($countries) > 0 ? $countries : array();
+            $arg["error"] = false;
+            $arg["errorMsg"] = "";
+            $this->loadView(self::$rootFolder . DS . "view", $arg);
+        } catch (Exception $ex) {
+            $arg = array();
+            $arg["pkl"] = NULL;
+            $arg["countries"] = array();
+            $arg["error"] = true;
+            $arg["errorMsg"] = $ex->getMessage();
+            $this->loadView(self::$rootFolder . DS . "view", $arg);
+        }
+        
+        
+    }
 }

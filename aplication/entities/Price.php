@@ -35,6 +35,10 @@ class Price {
      */
     private $vehicleType;
     
+    public function __construct() {
+        $this->isActive = 1;
+    }
+    
     public function getId() {
         return $this->id;
     }
@@ -43,8 +47,8 @@ class Price {
         return $this->price;
     }
 
-    public function getIsActive() {
-        return $this->isActive;
+    public function isActive() {
+        return $this->isActive == 1 ? true : false;
     }
 
     public function getParkinglot() {
@@ -67,11 +71,11 @@ class Price {
         $this->isActive = $isActive;
     }
 
-    public function setParkinglot($parkinglot) {
+    public function setParkinglot(Parkinglot $parkinglot) {
         $this->parkinglot = $parkinglot;
     }
 
-    public function setVehicleType($vehicleType) {
+    public function setVehicleType(VehicleType $vehicleType) {
         $this->vehicleType = $vehicleType;
     }
 

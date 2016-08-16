@@ -1,9 +1,9 @@
--- -----------------------------------------------------------------
+-- -----------------------------------------------------------------------------
 -- Nombre 	: init.sql
 -- Autor	: Grupo 502
 -- Fecha	: Mayo 2016
 -- Desc		: Script de carga inicial
--- -----------------------------------------------------------------
+-- -----------------------------------------------------------------------------
 USE central_dev;
 
 -- PARAMETRIZACION BASICA
@@ -1173,10 +1173,10 @@ VALUES ('Gestion de Configuracion', 'Configuracion', 'Configuracion de la Plataf
 
 
 INSERT INTO `group` (`name`, `text`, `description`, `style`, `ref`, `create` , `delete`, `update`, `list`, `search`)  
-VALUES ('Edicion de Establecimiento', 'Mi Establecimiento', 'Edicion de informacion de Establecimiento', 'fa fa-star-o', '', 0, 0, 1, 1, 1);
+VALUES ('Edicion de Establecimiento', 'Mi Establecimiento', 'Edicion de informacion de Establecimiento', 'fa fa-star-o', 'parkinglot/view', 0, 0, 1, 1, 1);
 
 INSERT INTO `group` (`name`, `text`, `description`, `style`, `ref`, `create` , `delete`, `update`, `list`, `search`) 
-VALUES ('Gestion de Tarifas', 'Tarifas', 'Carga y Actualizacion de Tarifas', 'fa fa-dollar', '', 1, 0, 1, 1, 1);
+VALUES ('Gestion de Tarifas', 'Tarifas', 'Carga y Actualizacion de Tarifas', 'fa fa-dollar', 'price/all', 1, 0, 1, 1, 1);
 
 
 -- ROLES ADMINISTRADOR Y CLIENTE

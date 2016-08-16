@@ -215,14 +215,6 @@ class Parkinglot {
     }
 
     public function setOpenTime($openTime) {
-//        $timeArray = explode(":" , $openTime);
-//        $hour = $timeArray[0];
-//        array_shift($timeArray);
-//        $minute = $timeArray[0];
-//        
-//        $this->openTime = new DateTime();
-//        $this->openTime->setTime($hour, $minute);
-
         $this->openTime = new DateTime($openTime);
     }
 
@@ -243,7 +235,50 @@ class Parkinglot {
     }
 
     public function addPrice(Price $p) {
-        $this->layouts->add($p);
+        $this->prices->add($p);
     }
 
+    public function getVehicleTypesUsed() {
+        $result = new ArrayCollection();
+
+        $checkVtypeId = function ($id) {
+            return function($key, VehicleType $vt) use ($id) {
+                return $vt->getId() == $id;
+            };
+        };
+
+        /* @var $layout Layout */
+        foreach ($this->layouts as $layout) {
+            /* @var $position LayoutPosition */
+            foreach ($layout->getLayoutPositions() as $position) {
+                /* @var $vt VehicleType */
+                $vt = $position->getVehicleType();
+                
+                if ($vt != NULL) {
+                    if (!$result->exists($checkVtypeId($vt->getId()))) {
+                        $result->add($vt);
+                    }
+                }
+            }
+        }
+
+        return $result;
+    }
+    
+    public function getPriceForVt(VehicleType $vt) {
+        
+        $result = "";
+        
+        /* @var $price Price */
+        foreach ($this->prices as $price) {
+            /* @var $pVt VehicleType */
+            $pVt = $price->getVehicleType();
+            
+            if ($pVt->getId() == $vt->getId()) {
+                $result = $price->getPrice();
+            }
+        }
+
+        return $result;
+    }
 }

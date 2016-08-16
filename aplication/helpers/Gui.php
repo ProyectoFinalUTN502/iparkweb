@@ -111,5 +111,17 @@ class Gui {
         $html = "<script type='text/javascript' src='" . $href . "'></script>";
         return $html;
     }
+    
+    public static function img($file) {
+        if ($file == "") {
+            return;
+        }
+        
+        $domain = Ioc::getService("domain");
+        $href = "/" . $domain . "/aplication/public/backend/img/" . $file;
+         
+        $html = "<img src='" . $href . "'/>";
+        return $html;
+    }
 
 }

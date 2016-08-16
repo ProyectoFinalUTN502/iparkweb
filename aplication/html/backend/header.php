@@ -13,7 +13,7 @@
         ?>
         
         <!-- ESTILOS -->
-        <link rel="stylesheet" href="aplication/public/backend/css/openSans.css" type="text/css">
+        <link rel="stylesheet" href="/<?php echo $base; ?>/aplication/public/backend/css/openSans.css" type="text/css">
         <link rel="stylesheet" href="/<?php echo $base; ?>/aplication/public/backend/css/font-awesome.min.css" type="text/css" />		
         <link rel="stylesheet" href="/<?php echo $base; ?>/aplication/public/backend/css/bootstrap.min.css" type="text/css" />	
         <link rel="stylesheet" href="/<?php echo $base; ?>/aplication/public/backend/js/libs/css/ui-lightness/jquery-ui-1.9.2.custom.css" type="text/css" />

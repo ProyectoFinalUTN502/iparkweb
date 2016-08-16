@@ -67,7 +67,9 @@ Funcionalidades Desarrolladas:
 - Gestion de Roles
 - Gestion de Usuarios
 - Gestion de Tipo de Vehiculo
-- Control de Roles y Permisos  
+- Control de Roles y Permisos 
+- Edicion de Establecimiento para Clientes
+- Creacion y Edicion de Tarifas para Clientes 
 
 ## Modificaciones Sobre el Modelo 
 

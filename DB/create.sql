@@ -198,7 +198,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `central_dev`.`price` ;
 
 CREATE TABLE IF NOT EXISTS `central_dev`.`price` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `parkinglot_id` INT NOT NULL,
   `vehicle_type_id` INT NOT NULL,
   `price` DOUBLE NOT NULL,
