@@ -1,4 +1,7 @@
 <?php
+
+use Doctrine\Common\Collections\ArrayCollection;
+
 /**
  * @Entity
  * @Table(name="layout_position")
@@ -51,10 +54,19 @@ abstract class LayoutPosition {
      */
     private $vehicleType;
     
-    //private $vehicleParking;
+    /**
+     * @OneToMany(
+     * targetEntity="VehicleParking", 
+     * mappedBy="layoutPosition", 
+     * cascade={"persist", "detach" , "merge"})
+     */
+    private $vehicleParkings;
+    
+    
     public function __construct() {
         $this->layout = null;
         $this->vehicleType = null;
+        $this->vehicleParkings = new ArrayCollection();
     }
     
     public function __toString() {
@@ -100,6 +112,10 @@ abstract class LayoutPosition {
         return $this->vehicleType;
     }
 
+    public function getVehicleParkings() {
+        return $this->vehicleParkings;
+    }
+    
     public function isValid() {
         return $this->valid == 1 ? true : false;
     }
@@ -130,6 +146,10 @@ abstract class LayoutPosition {
 
     public function setVehicleType(VehicleType $vehicleType) {
         $this->vehicleType = $vehicleType;
+    }
+    
+    public function addVehicleParkings(VehicleParking $vp) {
+        $this->vehicleParkings->add($vp);
     }
     
 }

@@ -236,8 +236,6 @@ CREATE TABLE IF NOT EXISTS `central_dev`.`client` (
   `isActive` INT NOT NULL DEFAULT 1,
   `creationDate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `lastUpdate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `loginCount` INT NOT NULL DEFAULT 0,
-  `lastLogin` DATETIME NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -296,12 +294,14 @@ DROP TABLE IF EXISTS `central_dev`.`vehicle` ;
 CREATE TABLE IF NOT EXISTS `central_dev`.`vehicle` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(255) NOT NULL,
+  `currentVehicle` INT NOT NULL DEFAULT 0,
   `creationDate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `isActive` INT NOT NULL DEFAULT 1,
   `client_id` INT NOT NULL,
   `vehicle_type_id` INT NOT NULL,
-  INDEX `fk_vehicle_vehicle_type1_idx` (`vehicle_type_id` ASC),
   PRIMARY KEY (`id`),
+  INDEX `fk_vehicle_client1_idx` (`client_id` ASC),
+  INDEX `fk_vehicle_vehicle_type1_idx` (`vehicle_type_id` ASC),
   CONSTRAINT `fk_vehicle_client1`
     FOREIGN KEY (`client_id`)
     REFERENCES `central_dev`.`client` (`id`)
@@ -322,7 +322,7 @@ DROP TABLE IF EXISTS `central_dev`.`vehicle_parking` ;
 
 CREATE TABLE IF NOT EXISTS `central_dev`.`vehicle_parking` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `creationDate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `creationDate` DATETIME NOT NULL,
   `vehicle_id` INT NOT NULL,
   `layout_position_id` INT NOT NULL,
   PRIMARY KEY (`id`),
@@ -354,18 +354,11 @@ CREATE TABLE IF NOT EXISTS `central_dev`.`client_profile` (
   `isCovered` INT NOT NULL DEFAULT 0,
   `creationDate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `client_id` INT NOT NULL,
-  `vehicle_type_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_client_profile_client1_idx` (`client_id` ASC),
-  INDEX `fk_client_profile_vehicle_type1_idx` (`vehicle_type_id` ASC),
   CONSTRAINT `fk_client_profile_client1`
     FOREIGN KEY (`client_id`)
     REFERENCES `central_dev`.`client` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_client_profile_vehicle_type1`
-    FOREIGN KEY (`vehicle_type_id`)
-    REFERENCES `central_dev`.`vehicle_type` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

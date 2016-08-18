@@ -1,0 +1,10 @@
+<?php
+
+/**
+ * ServiceController
+ *
+ * 
+ */
+class ServiceController {
+    
+}

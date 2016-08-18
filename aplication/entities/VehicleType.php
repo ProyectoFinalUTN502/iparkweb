@@ -35,22 +35,33 @@ class VehicleType {
     private $isActive;
     
     /**
-     * @OneToMany(targetEntity="Price", mappedBy="vehicleType", cascade={"persist", "detach" , "merge"})
+     * @OneToMany(
+     * targetEntity="Price", 
+     * mappedBy="vehicleType", 
+     * cascade={"persist", "detach" , "merge"})
      */
     private $prices;
     /**
-     * @OneToMany(targetEntity="LayoutPosition", mappedBy="vehicleType", cascade={"persist", "detach" , "merge"})
+     * @OneToMany(
+     * targetEntity="LayoutPosition", 
+     * mappedBy="vehicleType", 
+     * cascade={"persist", "detach" , "merge"})
      */
     private $layoutPositions;
-    
-//    private $clientProfiles;
-//    private $vehicles;
+     /**
+     * @OneToMany(
+     * targetEntity="Vehicle", 
+     * mappedBy="vehicleType", 
+     * cascade={"persist", "detach" , "merge"})
+     */
+    private $vehicles;
     
     public function __construct($name = "") {
         $this->name = $name;
         $this->isActive = 1;
         $this->prices = new ArrayCollection();
         $this->layoutPositions = new ArrayCollection();
+        $this->vehicles = new ArrayCollection();
     }
 
     public function getId() {
@@ -76,7 +87,11 @@ class VehicleType {
     public function getLayoutPositions(){
         return $this->layoutPositions;
     }
-        
+    
+    public function getVehicles() {
+        return $this->vehicles;
+    }
+    
     public function setId($id) {
         $this->id = $id;
     }
@@ -99,5 +114,9 @@ class VehicleType {
     
     public function addLayoutPosition(LayoutPosition $lp){
         $this->layoutPositions->add($lp);
+    }
+    
+    public function addVehicle(Vehicle $v) {
+        $this->vehicles->add($v);
     }
 }
