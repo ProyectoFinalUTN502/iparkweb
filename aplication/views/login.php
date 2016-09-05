@@ -3,13 +3,17 @@ require_once APPPATH . DS . 'html' . DS . 'backend' . DS . 'headerLogin.php';
 ?>
 <div id="login-container">
     
-    <div id="logo">
-        <img src="../aplication/public/backend/img/logos/logo-login.png" alt="Logo" />
+    <div id="logo" >
+        <a href="/<?php echo $base; ?>/">
+            <img style='width: 100px; height: 100px; border-radius: 150px;
+	-webkit-border-radius: 150px;
+	-moz-border-radius: 150px;' src="../aplication/public/backend/img/logos/iParking_2.png" alt="Logo" />
+        </a>
     </div>
     
     <div id="login">
 
-        <h3>Bienvenido a iParking</h3>
+        <h2>Bienvenido a iParking</h2>
 
         <h5>Por favor, inice sesion para obtener acceso</h5>
 

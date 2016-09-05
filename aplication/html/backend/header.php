@@ -11,7 +11,7 @@
             global $config;
             $base = $config["base_url"];
         ?>
-        
+        <link rel="shortcut icon" type="image/png" href="/<?php echo $base; ?>/aplication/public/img/favicon.ico"/>
         <!-- ESTILOS -->
         <link rel="stylesheet" href="/<?php echo $base; ?>/aplication/public/backend/css/openSans.css" type="text/css">
         <link rel="stylesheet" href="/<?php echo $base; ?>/aplication/public/backend/css/font-awesome.min.css" type="text/css" />		

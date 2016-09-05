@@ -6,5 +6,8 @@
  * 
  */
 class ServiceController {
-    
+
+    public function register() {
+        
+    }
 }

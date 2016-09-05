@@ -12,7 +12,7 @@
             global $config;
             $base = $config["base_url"];
         ?>
-        
+        <link rel="shortcut icon" type="image/png" href="/<?php echo $base; ?>/aplication/public/img/favicon.ico"/>
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,800italic,400,600,800" type="text/css">
         <link rel="stylesheet" href="/<?php echo $base; ?>/aplication/public/backend/css/font-awesome.min.css" type="text/css" />		
         <link rel="stylesheet" href="/<?php echo $base; ?>/aplication/public/backend/css/bootstrap.min.css" type="text/css" />	
@@ -31,4 +31,8 @@
         <!-- -- -->
     </head>
 
-    <body>
+    <body style="background-image: url('/<?php echo $base; ?>/aplication/public/backend/img/obelisco.jpg'); no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;">
