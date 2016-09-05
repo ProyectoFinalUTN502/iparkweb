@@ -1,480 +1,668 @@
-<?php require_once APPPATH . DS . 'html' . DS . 'headLanding.php'; ?>
-<body>
-    <?php require_once APPPATH . DS . 'html' . DS . 'headerLanding.php'; ?>
-    <div class="slider" id="home">
-        <div class="slider_container">
-            <div class="wmuSlider example1">
-                <div class="wmuSliderWrapper">
-                    <article style="position: absolute; width: 100%; opacity: 0;"> 
-                        <div class="banner-wrap">
-                            <div class="slider-left">
-                                <h1>Responsive, Elegant <br> & Sharp</h1>
-                                <p class="top">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat quis nostrud exerci tation.</p>
-                                <ul class="button">
-                                    <li><a href="#">Know More</a></li>
-                                    <li><a href="#">Buy Now</a></li>
-                                </ul>
-                            </div>
-                            <div class="slider-right">
-                                <img src="public/landing/images/one.jpg" alt=""/> 
-                            </div>
-                            <div class="clearfix"> </div>
-                        </div>
-                    </article>
-                    <article style="position: relative; width: 100%; opacity: 1;"> 
-                        <div class="banner-wrap">
-                            <div class="slider-left">
-                                <h1>nibh euismod <br> & tincidunt</h1>
-                                <p class="top">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat quis nostrud exerci tation.</p>
-                                <ul class="button">
-                                    <li><a href="#">Know More</a></li>
-                                    <li><a href="#">Buy Now</a></li>
-                                </ul>
-                            </div>
-                            <div class="slider-right">
-                                <img src="public/landing/images/one.jpg" alt=""/> 
-                            </div>
-                            <div class="clearfix"> </div>
-                        </div>
-                    </article>
-                    <article style="position: absolute; width: 100%; opacity: 0;">
-                        <div class="banner-wrap">
-                            <div class="slider-left">
-                                <h1>magna aliquam <br> & laoreet</h1>
-                                <p class="top">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat quis nostrud exerci tation.</p>
-                                <ul class="button">
-                                    <li><a href="#">Know More</a></li>
-                                    <li><a href="#">Buy Now</a></li>
-                                </ul>
-                            </div>
-                            <div class="slider-right">
-                                <img src="public/landing/images/one.jpg" alt=""/> 
-                            </div>
-                            <div class="clearfix"> </div>
-                        </div>
-                    </article>
-                    <article style="position: absolute; width: 100%; opacity: 0;">
-                        <div class="banner-wrap">
-                            <div class="slider-left">
-                                <h1>volutpat quis <br> & nostrud</h1>
-                                <p class="top">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat quis nostrud exerci tation.</p>
-                                <ul class="button">
-                                    <li><a href="#">Know More</a></li>
-                                    <li><a href="#">Buy Now</a></li>
-                                </ul>
-                            </div>
-                            <div class="slider-right">
-                                <img src="public/landing/images/one.jpg" alt=""/> 
-                            </div>
-                            <div class="clearfix"> </div>
-                        </div>
-                    </article>
-                    <article style="position: absolute; width: 100%; opacity: 0;"> 
-                        <div class="banner-wrap">
-                            <div class="slider-left">
-                                <h1>magna aliquam <br> & laoreet</h1>
-                                <p class="top">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat quis nostrud exerci tation.</p>
-                                <ul class="button">
-                                    <li><a href="#">Know More</a></li>
-                                    <li><a href="#">Buy Now</a></li>
-                                </ul>
-                            </div>
-                            <div class="slider-right">
-                                <img src="public/landing/images/one.jpg" alt=""/> 
-                            </div>
-                            <div class="clearfix"> </div>
-                        </div>
-                    </article>
-                </div>
-                <ul class="wmuSliderPagination">
-                    <li><a href="#" class="">0</a></li>
-                    <li><a href="#" class="">1</a></li>
-                    <li><a href="#" class="">2</a></li>
-                    <li><a href="#">3</a></li>
-                </ul>
-            </div>
-            <script src="public/landing/js/jquery.wmuSlider.js"></script> 
-            <script>
-        $('.example1').wmuSlider();
-            </script> 	           	      
-        </div>
-    </div>
-    <div class="main">
-        <div class="content-top" id="fea">
-            <div class="container">
-                <h2 class="m_1">Lorem ipsum dolor sit amet, consectetuer adipiscing</h2>
-                <p class="m_2">liquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper<br>suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p>
-                <ul class="icons">
-                    <li><a href="#"><i class="icon1"> </i></a></li>
-                    <li><a href="#"><i class="icon2"> </i></a></li>
-                    <li><a href="#"><i class="icon3"> </i></a></li>
-                    <li><a href="#"><i class="icon4"> </i></a></li>
-                    <li><a href="#"><i class="icon5"> </i></a></li>
-                    <li><a href="#"><i class="icon6"> </i></a></li>
-                    <div class="clearfix"> </div>
-                </ul>
-                <div class="m_3"><span class="left_line"> </span><div class="border"> </div><span class="right_line"> </span></div>
-                <div class="row feature">
-                    <h3 class="m_4">Feature</h3>
-                    <div class="col-md-8 feature_top">
-                        <h3>Lorem ipsum dolor sit amet, <br>consectetuer adipiscing elit, sed di </h3>
-                        <p>nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat null</p>
-                    </div>
-                    <div class="col-md-4 feature_img">
-                        <img src="public/landing/images/world.png" class="img-responsive" alt=""/>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!----- start-gallery----->
-        <div id="screen" class="work">
-            <div class="container">
-                <h2 class="m_1">Lorem ipsum dolor sit amet, consectetuer adipiscing</h2>
-                <p class="m_2">liquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper<br>suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p>
-            </div>
-            <div id="owl-demo3" class="owl-carousel owl-carousel2">
-                <div class="item">
-                    <img class="lazyOwl" data-src="public/landing/images/s1.jpg" alt="Lazy Owl Image">
-                    <p class="img_slider"><span class="g-title">Mauris euismod ultrices </span><br><span class="g-title1">10 June 2014, <span class="g-title2">Design, Web</span></span></p>
-                </div>
-                <div class="item">
-                    <img class="lazyOwl" data-src="public/landing/images/s2.jpg" alt="Lazy Owl Image">
-                    <p class="img_slider"><span class="g-title">Mauris euismod ultrices </span><br><span class="g-title1">10 June 2014, <span class="g-title2">Design, Web</span></span></p>
-                </div>
-                <div class="item">
-                    <img class="lazyOwl" data-src="public/landing/images/s3.jpg" alt="Lazy Owl Image">
-                    <p class="img_slider"><span class="g-title">Mauris euismod ultrices </span><br><span class="g-title1">10 June 2014, <span class="g-title2">Design, Web</span></span></p>
-                </div>
-                <div class="item">
-                    <img class="lazyOwl" data-src="public/landing/images/s4.jpg" alt="Lazy Owl Image">
-                    <p class="img_slider"><span class="g-title">Mauris euismod ultrices </span><br><span class="g-title1">10 June 2014, <span class="g-title2">Design, Web</span></span></p>
-                </div>
+<!DOCTYPE html>
+<html lang="en">
 
-                <div class="item">
-                    <img class="lazyOwl" data-src="public/landing/images/s5.jpg" alt="Lazy Owl Image">
-                    <p class="img_slider"><span class="g-title">Mauris euismod ultrices </span><br><span class="g-title1">10 June 2014, <span class="g-title2">Design, Web</span></span></p>
-                </div>
-                <div class="item">
-                    <img class="lazyOwl" data-src="public/landing/images/s6.jpg" alt="Lazy Owl Image">
-                    <p class="img_slider"><span class="g-title">Mauris euismod ultrices </span><br><span class="g-title1">10 June 2014, <span class="g-title2">Design, Web</span></span></p>
-                </div>
-                <div class="item">
-                    <img class="lazyOwl" data-src="public/landing/images/s1.jpg" alt="Lazy Owl Image">
-                    <p class="img_slider"><span class="g-title">Mauris euismod ultrices </span><br><span class="g-title1">10 June 2014, <span class="g-title2">Design, Web</span></span></p>
-                    <div class="clearfix"> </div>
-                </div>
-                <div class="item">
-                    <img class="lazyOwl" data-src="public/landing/images/s2.jpg" alt="Lazy Owl Image">
-                    <p class="img_slider"><span class="g-title">Mauris euismod ultrices </span><br><span class="g-title1">10 June 2014, <span class="g-title2">Design, Web</span></span></p>
-                    <div class="clearfix"> </div>
-                </div>
-                <div class="clearfix"> </div>
-            </div>
-        </div>
-        <div class="about" id="about">
-            <div class="container">
-                <h3 class="m_7">Lorem ipsum dolor sit amet, consectetuer adipiscing</h3>
-                <p class="m_8">liquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper<br>suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p>
-                <div class="sap_tabs">	
-                    <div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
-                        <ul class="resp-tabs-list">
-                            <li class="resp-tab-item" aria-controls="tab_item-0" role="tab"><span>About</span></li>
-                            <li class="resp-tab-item" aria-controls="tab_item-1" role="tab"><span>Service</span></li>
-                        </ul>				  	 
-                        <div class="resp-tabs-container">
-                            <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-0">
-                                <div class="facts">
-                                    <div class="row">
-                                        <div class="col-md-6 about_top">
-                                            <div class="tab_left-top">
-                                                <ul class="tab1">
-                                                    <h3>Worldwide<br><span class="m_5">Business</span></h3>
-                                                    <i class="a1"> </i>
-                                                    <div class="clearfix"></div>
-                                                </ul>
-                                                <p class="m_6">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorp</p>
-                                            </div>
-                                            <ul class="tab1">
-                                                <h3>Creative<br><span class="m_5">Solutions</span></h3>
-                                                <i class="a2"> </i>
-                                                <div class="clearfix"></div>
-                                            </ul>
-                                            <p class="m_6">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorp</p>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="tab_left-top">
-                                                <ul class="tab1">
-                                                    <h3>Program <br><span class="m_5">Management</span></h3>
-                                                    <i class="a3"> </i>
-                                                    <div class="clearfix"></div>
-                                                </ul>
-                                                <p class="m_6">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorp</p>
-                                            </div>
-                                            <ul class="tab1">
-                                                <h3>Regulatory<br><span class="m_5">Support</span></h3>
-                                                <i class="a4"> </i>
-                                                <div class="clearfix"></div>
-                                            </ul>
-                                            <p class="m_6">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorp</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>	
-                            <div class="tab-2 resp-tab-content" aria-labelledby="tab_item-1">
-                                <div class="facts">
-                                    <div class="row">
-                                        <div class="col-md-6 about-top1">
-                                            <div class="tab_left-top">
-                                                <ul class="tab1">
-                                                    <h3>Program <br><span class="m_5">Management</span></h3>
-                                                    <i class="a3"> </i>
-                                                    <div class="clearfix"></div>
-                                                </ul>
-                                                <p class="m_6">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorp</p>
-                                            </div>
-                                            <ul class="tab1">
-                                                <h3>Regulatory<br><span class="m_5">Support</span></h3>
-                                                <i class="a4"> </i>
-                                                <div class="clearfix"></div>
-                                            </ul>
-                                            <p class="m_6">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorp</p>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="tab_left-top">
-                                                <ul class="tab1">
-                                                    <h3>Worldwide<br><span class="m_5">Business</span></h3>
-                                                    <i class="a1"> </i>
-                                                    <div class="clearfix"></div>
-                                                </ul>
-                                                <p class="m_6">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorp</p>
-                                            </div>
-                                            <ul class="tab1">
-                                                <h3>Creative<br><span class="m_5">Solutions</span></h3>
-                                                <i class="a2"> </i>
-                                                <div class="clearfix"></div>
-                                            </ul>
-                                            <p class="m_6">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorp</p>
-                                        </div>
-                                    </div>	
-                                </div>
-                            </div>				        					 
-                        </div>	
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="price" id="price">
-            <div class="container">
-                <h3 class="m_9">Features & Price</h3>
-                <p class="m_10">liquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper<br>suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p>
-                <div class="row">
-                    <div class="col-md-4 price-grid text-center">
-                        <i class="website"> </i>
-                        <h3><a href="#">Website Building </a></h3>
-                        <p>aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut</p>
-                        <div class="price_but"><a href><label>$</label>500</a></div>
-                    </div>
-                    <div class="col-md-4 price-grid text-center">
-                        <i class="promote"> </i>
-                        <h3><a href="#">Promotion</a></h3>
-                        <p>aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut</p>
-                        <div class="price_but1"><a href><label>$</label>250</a></div>
-                    </div>
-                    <div class="col-md-4 price-grid text-center">
-                        <i class="people"> </i>
-                        <h3><a href="#">Engage People </a></h3>
-                        <p>aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut</p>
-                        <div class="price_but1"><a href><label>$</label>150</a></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="featurelist" id="news">
-            <div class="container">
-                <h3 class="m_7">Awesome 3 Column Feature List</h3>
-                <p class="m_8">liquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper<br>suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p>
-                <div class="row">
-                    <div class="col-md-4 featurelist_top">
-                        <div class="view view-fifth">
-                            <img src="public/landing/images/f1.jpg" class="img-responsive" alt=""/>
-                            <div class="mask">
-                                <h2>Hover Style #5</h2>
-                                <p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.</p>
-                            </div>
-                        </div>
-                        <p class="m_11">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod </p>
-                        <div class="feature_btn"><a href="#">Read More</a></div>
-                    </div>
-                    <div class="col-md-4 featurelist_top">
-                        <div class="view view-fifth">
-                            <img src="public/landing/images/f2.jpg" class="img-responsive" alt=""/>
-                            <div class="mask">
-                                <h2>Hover Style #5</h2>
-                                <p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.</p>
-                            </div>
-                        </div>
-                        <p class="m_11">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod </p>
-                        <div class="feature_btn"><a href="#">Read More</a></div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="view view-fifth">
-                            <img src="public/landing/images/f3.jpg" class="img-responsive" alt=""/>
-                            <div class="mask">
-                                <h2>Hover Style #5</h2>
-                                <p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.</p>
-                            </div>
-                        </div>
-                        <p class="m_11">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod </p>
-                        <div class="feature_btn"><a href="#">Read More</a></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="testimonial">
-            <div class="container">
-                <div class="testimonial_top">
-                    <i class="quot"> </i>
-                    <p class="m_12">diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendreri</p>
-                    <p class="ceo">quis nostrud, <span class="ceo1">tation - ullamcorper</span></p>
-                </div>
-                <ul id="flexiselDemo3">
-                    <li><img src="public/landing/images/client1.png" /></li>
-                    <li><img src="public/landing/images/client2.png" /></li>
-                    <li><img src="public/landing/images/client3.png" /></li>
-                    <li><img src="public/landing/images/client4.png" /></li>
-                    <li><img src="public/landing/images/client5.png" /></li>
-                </ul>
-                <script type="text/javascript">
-                    $(window).load(function () {
-                        $("#flexiselDemo3").flexisel({
-                            visibleItems: 5,
-                            animationSpeed: 1000,
-                            autoPlay: true,
-                            autoPlaySpeed: 3000,
-                            pauseOnHover: true,
-                            enableResponsiveBreakpoints: true,
-                            responsiveBreakpoints: {
-                                portrait: {
-                                    changePoint: 480,
-                                    visibleItems: 1
-                                },
-                                landscape: {
-                                    changePoint: 640,
-                                    visibleItems: 2
-                                },
-                                tablet: {
-                                    changePoint: 768,
-                                    visibleItems: 3
-                                }
-                            }
-                        });
+<head>
 
-                    });
-                </script>
-                <script type="text/javascript" src="public/landing/js/jquery.flexisel.js"></script>
-            </div>
-        </div>
-    </div>
-    <div class="footer" id="contact">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <?php 
+        global $config;
+        $base = $config["base_url"];
+    ?>
+    
+    <title>iParking | Facil, Rapido y Comodo</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="/<?php echo $base; ?>/aplication/public/landing/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="/<?php echo $base; ?>/aplication/public/landing/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Theme CSS -->
+    <link href="/<?php echo $base; ?>/aplication/public/landing/css/agency.min.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top" class="index">
+
+    <!-- Navigation -->
+    <nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top">
         <div class="container">
-            <div class="row footer-top">
-                <div class="col-md-3 footer_grid">
-                    <h3 class="m_13">About ios7 page</h3>
-                    <p class="m_14">aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis.</p>
-                    <div class="address">
-                        <p>500 Lorem Ipsum Dolor Sit,</p>
-                        <p>Phone:(00) 222 666 444</p>
-                        <p>Fax: (000) 000 00 00 0</p>
-                        <p>Email: <span>support[at]seven.com</span></p>
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand page-scroll" href="#page-top">iParking</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#services">Services</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#portfolio">Portfolio</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#about">About</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#team">Team</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="intro-text">
+                <div class="intro-lead-in">iParking!</div>
+                <div class="intro-heading">Facil, Rapido y Comodo</div>
+                <a href="#services" class="page-scroll btn btn-xl">Tell Me More</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Services Section -->
+    <section id="services">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">Services</h2>
+                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                </div>
+            </div>
+            <div class="row text-center">
+                <div class="col-md-4">
+                    <span class="fa-stack fa-4x">
+                        <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                        <i class="fa fa-shopping-cart fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <h4 class="service-heading">E-Commerce</h4>
+                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+                </div>
+                <div class="col-md-4">
+                    <span class="fa-stack fa-4x">
+                        <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                        <i class="fa fa-laptop fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <h4 class="service-heading">Responsive Design</h4>
+                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+                </div>
+                <div class="col-md-4">
+                    <span class="fa-stack fa-4x">
+                        <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                        <i class="fa fa-lock fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <h4 class="service-heading">Web Security</h4>
+                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Grid Section -->
+    <section id="portfolio" class="bg-light-gray">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">Portfolio</h2>
+                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-6 portfolio-item">
+                    <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content">
+                                <i class="fa fa-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <img src="/<?php echo $base; ?>/aplication/public/landing/img/portfolio/roundicons.png" class="img-responsive" alt="">
+                    </a>
+                    <div class="portfolio-caption">
+                        <h4>Round Icons</h4>
+                        <p class="text-muted">Graphic Design</p>
                     </div>
                 </div>
-                <div class="col-md-3 footer_grid">
-                    <ul class="f_grid1">
-                        <li><i class="f-tw"> </i><div class="extra-wrap">
-                                <p>Twitter</p>
+                <div class="col-md-4 col-sm-6 portfolio-item">
+                    <a href="#portfolioModal2" class="portfolio-link" data-toggle="modal">
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content">
+                                <i class="fa fa-plus fa-3x"></i>
                             </div>
-                            <div class="clearfix"> </div></li>
-                    </ul>
-                    <p class="m_14">aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut <span class="m_15">aliquip ex ea commodo</span> consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat</p>
-                </div>
-                <div class="col-md-3 footer_grid">
-                    <ul class="f_grid1">
-                        <li><i class="f-link"> </i><div class="extra-wrap">
-                                <p>Quick Links</p>
-                            </div>
-                            <div class="clearfix"> </div></li>
-                    </ul>
-                    <div class="footer_lists">
-                        <ul class="list">
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">Features</a></li>
-                            <li><a href="#">Screenshots</a></li>
-                            <li><a href="#">About</a></li>
-                        </ul>
-                        <ul class="list1">
-                            <li><a href="#">Pricing</a></li>
-                            <li><a href="#">News</a></li>
-                            <li><a href="#">Stats</a></li>
-                            <li><a href="#">Contact</a></li>
-                        </ul>
-                        <div class="clearfix"> </div>
+                        </div>
+                        <img src="/<?php echo $base; ?>/aplication/public/landing/img/portfolio/startup-framework.png" class="img-responsive" alt="">
+                    </a>
+                    <div class="portfolio-caption">
+                        <h4>Startup Framework</h4>
+                        <p class="text-muted">Website Design</p>
                     </div>
                 </div>
-                <div class="col-md-3 footer_grid">
-                    <ul class="f_grid1">
-                        <li><i class="f-msg"> </i><div class="extra-wrap">
-                                <p>Newsletter</p>
+                <div class="col-md-4 col-sm-6 portfolio-item">
+                    <a href="#portfolioModal3" class="portfolio-link" data-toggle="modal">
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content">
+                                <i class="fa fa-plus fa-3x"></i>
                             </div>
-                            <div class="clearfix"> </div></li>
-                    </ul>
-                    <p class="m_14">aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut</p>
-                    <div class="footer_search">
-                        <form>
-                            <input type="text" value="Enter your email" onfocus="this.value = '';" onblur="if (this.value == '') {
-                                        this.value = 'Enter your email';
-                                    }">
-                            <input type="submit" value="Submit">
-                        </form>
+                        </div>
+                        <img src="/<?php echo $base; ?>/aplication/public/landing/img/portfolio/treehouse.png" class="img-responsive" alt="">
+                    </a>
+                    <div class="portfolio-caption">
+                        <h4>Treehouse</h4>
+                        <p class="text-muted">Website Design</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 portfolio-item">
+                    <a href="#portfolioModal4" class="portfolio-link" data-toggle="modal">
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content">
+                                <i class="fa fa-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <img src="/<?php echo $base; ?>/aplication/public/landing/img/portfolio/golden.png" class="img-responsive" alt="">
+                    </a>
+                    <div class="portfolio-caption">
+                        <h4>Golden</h4>
+                        <p class="text-muted">Website Design</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 portfolio-item">
+                    <a href="#portfolioModal5" class="portfolio-link" data-toggle="modal">
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content">
+                                <i class="fa fa-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <img src="/<?php echo $base; ?>/aplication/public/landing/img/portfolio/escape.png" class="img-responsive" alt="">
+                    </a>
+                    <div class="portfolio-caption">
+                        <h4>Escape</h4>
+                        <p class="text-muted">Website Design</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 portfolio-item">
+                    <a href="#portfolioModal6" class="portfolio-link" data-toggle="modal">
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content">
+                                <i class="fa fa-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <img src="/<?php echo $base; ?>/aplication/public/landing/img/portfolio/dreams.png" class="img-responsive" alt="">
+                    </a>
+                    <div class="portfolio-caption">
+                        <h4>Dreams</h4>
+                        <p class="text-muted">Website Design</p>
                     </div>
                 </div>
             </div>
-            <div class="footer_bottom">
-                <div class="copy">
-                    <p>2014 Template by <a href="http://w3layouts.com" target="_blank"> w3layouts</a></p>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">About</h2>
+                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
                 </div>
-                <div class="social">	
-                    <ul>	
-                        <li class="s1"><a href="#"><span> </span></a></li>
-                        <li class="s2"><a href="#"><span> </span></a></li>
-                        <li class="s3"><a href="#"><span> </span></a></li>	
-                        <li class="s4"><a href="#"><span> </span></a></li>
-                        <li class="s5"><a href="#"><span> </span></a></li>
-                        <li class="s6"><a href="#"><span> </span></a></li>	
-                        <li class="s7"><a href="#"><span> </span></a></li>	
-                        <li class="s8"><a href="#"><span> </span></a></li>	
-                        <li class="s9"><a href="#"><span> </span></a></li>							
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <ul class="timeline">
+                        <li>
+                            <div class="timeline-image">
+                                <img class="img-circle img-responsive" src="/<?php echo $base; ?>/aplication/public/landing/img/about/1.jpg" alt="">
+                            </div>
+                            <div class="timeline-panel">
+                                <div class="timeline-heading">
+                                    <h4>2009-2011</h4>
+                                    <h4 class="subheading">Our Humble Beginnings</h4>
+                                </div>
+                                <div class="timeline-body">
+                                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="timeline-inverted">
+                            <div class="timeline-image">
+                                <img class="img-circle img-responsive" src="/<?php echo $base; ?>/aplication/public/landing/img/about/2.jpg" alt="">
+                            </div>
+                            <div class="timeline-panel">
+                                <div class="timeline-heading">
+                                    <h4>March 2011</h4>
+                                    <h4 class="subheading">An Agency is Born</h4>
+                                </div>
+                                <div class="timeline-body">
+                                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="timeline-image">
+                                <img class="img-circle img-responsive" src="/<?php echo $base; ?>/aplication/public/landing/img/about/3.jpg" alt="">
+                            </div>
+                            <div class="timeline-panel">
+                                <div class="timeline-heading">
+                                    <h4>December 2012</h4>
+                                    <h4 class="subheading">Transition to Full Service</h4>
+                                </div>
+                                <div class="timeline-body">
+                                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="timeline-inverted">
+                            <div class="timeline-image">
+                                <img class="img-circle img-responsive" src="/<?php echo $base; ?>/aplication/public/landing/img/about/4.jpg" alt="">
+                            </div>
+                            <div class="timeline-panel">
+                                <div class="timeline-heading">
+                                    <h4>July 2014</h4>
+                                    <h4 class="subheading">Phase Two Expansion</h4>
+                                </div>
+                                <div class="timeline-body">
+                                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="timeline-inverted">
+                            <div class="timeline-image">
+                                <h4>Be Part
+                                    <br>Of Our
+                                    <br>Story!</h4>
+                            </div>
+                        </li>
                     </ul>
                 </div>
-                <div class="clearfix"> </div>
             </div>
-            <script type="text/javascript">
-                $(document).ready(function () {
-                    /*
-                     var defaults = {
-                     containerID: 'toTop', // fading element id
-                     containerHoverID: 'toTopHover', // fading element hover id
-                     scrollSpeed: 1200,
-                     easingType: 'linear' 
-                     };
-                     */
+        </div>
+    </section>
 
-                    $().UItoTop({easingType: 'easeOutQuart'});
+    <!-- Team Section -->
+    <section id="team" class="bg-light-gray">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">Our Amazing Team</h2>
+                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="team-member">
+                        <img src="/<?php echo $base; ?>/aplication/public/landing/img/team/1.jpg" class="img-responsive img-circle" alt="">
+                        <h4>Kay Garland</h4>
+                        <p class="text-muted">Lead Designer</p>
+                        <ul class="list-inline social-buttons">
+                            <li><a href="#"><i class="fa fa-twitter"></i></a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-facebook"></i></a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="team-member">
+                        <img src="/<?php echo $base; ?>/aplication/public/landing/img/team/2.jpg" class="img-responsive img-circle" alt="">
+                        <h4>Larry Parker</h4>
+                        <p class="text-muted">Lead Marketer</p>
+                        <ul class="list-inline social-buttons">
+                            <li><a href="#"><i class="fa fa-twitter"></i></a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-facebook"></i></a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="team-member">
+                        <img src="/<?php echo $base; ?>/aplication/public/landing/img/team/3.jpg" class="img-responsive img-circle" alt="">
+                        <h4>Diana Pertersen</h4>
+                        <p class="text-muted">Lead Developer</p>
+                        <ul class="list-inline social-buttons">
+                            <li><a href="#"><i class="fa fa-twitter"></i></a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-facebook"></i></a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <p class="large text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                });
-            </script>
-            <a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;">top </span></a>
+    <!-- Clients Aside -->
+    <aside class="clients">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-6">
+                    <a href="#">
+                        <img src="/<?php echo $base; ?>/aplication/public/landing/img/logos/envato.jpg" class="img-responsive img-centered" alt="">
+                    </a>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <a href="#">
+                        <img src="/<?php echo $base; ?>/aplication/public/landing/img/logos/designmodo.jpg" class="img-responsive img-centered" alt="">
+                    </a>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <a href="#">
+                        <img src="/<?php echo $base; ?>/aplication/public/landing/img/logos/themeforest.jpg" class="img-responsive img-centered" alt="">
+                    </a>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <a href="#">
+                        <img src="/<?php echo $base; ?>/aplication/public/landing/img/logos/creative-market.jpg" class="img-responsive img-centered" alt="">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">Contact Us</h2>
+                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <form name="sentMessage" id="contactForm" novalidate>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Your Name *" id="name" required data-validation-required-message="Please enter your name.">
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" class="form-control" placeholder="Your Email *" id="email" required data-validation-required-message="Please enter your email address.">
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                                <div class="form-group">
+                                    <input type="tel" class="form-control" placeholder="Your Phone *" id="phone" required data-validation-required-message="Please enter your phone number.">
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <textarea class="form-control" placeholder="Your Message *" id="message" required data-validation-required-message="Please enter a message."></textarea>
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="col-lg-12 text-center">
+                                <div id="success"></div>
+                                <button type="submit" class="btn btn-xl">Send Message</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <span class="copyright">Copyright &copy; Your Website 2016</span>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline social-buttons">
+                        <li><a href="#"><i class="fa fa-twitter"></i></a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-facebook"></i></a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-linkedin"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline quicklinks">
+                        <li><a href="#">Privacy Policy</a>
+                        </li>
+                        <li><a href="#">Terms of Use</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Portfolio Modals -->
+    <!-- Use the modals below to showcase details about your portfolio projects! -->
+
+    <!-- Portfolio Modal 1 -->
+    <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="close-modal" data-dismiss="modal">
+                    <div class="lr">
+                        <div class="rl">
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 col-lg-offset-2">
+                            <div class="modal-body">
+                                <!-- Project Details Go Here -->
+                                <h2>Project Name</h2>
+                                <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                                <img class="img-responsive img-centered" src="/<?php echo $base; ?>/aplication/public/landing/img/portfolio/roundicons-free.png" alt="">
+                                <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
+                                <p>
+                                    <strong>Want these icons in this portfolio item sample?</strong>You can download 60 of them for free, courtesy of <a href="https://getdpd.com/cart/hoplink/18076?referrer=bvbo4kax5k8ogc">RoundIcons.com</a>, or you can purchase the 1500 icon set <a href="https://getdpd.com/cart/hoplink/18076?referrer=bvbo4kax5k8ogc">here</a>.</p>
+                                <ul class="list-inline">
+                                    <li>Date: July 2014</li>
+                                    <li>Client: Round Icons</li>
+                                    <li>Category: Graphic Design</li>
+                                </ul>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close Project</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</body>
-</html>
 
+    <!-- Portfolio Modal 2 -->
+    <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="close-modal" data-dismiss="modal">
+                    <div class="lr">
+                        <div class="rl">
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 col-lg-offset-2">
+                            <div class="modal-body">
+                                <h2>Project Heading</h2>
+                                <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                                <img class="img-responsive img-centered" src="/<?php echo $base; ?>/aplication/public/landing/img/portfolio/startup-framework-preview.png" alt="">
+                                <p><a href="http://designmodo.com/startup/?u=787">Startup Framework</a> is a website builder for professionals. Startup Framework contains components and complex blocks (PSD+HTML Bootstrap themes and templates) which can easily be integrated into almost any design. All of these components are made in the same style, and can easily be integrated into projects, allowing you to create hundreds of solutions for your future projects.</p>
+                                <p>You can preview Startup Framework <a href="http://designmodo.com/startup/?u=787">here</a>.</p>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close Project</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Portfolio Modal 3 -->
+    <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="close-modal" data-dismiss="modal">
+                    <div class="lr">
+                        <div class="rl">
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 col-lg-offset-2">
+                            <div class="modal-body">
+                                <!-- Project Details Go Here -->
+                                <h2>Project Name</h2>
+                                <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                                <img class="img-responsive img-centered" src="/<?php echo $base; ?>/aplication/public/landing/img/portfolio/treehouse-preview.png" alt="">
+                                <p>Treehouse is a free PSD web template built by <a href="https://www.behance.net/MathavanJaya">Mathavan Jaya</a>. This is bright and spacious design perfect for people or startup companies looking to showcase their apps or other projects.</p>
+                                <p>You can download the PSD template in this portfolio sample item at <a href="http://freebiesxpress.com/gallery/treehouse-free-psd-web-template/">FreebiesXpress.com</a>.</p>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close Project</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Portfolio Modal 4 -->
+    <div class="portfolio-modal modal fade" id="portfolioModal4" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="close-modal" data-dismiss="modal">
+                    <div class="lr">
+                        <div class="rl">
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 col-lg-offset-2">
+                            <div class="modal-body">
+                                <!-- Project Details Go Here -->
+                                <h2>Project Name</h2>
+                                <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                                <img class="img-responsive img-centered" src="/<?php echo $base; ?>/aplication/public/landing/img/portfolio/golden-preview.png" alt="">
+                                <p>Start Bootstrap's Agency theme is based on Golden, a free PSD website template built by <a href="https://www.behance.net/MathavanJaya">Mathavan Jaya</a>. Golden is a modern and clean one page web template that was made exclusively for Best PSD Freebies. This template has a great portfolio, timeline, and meet your team sections that can be easily modified to fit your needs.</p>
+                                <p>You can download the PSD template in this portfolio sample item at <a href="http://freebiesxpress.com/gallery/golden-free-one-page-web-template/">FreebiesXpress.com</a>.</p>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close Project</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Portfolio Modal 5 -->
+    <div class="portfolio-modal modal fade" id="portfolioModal5" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="close-modal" data-dismiss="modal">
+                    <div class="lr">
+                        <div class="rl">
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 col-lg-offset-2">
+                            <div class="modal-body">
+                                <!-- Project Details Go Here -->
+                                <h2>Project Name</h2>
+                                <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                                <img class="img-responsive img-centered" src="/<?php echo $base; ?>/aplication/public/landing/img/portfolio/escape-preview.png" alt="">
+                                <p>Escape is a free PSD web template built by <a href="https://www.behance.net/MathavanJaya">Mathavan Jaya</a>. Escape is a one page web template that was designed with agencies in mind. This template is ideal for those looking for a simple one page solution to describe your business and offer your services.</p>
+                                <p>You can download the PSD template in this portfolio sample item at <a href="http://freebiesxpress.com/gallery/escape-one-page-psd-web-template/">FreebiesXpress.com</a>.</p>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close Project</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Portfolio Modal 6 -->
+    <div class="portfolio-modal modal fade" id="portfolioModal6" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="close-modal" data-dismiss="modal">
+                    <div class="lr">
+                        <div class="rl">
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 col-lg-offset-2">
+                            <div class="modal-body">
+                                <!-- Project Details Go Here -->
+                                <h2>Project Name</h2>
+                                <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                                <img class="img-responsive img-centered" src="/<?php echo $base; ?>/aplication/public/landing/img/portfolio/dreams-preview.png" alt="">
+                                <p>Dreams is a free PSD web template built by <a href="https://www.behance.net/MathavanJaya">Mathavan Jaya</a>. Dreams is a modern one page web template designed for almost any purpose. It’s a beautiful template that’s designed with the Bootstrap framework in mind.</p>
+                                <p>You can download the PSD template in this portfolio sample item at <a href="http://freebiesxpress.com/gallery/dreams-free-one-page-web-template/">FreebiesXpress.com</a>.</p>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close Project</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="/<?php echo $base; ?>/aplication/public/landing/vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/<?php echo $base; ?>/aplication/public/landing/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="/<?php echo $base; ?>/aplication/public/landing/js/jqBootstrapValidation.js"></script>
+    <script src="/<?php echo $base; ?>/aplication/public/landing/js/contact_me.js"></script>
+
+    <!-- Theme JavaScript -->
+    <script src="/<?php echo $base; ?>/aplication/public/landing/js/agency.min.js"></script>
+
+</body>
+
+</html>
