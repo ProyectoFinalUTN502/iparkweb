@@ -46,7 +46,7 @@
             <header id="header">
 
                 <h1 id="site-logo">
-                    <img width="200px" src="/<?php echo $base; ?>/aplication/public/backend/img/logos/logo.png" alt="Site Logo" />
+                    <img style='width: 158px; height: 40px;' src="/<?php echo $base; ?>/aplication/public/backend/img/logos/iParking_1_1.png" alt="Site Logo" />
                 </h1>	
 
                 <a href="javascript:;" data-toggle="collapse" data-target=".top-bar-collapse" id="top-bar-toggle" class="navbar-toggle collapsed">
