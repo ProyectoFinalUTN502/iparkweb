@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html style="height: 100%;">
     <head>
-        <meta charset='UTF-8' content='1' http-equiv='REFRESH'></meta>
+        <!--<meta charset='UTF-8' content='1' http-equiv='REFRESH'></meta>-->
         <title></title>
         <script type="text/javascript" src="jquery-1.9.1.min.js"></script>
         <style>
