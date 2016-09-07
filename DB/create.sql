@@ -227,7 +227,7 @@ DROP TABLE IF EXISTS `central_dev`.`client` ;
 
 CREATE TABLE IF NOT EXISTS `central_dev`.`client` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `key` VARCHAR(255) NOT NULL,
+  `token` VARCHAR(255) NOT NULL,
   `macAddress` VARCHAR(255) NOT NULL,
   `email` VARCHAR(255) NOT NULL,
   `password` VARCHAR(255) NOT NULL,
@@ -451,6 +451,26 @@ CREATE TABLE IF NOT EXISTS `central_dev`.`permission` (
   CONSTRAINT `fk_rol_group_group1`
     FOREIGN KEY (`group_id`)
     REFERENCES `central_dev`.`group` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `central_dev`.`real_time_position`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `central_dev`.`real_time_position` ;
+
+CREATE TABLE IF NOT EXISTS `central_dev`.`real_time_position` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `xPoint` INT NOT NULL,
+  `yPoint` INT NOT NULL,
+  `client_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_real_time_position_client1_idx` (`client_id` ASC),
+  CONSTRAINT `fk_real_time_position_client1`
+    FOREIGN KEY (`client_id`)
+    REFERENCES `central_dev`.`client` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
