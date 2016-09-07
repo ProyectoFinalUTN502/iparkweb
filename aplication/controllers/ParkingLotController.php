@@ -805,4 +805,27 @@ class ParkingLotController extends StefanController {
         
         
     }
+    
+    public function map($id) {
+        try {
+            $id = $this->filter($id);
+            $em = Ioc::getService("orm");
+
+            /* @var $parkinglot Parkinglot */
+            $parkinglots = $em->getRepository("Parkinglot")->findBy(array("id" => $id, "isActive" => 1));
+            $em->flush();
+
+            $arg = array();
+            $arg["pkl"] = count($parkinglots) > 0 ? $parkinglots[0] : null;
+            $arg["error"] = false;
+            $arg["errorMsg"] = "";
+            $this->loadView(self::$rootFolder . DS . "map", $arg);
+        } catch (Exception $ex) {
+            $arg = array();
+            $arg["pkl"] = NULL;
+            $arg["error"] = true;
+            $arg["errorMsg"] = $ex->getMessage();
+            $this->loadView(self::$rootFolder . DS . "map", $arg);
+        }
+    }
 }
