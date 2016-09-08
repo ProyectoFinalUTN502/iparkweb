@@ -40,7 +40,7 @@ require_once APPPATH . DS . "html" . DS . "backend" . DS . "sideMenu.php";
                         </div>
                         <div id='level_" . $layout->getFloor() . "' class='panel-collapse collapse'>
                             <div class='panel-body'>
-                                <table class='layoutTable'>";
+                                <table class='layoutTable' style='table-layout: fixed;'>";
                                 $pos = 0;
                                 for ($i = 0; $i < $layout->getMaxRows(); $i ++) {
                                     
