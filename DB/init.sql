@@ -1,8 +1,8 @@
 -- -----------------------------------------------------------------------------
--- Nombre 	: init.sql
--- Autor	: Grupo 502
--- Fecha	: Mayo 2016
--- Desc		: Script de carga inicial
+-- Nombre   : init.sql
+-- Autor    : Grupo 502
+-- Fecha    : Mayo 2016
+-- Desc     : Script de carga inicial
 -- -----------------------------------------------------------------------------
 USE central_dev;
 
