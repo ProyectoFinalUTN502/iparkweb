@@ -1,9 +1,9 @@
 -- --------------------------------------------------------------------------------------------------
--- Nombre		: vw_layout.sql
--- Autor		: Grupo 502
+-- Nombre	: vw_layout.sql
+-- Autor	: Grupo 502
 -- Fecha		: Septiembre 2016
 -- Descripcion	: Vista de Layout de Establecimiento
--- Notras		: 
+-- Notras	: 
 -- --------------------------------------------------------------------------------------------------
 DROP VIEW IF EXISTS vw_layout;
 CREATE VIEW vw_layout AS
