@@ -380,6 +380,10 @@ class ParkingLotController extends StefanController {
             $valid = $obj->valid;
             $circulationValue = $obj->cv;
             $vtId = $obj->vt;
+            $in = $obj->in;
+            $out = $obj->out;
+            $rin = $obj->rin;
+            $rout = $obj->rout;
 
 
             $position = new FreeLayoutPosition();
@@ -388,6 +392,10 @@ class ParkingLotController extends StefanController {
             $position->setCirculationValue($circulationValue);
             $position->setValid($valid);
             $position->setLayout($layout);
+            $position->setIn($in);
+            $position->setOut($out);
+            $position->setRIn($rin);
+            $position->setROut($rout);
             $layout->addLayoutPosition($position);
 
             if ($vtId != 0) {

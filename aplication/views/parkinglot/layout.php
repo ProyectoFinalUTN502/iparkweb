@@ -72,6 +72,30 @@ require_once APPPATH . DS . "html" . DS . "backend" . DS . "sideMenu.php";
                                             $vtColor = $vt->getColor();
                                         }
                                         
+                                        if ($lp->isIn()) {
+                                            $vtName = "&#45;";
+                                            $vtColor = "#8cff66";
+                                        }
+                                        
+                                        if ($lp->isOut()) {
+                                            $vtName = "X";
+                                            $vtColor = "#ff4d4d";
+                                        }
+                                        
+                                        if ($lp->isRampIn()) {
+                                            $vtName = "&#62;";
+                                            $vtColor = "#6699ff";
+                                        }
+                                        
+                                        if ($lp->isRampOut()) {
+                                            $vtName = "&#60;";
+                                            $vtColor = "#ff4dff";
+                                        }
+                                        
+                                        if ($lp->getCirculationValue() != 0) {
+                                            $vtName = "";
+                                            $vtColor = "#262626";
+                                        }
                                         
                                         $html .= "<td style='background-color: " . $vtColor . ";' align='center'>
                                                     <b>" . $vtName . "</b>

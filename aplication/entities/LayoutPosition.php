@@ -42,6 +42,26 @@ abstract class LayoutPosition {
      * @var int
      */
     private $circulationValue;
+    /**
+     * @Column(type="integer") 
+     * @var int
+     */
+    private $din;
+    /**
+     * @Column(type="integer") 
+     * @var int
+     */
+    private $dout;
+    /**
+     * @Column(type="integer") 
+     * @var int
+     */
+    private $rIn;
+    /**
+     * @Column(type="integer") 
+     * @var int
+     */
+    private $rOut;
     
     /**
      * @ManyToOne(targetEntity="Layout", inversedBy="layoutPositions")
@@ -116,8 +136,40 @@ abstract class LayoutPosition {
         return $this->vehicleParkings;
     }
     
+    public function getIn() {
+        return $this->din;
+    }
+
+    public function getOut() {
+        return $this->dout;
+    }
+
+    public function getRIn() {
+        return $this->rIn;
+    }
+
+    public function getROut() {
+        return $this->rOut;
+    }
+
     public function isValid() {
         return $this->valid == 1 ? true : false;
+    }
+    
+    public function isIn() {
+        return $this->din == 1 ? true : false;
+    }
+    
+    public function isOut() {
+        return $this->dout == 1 ? true : false;
+    }
+    
+    public function isRampIn() {
+        return $this->rIn == 1 ? true : false;
+    }
+    
+    public function isRampOut() {
+        return $this->rOut == 1 ? true : false;
     }
     
     public function setId($id) {
@@ -148,10 +200,25 @@ abstract class LayoutPosition {
         $this->vehicleType = $vehicleType;
     }
     
+    public function setIn($in) {
+        $this->din = $in;
+    }
+
+    public function setOut($out) {
+        $this->dout = $out;
+    }
+
+    public function setRIn($rIn) {
+        $this->rIn = $rIn;
+    }
+
+    public function setROut($rOut) {
+        $this->rOut = $rOut;
+    }
+    
     public function addVehicleParkings(VehicleParking $vp) {
         $this->vehicleParkings->add($vp);
     }
-    
 }
 
 /** @Entity **/

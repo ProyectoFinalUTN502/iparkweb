@@ -120,7 +120,7 @@ require_once APPPATH . DS . "html" . DS . "backend" . DS . "sideMenu.php";
         <br><br>
 
         <div id="tableArea" class='col-md-12'>
-            <table id = "layoutTable" class='layoutTable'></table>
+            <table id = "layoutTable" class='layoutTable' style="table-layout: fixed;"></table>
             <br>
         </div>
         <div class='col-md-12'>
@@ -137,13 +137,68 @@ require_once APPPATH . DS . "html" . DS . "backend" . DS . "sideMenu.php";
                 }
             ?>
             <br><br>
-            <input type="button" onclick="setInvalid();" class='btn btn-default' style='background-color: #909090;' value="No Disponible">
-            &nbsp;
-            <input type="button" onclick="setCirculation();" class='btn btn-default' value="Circulacion">
-            &nbsp;
-            <input type="button" onclick="clean();" class='btn btn-default' value="Limpiar">
-            &nbsp;
-            <input type="button" onclick="cleanAll();" class='btn btn-default' value="Limipiar Todo">
+            <table style="width: 35%; table-layout: fixed;">
+                <tr>
+                    <td>
+                        <input type="button" 
+                               onclick="setInvalid();" 
+                               class='btn btn-default' 
+                               style='background-color: #909090; width: 100%;' 
+                               value="No Disponible">
+                    </td>
+                    <td>
+                        <input type="button" 
+                               onclick="setCirculation();" 
+                               class='btn btn-default' 
+                               style="background-color: #262626; color: #ffffff; width: 100%;"
+                               value="Circulacion">
+                    </td>
+                    <td>
+                        <input type="button" 
+                               onclick="clean();" 
+                               class='btn btn-default' 
+                               style="width: 100%;"
+                               value="Limpiar">
+                    </td>
+                    <td>
+                        <input type="button" 
+                               onclick="cleanAll();" 
+                               class='btn btn-default' 
+                               style="width: 100%;"
+                               value="Limipiar Todo">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="button" 
+                               onclick="setInput();" 
+                               class='btn btn-default' 
+                               style='background-color: #8cff66; width: 100%;' 
+                               value="Entrada">
+                    </td>
+                    <td>
+                        <input type="button" 
+                               onclick="setOutput();" 
+                               class='btn btn-default' 
+                               style="background-color: #ff4d4d; width: 100%;"
+                               value="Salida">
+                    </td>
+                    <td>
+                        <input type="button" 
+                               onclick="setRampIn();" 
+                               class='btn btn-default' 
+                               style="background-color: #6699ff; width: 100%;"
+                               value="Rampa de Subida">
+                    </td>
+                    <td>
+                        <input type="button" 
+                               onclick="setRampOut();" 
+                               class='btn btn-default'
+                               style="background-color: #ff4dff; width: 100%;"
+                               value="Rampa de Bajada">
+                    </td>
+                </tr>
+            </table>
             <br><br>
             <input type="button" onclick="generate();" class="btn btn-info" value="Guardar Nivel">
         </div>
