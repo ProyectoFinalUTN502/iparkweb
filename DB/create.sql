@@ -227,8 +227,6 @@ DROP TABLE IF EXISTS `central_dev`.`client` ;
 
 CREATE TABLE IF NOT EXISTS `central_dev`.`client` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `token` VARCHAR(255) NULL,
-  `macAddress` VARCHAR(255) NOT NULL,
   `email` VARCHAR(255) NOT NULL,
   `password` VARCHAR(255) NOT NULL,
   `name` VARCHAR(255) NOT NULL,
@@ -467,12 +465,33 @@ DROP TABLE IF EXISTS `central_dev`.`real_time_position` ;
 
 CREATE TABLE IF NOT EXISTS `central_dev`.`real_time_position` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `xPoint` INT NOT NULL,
-  `yPoint` INT NOT NULL,
+  `xPoint` DOUBLE NOT NULL,
+  `yPoint` DOUBLE NOT NULL,
+  `creationDate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `client_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_real_time_position_client1_idx` (`client_id` ASC),
   CONSTRAINT `fk_real_time_position_client1`
+    FOREIGN KEY (`client_id`)
+    REFERENCES `central_dev`.`client` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `central_dev`.`client_mac`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `central_dev`.`client_mac` ;
+
+CREATE TABLE IF NOT EXISTS `central_dev`.`client_mac` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `macAddress` VARCHAR(255) NOT NULL,
+  `creationDate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `client_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_client_mac_client1_idx` (`client_id` ASC),
+  CONSTRAINT `fk_client_mac_client1`
     FOREIGN KEY (`client_id`)
     REFERENCES `central_dev`.`client` (`id`)
     ON DELETE NO ACTION

@@ -1,11 +1,14 @@
--- --------------------------------------------------------------------------------------------------
+-- -----------------------------------------------------------------------------
 -- Nombre	: sp_search_parkinglot.sql
 -- Autor	: Grupo 502
 -- Fecha		: Septiembre 2016
 -- Descripcion	: Store Procedure para Busqueda de Establecimiento 
 -- Notras	: Ref. CU0005 Busqueda de Establecimiento Durante el Manejo
 -- 		: Depende de Vista vw_layout
--- --------------------------------------------------------------------------------------------------
+-- -----------------------------------------------------------------------------
+
+-- ** ESTE SP NO ESTA TERMINADO ** 
+
 DELIMITER $$
 
 CREATE PROCEDURE `searchParkinglot` (IN clientID INT, IN vehicleTypeID INT, IN lat DOUBLE, IN lng DOUBLE)
