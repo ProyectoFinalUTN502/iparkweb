@@ -16,11 +16,27 @@ var input = false;
 var output = false;
 var rampIn = false;
 var rampOut = false;
+var cleanCell = false;
 
 function eventClick(e) {
+    
+    if (cleanCell) {
+        $(this).css('background-color', "");
+        $(this).data("circulation-value", "0");
+        $(this).data("valid-position", "0");
+        $(this).data("vt", "0");
+        $(this).data("in", "0");
+        $(this).data("out", "0");
+        $(this).data("rin", "0");
+        $(this).data("rout", "0");
+        $(this).html("");
+        cleanCell = false;
+        $("#layoutTable").css("cursor", "default");
+    }
+    
     if (circulation) {
         var newValue = getNextCirculationValue();
-        $(this).css("background-color", colorCirculation);
+        $(this).html("<b>" + newValue + "</b>");
         
         $(this).data("circulation-value", newValue);
         $(this).data("valid-position", "1");
@@ -29,10 +45,6 @@ function eventClick(e) {
         $(this).data("out", "0");
         $(this).data("rin", "0");
         $(this).data("rout", "0");
-        
-        $("#layoutTable").css("cursor", "default");
-        criculation = false;
-        console.log("Valor de Circulacion: " + newValue);
     }
     
     if (invalid) {
@@ -45,10 +57,6 @@ function eventClick(e) {
         $(this).data("out", "0");
         $(this).data("rin", "0");
         $(this).data("rout", "0");
-        
-        $("#layoutTable").css("cursor", "default");
-        invalid = false;
-        console.log("Posicion Invalida cargada");
     }
     
     if (input) {
@@ -277,8 +285,17 @@ function setColor(color, id) {
 }
 
 function setCirculation() {
-    circulation = true;
     
+    // La primera vez, activa la circulacion, la segunda, la desactiva
+    
+    if (circulation) {
+        $("#layoutTable").css("cursor", "default");
+        circulation = false;
+        return;
+    }
+    
+    circulation = true;
+    cleanCell = false;
     invalid = false;
     input = false;
     output = false;
@@ -291,8 +308,15 @@ function setCirculation() {
 }
 
 function setInvalid() {
-    invalid = true;
     
+    if (invalid) {
+        $("#layoutTable").css("cursor", "default");
+        invalid = false;
+        return;
+    }
+    
+    invalid = true;
+    cleanCell = false;
     circulation = false;
     input = false;
     output = false;
@@ -308,6 +332,7 @@ function setInput() {
     input = true;
     
     circulation = false;
+    cleanCell = false;
     invalid = false;
     output = false;
     rampIn = false;
@@ -322,6 +347,7 @@ function setOutput() {
     output = true;
     
     circulation = false;
+    cleanCell = false;
     invalid = false;
     input = false;
     rampIn = false;
@@ -336,6 +362,7 @@ function setRampIn() {
     rampIn = true;
     
     output = false;
+    cleanCell = false;
     circulation = false;
     invalid = false;
     input = false;
@@ -350,6 +377,7 @@ function setRampOut() {
     rampOut = true;
     
     output = false;
+    cleanCell = false;
     circulation = false;
     invalid = false;
     input = false;
@@ -361,6 +389,7 @@ function setRampOut() {
 }
 
 function clean() {
+    cleanCell = true;
     $('#rangeColor').val("#FFFFFF");
     $('#vehicleType').val("0");
     $("#layoutTable").css("cursor", "pointer");

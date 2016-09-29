@@ -92,9 +92,10 @@ require_once APPPATH . DS . "html" . DS . "backend" . DS . "sideMenu.php";
                                             $vtColor = "#ff4dff";
                                         }
                                         
-                                        if ($lp->getCirculationValue() != 0) {
-                                            $vtName = "";
-                                            $vtColor = "#262626";
+                                        $cv = $lp->getCirculationValue();
+                                        if ($cv != 0) {
+                                            $vtName = $cv;
+                                            $vtColor = "#FFFFFF";
                                         }
                                         
                                         $html .= "<td style='background-color: " . $vtColor . ";' align='center'>
