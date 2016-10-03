@@ -1,31 +1,25 @@
 -- -----------------------------------------------------------------------------
--- Nombre		: sp_search_parkinglot.sql
+-- Nombre		: sp_search_parkinglot_by.sql
 -- Autor		: Grupo 502
--- Fecha		: Septiembre 2016
+-- Fecha		: Octubre 2016
 -- Descripcion	: Store Procedure para Busqueda de Establecimiento 
--- Notras		: Ref. CU0005 Busqueda de Establecimiento Durante el Manejo
+-- Notras		: Ref. CU0007 Busqueda de Establecimiento Por Parametros
 -- 				: Depende de Vista vw_layout
 -- -----------------------------------------------------------------------------
 
 DELIMITER $$
 
-CREATE PROCEDURE `searchParkinglot` (IN clientID INT, IN vehicleTypeID INT, IN lat DOUBLE, IN lng DOUBLE)
+CREATE PROCEDURE `searchParkinglotBy` (
+	IN vehicleTypeID INT, 
+	IN lat DOUBLE, 
+	IN lng DOUBLE, 
+	IN maxRange INT, 
+	IN maxPrice DOUBLE, 
+	IN is24 INT, 
+	IN isCovered INT
+)
 BEGIN
 	
-	DECLARE profileRange INT;
-	DECLARE profileMaxPrice DOUBLE;
-	DECLARE profileIs24 INT;
-	DECLARE profileIsCovered INT;
-
-	SELECT 
-		cp.range, cp.maxPrice, cp.is24, cp.isCovered INTO 
-		profileRange, profileMaxPrice, profileIs24, profileIsCovered 
-	FROM 
-		client_profile cp
-	WHERE 
-		client_id = clientID 
-	LIMIT 1;
-
 	SELECT 
 		* 
 	FROM 
@@ -81,11 +75,11 @@ BEGIN
 				parkinglot plot 
 		) t  
 	WHERE 
-		t.isCovered = profileIsCovered AND 
-		t.is24 = profileIs24 AND 
-		t.price <= profileMaxPrice AND 
-		t.distance <= profileRange AND 
-		t.positions > 0 
+		t.isCovered = isCovered AND 
+		t.is24 = is24 AND 
+		t.price <= maxPrice AND 
+		t.distance <= maxRange AND 
+		t.positions > 0  
 	ORDER BY t.distance ASC; 
 
 END
