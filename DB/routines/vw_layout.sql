@@ -1,7 +1,7 @@
 -- -----------------------------------------------------------------------------
 -- Nombre	: vw_layout.sql
 -- Autor	: Grupo 502
--- Fecha		: Septiembre 2016
+-- Fecha        : Septiembre 2016
 -- Descripcion	: Vista de Layout de Establecimiento
 -- Notras	: 
 -- -----------------------------------------------------------------------------

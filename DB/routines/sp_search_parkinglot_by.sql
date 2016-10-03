@@ -1,10 +1,10 @@
 -- -----------------------------------------------------------------------------
--- Nombre		: sp_search_parkinglot_by.sql
--- Autor		: Grupo 502
--- Fecha		: Octubre 2016
--- Descripcion	: Store Procedure para Busqueda de Establecimiento 
--- Notras		: Ref. CU0007 Busqueda de Establecimiento Por Parametros
--- 				: Depende de Vista vw_layout
+-- Nombre	: sp_search_parkinglot_by.sql
+-- Autor	: Grupo 502
+-- Fecha	: Octubre 2016
+-- Descripcion  : Store Procedure para Busqueda de Establecimiento 
+-- Notras	: Ref. CU0007 Busqueda de Establecimiento Por Parametros
+-- 		: Depende de Vista vw_layout
 -- -----------------------------------------------------------------------------
 
 DELIMITER $$
