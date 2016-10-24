@@ -836,4 +836,15 @@ class ParkingLotController extends StefanController {
             $this->loadView(self::$rootFolder . DS . "map", $arg);
         }
     }
+    
+    public function capacity() {
+        
+        /* Obtengo el ID del Cliente
+         * Con ese ID obtengo el Parkinglot ID
+         * Con ese ID obtengo los Layouts
+         * 
+         * Devuelvo los Layouts
+         */
+        
+    }
 }

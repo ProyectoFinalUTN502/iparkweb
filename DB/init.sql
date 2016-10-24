@@ -1178,6 +1178,8 @@ VALUES ('Edicion de Establecimiento', 'Mi Establecimiento', 'Edicion de informac
 INSERT INTO `group` (`name`, `text`, `description`, `style`, `ref`, `create` , `delete`, `update`, `list`, `search`) 
 VALUES ('Gestion de Tarifas', 'Tarifas', 'Carga y Actualizacion de Tarifas', 'fa fa-dollar', 'price/all', 1, 0, 1, 1, 1);
 
+INSERT INTO `group` (`name`, `text`, `description`, `style`, `ref`, `create` , `delete`, `update`, `list`, `search`) 
+VALUES ('Gestion de Ubicaciones', 'Capacidad', 'Capacidad en Tiempo Real del Establecimiento', 'fa fa-tachometer', 'parkinglot/capacity', 1, 0, 1, 1, 1);
 
 -- ROLES ADMINISTRADOR Y CLIENTE
 INSERT INTO rol (name, creationDate) VALUES ('Administrador', now());
@@ -1192,6 +1194,7 @@ INSERT INTO `permission` (`rol_id`, `group_id`) VALUES (1, 5);
 
 INSERT INTO `permission` (`rol_id`, `group_id`) VALUES (2, 6);
 INSERT INTO `permission` (`rol_id`, `group_id`) VALUES (2, 7);
+INSERT INTO `permission` (`rol_id`, `group_id`) VALUES (2, 8);
 
 -- USUARIO ADMINISTRADOR PRINCIPAL
 INSERT INTO user (user,  password, name,  lastName,  email, creationDate, rol_id) 
