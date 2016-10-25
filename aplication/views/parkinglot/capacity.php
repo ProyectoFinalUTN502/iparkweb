@@ -2,7 +2,7 @@
 /* @var $pkl Parkinglot */
 $pkl;
 
-$group = new Group(PARKINGLOT_GROUP);
+$group = new Group(CAPACITY_GROUP);
 $ac = new AdminController();
 $ac->control($group, new RedirectResult());
 
@@ -15,7 +15,7 @@ require_once APPPATH . DS . "html" . DS . "backend" . DS . "sideMenu.php";
 
     <div id="content-header">
         <h1>
-           Mapa de Establecimiento
+           Capacidad Actual
         </h1>
     </div>
 
@@ -40,7 +40,7 @@ require_once APPPATH . DS . "html" . DS . "backend" . DS . "sideMenu.php";
                         </div>
                         <div id='level_" . $layout->getFloor() . "' class='panel-collapse collapse'>
                             <div class='panel-body'>
-                                <table class='layoutTable' style='table-layout: fixed;'>";
+                                <table class='layoutTable' style='width:100%;table-layout: fixed;'>";
                                 $pos = 0;
                                 for ($i = 0; $i < $layout->getMaxRows(); $i ++) {
                                     
@@ -57,44 +57,46 @@ require_once APPPATH . DS . "html" . DS . "backend" . DS . "sideMenu.php";
                                         $vtName = "";
                                         $vtColor = "";
                                         
+                                        // Posicion Invalida
                                         if ($vt == NULL && !$lp->isValid()) {
-                                            $vtName = "";
+                                            $vtName = Gui::img("ocupado.png");
                                             $vtColor = "#909090";
                                         }
                                         
-                                        if ($vt == NULL && $lp->isValid()) {
-                                            $vtName = "";
-                                            $vtColor = "#FFFFFF";
-                                        }
-                                        
+                                        // Es vehiculo
                                         if ($vt != NULL && $lp->isValid()) {
-                                            $vtName = $vt->getName();
-                                            $vtColor = $vt->getColor();
+                                            $vtName = Gui::img("car.png"); //$vt->getName();
+                                            $vtColor = $lp->getStateColor();
                                         }
                                         
+                                        // Es Entrada
                                         if ($lp->isIn()) {
-                                            $vtName = "&#45;";
+                                            $vtName = "ENTRADA";
                                             $vtColor = "#8cff66";
                                         }
                                         
+                                        // Es Salida
                                         if ($lp->isOut()) {
-                                            $vtName = "X";
+                                            $vtName = "SALIDA";
                                             $vtColor = "#ff4d4d";
                                         }
                                         
+                                        // Es Rampa de Subida
                                         if ($lp->isRampIn()) {
                                             $vtName = "&#62;";
                                             $vtColor = "#6699ff";
                                         }
                                         
+                                        // Es Rampa de Bajada
                                         if ($lp->isRampOut()) {
                                             $vtName = "&#60;";
                                             $vtColor = "#ff4dff";
                                         }
                                         
+                                        // Es Posicion para Caminar
                                         $cv = $lp->getCirculationValue();
                                         if ($cv != 0) {
-                                            $vtName = $cv;
+                                            $vtName = "";
                                             $vtColor = "#FFFFFF";
                                         }
                                         

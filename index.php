@@ -10,7 +10,7 @@ $config = array();
 /**
  * Base URL of the app
  */
-$config["base_url"] = "iParkWeb";
+$config["base_url"] = "iparkweb";
 /**
  * Application Domain. No Slashes at the end
  */

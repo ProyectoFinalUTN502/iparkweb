@@ -226,6 +226,10 @@ class FreeLayoutPosition extends LayoutPosition {
     public function getState(){
         return "LIBRE";
     }
+    
+    public function getStateColor() {
+        return "#8cff66";
+    }
 }
 
 /** @Entity **/
@@ -233,12 +237,20 @@ class BookedLayoutPosition extends LayoutPosition {
     public function getState(){
         return "RESERVADA";
     }
+    
+    public function getStateColor() {
+        return "#ff4d4d";
+    }
 }
 
 /** @Entity **/
 class UnavailableLayoutPosition extends LayoutPosition {
     public function getState(){
         return "NO DISPONIBLE";
+    }
+    
+    public function getStateColor() {
+        return "#ff4d4d";
     }
     
 }

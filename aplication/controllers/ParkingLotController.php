@@ -838,13 +838,16 @@ class ParkingLotController extends StefanController {
     }
     
     public function capacity() {
+        /* @var $parkinglot Parkinglot */
+        $userId = $this->loadFromSession("userID");
+        $parkinglot = self::getUserParkinglot($userId);
         
-        /* Obtengo el ID del Cliente
-         * Con ese ID obtengo el Parkinglot ID
-         * Con ese ID obtengo los Layouts
-         * 
-         * Devuelvo los Layouts
-         */
+        if ($parkinglot == NULL) {
+            $this->redirect("admin/error");
+        } 
         
+        $arg = array();
+        $arg["pkl"] = $parkinglot;
+        $this->loadView(self::$rootFolder . DS . "capacity", $arg);
     }
 }

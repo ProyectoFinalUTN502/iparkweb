@@ -18,3 +18,4 @@ define("CONFIG_GROUP", 5);
 
 define("PARKINGLOT_EDITION_GROUP", 6);
 define("PRICE_GROUP", 7);
+define("CAPACITY_GROUP", 8);
