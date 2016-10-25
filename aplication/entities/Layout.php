@@ -81,6 +81,48 @@ class Layout {
     public function getLayoutPositions() {
         return $this->layoutPositions;
     }
+    
+    public function getFreePositions() {
+        $count = 0;
+        $func = function($e) use (&$count) {
+            if ($e instanceof FreeLayoutPosition) {
+                if ($e->getVehicleType() != NULL) {
+                    $count++;
+                }
+            }
+        };
+
+        $this->layoutPositions->map($func);
+        return $count;
+    }
+
+    public function getBookedPositions() {
+        $count = 0;
+        $func = function($e) use (&$count) {
+            if ($e instanceof BookedLayoutPosition) {
+                if ($e->getVehicleType() != NULL) {
+                    $count++;
+                }
+            }
+        };
+
+        $this->layoutPositions->map($func);
+        return $count;
+    }
+    
+    public function getUnavailablePositions() {
+        $count = 0;
+        $func = function($e) use (&$count) {
+            if ($e instanceof UnavailableLayoutPosition) {
+                if ($e->getVehicleType() != NULL) {
+                    $count++;
+                }
+            }
+        };
+
+        $this->layoutPositions->map($func);
+        return $count;
+    }
 
     public function setId($id) {
         $this->id = $id;

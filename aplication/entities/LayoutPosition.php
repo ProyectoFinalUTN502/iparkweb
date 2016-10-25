@@ -151,6 +151,18 @@ abstract class LayoutPosition {
     public function getROut() {
         return $this->rOut;
     }
+    
+    public function isInvalid() {
+        $vt = $this->getVehicleType();
+        $exp = $vt == NULL && 
+                !$this->isValid() && 
+                !$this->isIn() && 
+                !$this->isOut() && 
+                !$this->isRampIn() && 
+                !$this->isRampOut();
+        
+        return $exp;
+    }
 
     public function isValid() {
         return $this->valid == 1 ? true : false;
@@ -228,7 +240,7 @@ class FreeLayoutPosition extends LayoutPosition {
     }
     
     public function getStateColor() {
-        return "#8cff66";
+        return "#369615";
     }
 }
 
@@ -239,7 +251,7 @@ class BookedLayoutPosition extends LayoutPosition {
     }
     
     public function getStateColor() {
-        return "#ff4d4d";
+        return "#c40303";
     }
 }
 
@@ -250,7 +262,7 @@ class UnavailableLayoutPosition extends LayoutPosition {
     }
     
     public function getStateColor() {
-        return "#ff4d4d";
+        return "#c40303";
     }
     
 }

@@ -112,15 +112,17 @@ class Gui {
         return $html;
     }
     
-    public static function img($file) {
+    public static function img($file, $style = "") {
         if ($file == "") {
             return;
         }
         
         $domain = Ioc::getService("domain");
         $href = "/" . $domain . "/aplication/public/backend/img/" . $file;
-         
-        $html = "<img src='" . $href . "'/>";
+        
+        $attrib = $style != "" ? "style='" . $style . "'" : "";
+        
+        $html = "<img src='" . $href . "' " . $attrib . " />";
         return $html;
     }
 
