@@ -324,7 +324,7 @@ DROP TABLE IF EXISTS `central_dev`.`vehicle_parking` ;
 
 CREATE TABLE IF NOT EXISTS `central_dev`.`vehicle_parking` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `creationDate` DATETIME NOT NULL,
+  `creationDate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `vehicle_id` INT NOT NULL,
   `layout_position_id` INT NOT NULL,
   PRIMARY KEY (`id`),
